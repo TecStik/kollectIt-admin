@@ -8,10 +8,11 @@ import moment from "moment";
 import axios from "axios";
 import "./Voucher.css";
 // pagination import here
-import Voucherdata from "./Voucher.json";
+
 import { Stack, Pagination, Typography } from "@mui/material"
 
-console.log(Voucherdata?.length)
+const itemsPerPage = 5;
+
 
 
 export default function VocherLeger() {
@@ -22,21 +23,26 @@ export default function VocherLeger() {
   const [allData, setallData] = useState([])
 
   // new state json pagination
-  const [voucherData, setVoucherData] = useState(Voucherdata);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Number of items to display per page
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(data.length / itemsPerPage);
 
 
   useEffect(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const itemsToShow = voucherData.slice(startIndex, endIndex);
-    setVoucherData(itemsToShow);
+    // Load data from the JSON file when the component mounts
+    fetch("/Voucher.json")
+      .then((response) => response.json())
+      .then((json) => setData(json));
   }, []);
 
-  const handleChange = (event, value) => {
-    setCurrentPage(value);
+  const handlePageChange = (event, value) => {
+    setPage(value);
   };
+
+  const displayedData = data.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
 
 
 
@@ -140,7 +146,7 @@ export default function VocherLeger() {
               </tr>
             </thead>
             <tbody>
-              {voucherData?.map((v) => {
+              {displayedData?.map((v) => {
                 // <VocherLegerList alldata={v} />
 
                 return (
@@ -156,11 +162,13 @@ export default function VocherLeger() {
           </table>
         </div>
         <div style={{ padding: "30px 0px" }}>
-        <Pagination
+          <Pagination
             className="pagi__style"
-            count={Math.ceil(voucherData?.length / itemsPerPage)}
-            page={currentPage}
-            onChange={handleChange}
+            count={totalPages}
+            page={page}
+            onChange={handlePageChange}
+            variant="outlined"
+            shape="rounded"
           />
         </div>
       </div>
