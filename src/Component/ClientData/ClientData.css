@@ -28,3 +28,17 @@
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
+
+/* client update Containere here */
+
+.client__update_container_th{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input{
+  width: 100%;
+  outline: none;
+}

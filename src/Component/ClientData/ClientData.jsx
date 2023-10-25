@@ -58,6 +58,7 @@ export default function ClientData() {
   const UserCredentials = useContext(StoreContext);
   const csvLinkEl = useRef(null);
   const [filterItem, setfilterItem] = useState(allData);
+  const [OnData, setOnData] = useState("");
 
   // new State loading and pagination here
   const [page, setPage] = useState(1);
@@ -83,6 +84,11 @@ export default function ClientData() {
     { label: "Email", key: "ClientEmail" },
     { label: "Amount", key: "ClientAmount" },
   ];
+
+  let clientid = useRef();
+  let clientname = useRef();
+  let clientphonenumber = useRef();
+  let clientemail = useRef();
 
   useEffect(() => {
     if (UserCredentials.UserData.Role === "Admin") {
@@ -157,6 +163,23 @@ export default function ClientData() {
     });
   };
 
+  // modal function here update api
+
+  function handler(){
+    console.log(clientid.current.value)
+  }
+
+
+
+
+
+  function creatID(e) {
+    console.log(e, "Ee");
+    // setImagelink(e.imageUrl)
+    // setObjId(e._id)
+    setOnData(e);
+  }
+
   return (
     <div>
       <CSVLink
@@ -191,7 +214,7 @@ export default function ClientData() {
       {/* loading here  */}
 
       {
-        loading ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+        loading ? <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <CircularProgressWithLabel value={progress} />
         </div> : <>
           <input
@@ -209,6 +232,7 @@ export default function ClientData() {
                 <th style={{ width: 60 }}>Number</th>
                 <th style={{ width: 60 }}>Email</th>
                 <th style={{ width: 60 }}>Amount</th>
+                <th style={{ width: 60 }}>Action</th>
               </tr>
               {displayedData?.map((v, index) => {
                 return (
@@ -218,11 +242,92 @@ export default function ClientData() {
                     <td>{v?.ClientPhoneNumber}</td>
                     <td>{v?.ClientEmail}</td>
                     <td>{v?.ClientAmount}</td>
+                    <td>
+                      <button
+                        class="badge badge-primary rounded-pill d-inline"
+                        data-toggle="modal"
+                        data-target="#myModal"
+                        onClick={() => creatID(v)}
+                      >
+                        view
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
             </table>
           </div>
+          {/* modal start here */}
+
+          <div class="modal" id="myModal">
+            <div class="modal-dialog modal-dialog-scrollable">
+              <div class="modal-content" style={{ width: "115%" }}>
+                {/* <!-- Modal Header --> */}
+                <div class="modal-header">
+                  <h1 class="modal-title">View & Update</h1>
+                  <button
+                    type="button"
+                    class="btn btn-danger close"
+                    data-dismiss="modal"
+                  >
+                    X
+                  </button>
+                </div>
+
+                {/* <!-- Modal body --> */}
+                <div class="modal-body">
+                  <table id="myTable">
+                    <td className="client__update_container_th">
+                      <th style={{width:'100%'}}>
+                        <input ref={clientid} placeholder={`Client ID ${OnData?.ClientId}`}/>
+                      </th>
+                      <th style={{ width: "100%" }}>
+                        <input
+                          type="text"
+                          ref={clientname}
+                          placeholder={`Client Name ${OnData?.ClientName}`}
+                        />
+                      </th>
+                      <th style={{ width: "100%" }}>
+                        <input
+                          type="text"
+                          ref={clientphonenumber}
+                          placeholder={`Client Phone Number ${OnData?.ClientPhoneNumber}`}
+                        />
+                      </th>
+                      <th style={{ width: "100%" }}>
+                        <input
+                          type="text"
+                          ref={clientemail}
+                          placeholder={`Client Email ${OnData?.ClientEmail}`}
+                        />
+                      </th>
+                    </td>
+                  </table>
+                </div>
+
+                {/* <!-- Modal footer --> */}
+                <div class="modal-footer">
+                  {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
+                  <button
+                    id="sumbit"
+                    aria-label=""
+                    class="btn btn-success close"
+                    data-dismiss="modal"
+                    onClick={() => handler()}
+                  >
+                    SUBMIT
+                  </button>
+                  {/* <button type="button" onClick={handleSubmit} value={value} class="btn btn-success close">Submit</button> */}
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* modal end here */}
           <div style={{ marginTop: "30px" }}>
             <Pagination
               className="pagi__style"
