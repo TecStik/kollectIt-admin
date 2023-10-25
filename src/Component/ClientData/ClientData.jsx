@@ -177,11 +177,11 @@ export default function ClientData() {
           _id: OnData?._id,
         },
         update: {
-          ClientId: clientid.current.value,
-          ClientName: clientname.current.value,
-          ClientPhoneNumber: clientphonenumber.current.value,
-          ClientEmail: clientemail.current.value
-        },
+          ClientId: clientid.current.value ? clientid.current.value : OnData?.ClientId,
+          ClientName: clientname.current.value ? clientname.current.value : OnData?.ClientName,
+          ClientPhoneNumber: clientphonenumber.current.value ? clientphonenumber.current.value : OnData?.ClientPhoneNumber,
+          ClientEmail: clientemail.current.value ? clientemail.current.value : OnData?.ClientEmail
+        }, 
       },
     })
       .then((res) => {
