@@ -59,6 +59,7 @@ export default function ClientData() {
   const csvLinkEl = useRef(null);
   const [filterItem, setfilterItem] = useState(allData);
   const [OnData, setOnData] = useState("");
+  const [realTime, setRealTime] = useState(true);
 
   // new State loading and pagination here
   const [page, setPage] = useState(1);
@@ -165,8 +166,29 @@ export default function ClientData() {
 
   // modal function here update api
 
-  function handler(){
+  function handler() {
     console.log(clientid.current.value)
+
+    axios({
+      method: "put",
+      url: Url + "/UpdateFilteredClients",
+      data: {
+        filter: {
+          _id: OnData?._id,
+        },
+        update: {
+          ClientId: clientid.current.value,
+          ClientName: clientname.current.value,
+          ClientPhoneNumber: clientphonenumber.current.value,
+          ClientEmail: clientemail.current.value
+        },
+      },
+    })
+      .then((res) => {
+        console.log(res?.data, "response");
+        setRealTime(!realTime);
+      })
+      .catch((error) => [console.log(error, "error")]);
   }
 
 
@@ -278,8 +300,8 @@ export default function ClientData() {
                 <div class="modal-body">
                   <table id="myTable">
                     <td className="client__update_container_th">
-                      <th style={{width:'100%'}}>
-                        <input ref={clientid} placeholder={`Client ID ${OnData?.ClientId}`}/>
+                      <th style={{ width: '100%' }}>
+                        <input ref={clientid} placeholder={`Client ID ${OnData?.ClientId}`} />
                       </th>
                       <th style={{ width: "100%" }}>
                         <input
