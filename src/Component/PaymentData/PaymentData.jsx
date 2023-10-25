@@ -6,6 +6,46 @@ import "./PaymentData.css";
 import axios from "axios";
 import Filter from "../filter/filter";
 import moment from "moment";
+import PropTypes from 'prop-types';
+import { CircularProgress, Box, Typography,Pagination } from "@mui/material";
+
+
+// loading function here
+function CircularProgressWithLabel(props) {
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress variant="determinate" {...props} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography variant="caption" component="div" color="text.secondary">
+          {`${Math.round(props.value)}%`}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+CircularProgressWithLabel.propTypes = {
+  /**
+   * The value of the progress indicator for the determinate variant.
+   * Value between 0 and 100.
+   * @default 0
+   */
+  value: PropTypes.number.isRequired,
+};
+
+// pagination limit here
+const itemsPerPage = 5;
 
 
 export default function PaymentData() {
@@ -16,6 +56,25 @@ export default function PaymentData() {
   const [Imagelink, setImagelink] = useState([]);
   const [filterItem, setfilterItem] = useState([]);
   const csvLinkEl = useRef(null);
+
+  // loading state
+  const [progress, setProgress] = useState(10);
+  const [loading, setLoading] = useState(true);
+
+  // new state json pagination
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(allData.length / itemsPerPage);
+
+  // loading useEffect here
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
+    }, 800);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
 
   const headers = [
     { label: "Verify.Code", key: "VerificationCode" },
@@ -44,15 +103,17 @@ export default function PaymentData() {
         },
       },
     }).then((response) => {
-      console.log(response.data, "response");
-      setallData(response.data);
-      setfilterItem(response.data);
-      // setfilterItem();
+      console.log(response?.data, "response");
+      setallData(response?.data);
+      setfilterItem(response?.data);
+      setTimeout(() => {
+        setLoading(false)
+      }, 2000);
     });
   }, [realTime]);
 
 
-  console.log("ali allData ====>",allData);
+  console.log("ali allData ====>", allData);
 
   // useEffect(() => {
   //     axios({
@@ -63,8 +124,6 @@ export default function PaymentData() {
   //         setallData(response.data.Data)
   //     })
   // }, [realTime])
-
-  // console.log(allData, "allData");
 
   function myFunction() {
     var input, filter, table, tr, td, i, txtValue;
@@ -110,11 +169,21 @@ export default function PaymentData() {
       },
     })
       .then((res) => {
-        console.log(res.data, "response");
+        console.log(res?.data, "response");
         setRealTime(!realTime);
       })
       .catch((error) => [console.log(error, "error")]);
   }
+  // pagination here 
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = allData.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
 
   const downloadReport = async () => {
     setTimeout(() => {
@@ -122,9 +191,9 @@ export default function PaymentData() {
     });
   };
   console.log(filterItem, "filter PAyment Data Data");
-// useEffect(()=>{
-//   setallData(filterItem)
-// },[])
+  // useEffect(()=>{
+  //   setallData(filterItem)
+  // },[])
   return (
     <div>
       <CSVLink
@@ -156,131 +225,143 @@ export default function PaymentData() {
           <Filter data={{ allData, setfilterItem }} />
         </div>
       </div>
+      {/* loading here */}
 
-      <input
-        type="text"
-        id="myInput"
-        onChange={myFunction}
-        placeholder="Search for names.."
-        title="Type in a name"
-      ></input>
-      <div class=" overflow-auto" style={{ maxHeight: "110vh" }}>
-        <table id="myTable">
-          <tr class="header">
-            <th>Verify Code</th>
-            <th>Name</th>
-            <th>Draw On</th>
-            <th>Payment Status</th>
-            <th>Due On</th>
-            <th>Date</th>
-            <th>Staus</th>
-            <th>Action</th>
-          </tr>
-          {!allData.length ? (
-            <>
-              <h1 className="text-center">No Data</h1>
-            </>
-          ) : (
-            <>
-              {filterItem.map((v, index) => {
-                // console.log(v.createdOn);
-                return (
-                  <tr key={index}>
-                    <td className="text-center">{v.VerificationCode}</td>
-                    <td>{v.PaymentName}</td>
-                    <td>{v.drawOn}</td>
-                    <td>{v.PaymentStatus}</td>
-                    <td className="text-center">{v.dueOn}</td>
-                   <td>{moment(v.createdOn).format("MMM Do YY")}</td>
-                    {/* <td>
+      {loading ? <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <CircularProgressWithLabel value={progress} />
+      </div> : <>
+        <input
+          type="text"
+          id="myInput"
+          onChange={myFunction}
+          placeholder="Search for names.."
+          title="Type in a name"
+        ></input>
+        <div class=" overflow-auto" style={{ maxHeight: "110vh" }}>
+          <table id="myTable">
+            <tr class="header">
+              <th>Verify Code</th>
+              <th>Name</th>
+              <th>Draw On</th>
+              <th>Payment Status</th>
+              <th>Due On</th>
+              <th>Date</th>
+              <th>Staus</th>
+              <th>Action</th>
+            </tr>
+            {!allData?.length ? (
+              <>
+                <h1 className="text-center">No Data</h1>
+              </>
+            ) : (
+              <>
+                {displayedData?.map((v, index) => {
+                  // console.log(v.createdOn);
+                  return (
+                    <tr key={index}>
+                      <td className="text-center">{v.VerificationCode}</td>
+                      <td>{v.PaymentName}</td>
+                      <td>{v.drawOn}</td>
+                      <td>{v.PaymentStatus}</td>
+                      <td className="text-center">{v.dueOn}</td>
+                      <td>{moment(v.createdOn).format("MMM Do YY")}</td>
+                      {/* <td>
                       <img src={v.imageUrl} id="tableImage" />
                     </td> */}
-                    <td>{v.status}</td>
-                    <td>
+                      <td>{v.status}</td>
                       <td>
-                        <button
-                          class="badge badge-primary rounded-pill d-inline"
-                          data-toggle="modal"
-                          data-target="#myModal"
-                          onClick={() => creatID(v)}
-                        >
-                          view
-                        </button>
+                        <td>
+                          <button
+                            class="badge badge-primary rounded-pill d-inline"
+                            data-toggle="modal"
+                            data-target="#myModal"
+                            onClick={() => creatID(v)}
+                          >
+                            view
+                          </button>
+                        </td>
                       </td>
-                    </td>
-                  </tr>
-                );
-              })}
-            </>
-          )}
-        </table>
-      </div>
-      <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-scrollable">
-          <div class="modal-content" style={{ width: "115%" }}>
-            {/* <!-- Modal Header --> */}
-            <div class="modal-header">
-              <h1 class="modal-title">View & Update</h1>
-              <button
-                type="button"
-                class="btn btn-danger close"
-                data-dismiss="modal"
-              >
-                X
-              </button>
-            </div>
+                    </tr>
+                  );
+                })}
+              </>
+            )}
+          </table>
+        </div>
+        <div class="modal" id="myModal">
+          <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content" style={{ width: "115%" }}>
+              {/* <!-- Modal Header --> */}
+              <div class="modal-header">
+                <h1 class="modal-title">View & Update</h1>
+                <button
+                  type="button"
+                  class="btn btn-danger close"
+                  data-dismiss="modal"
+                >
+                  X
+                </button>
+              </div>
 
-            {/* <!-- Modal body --> */}
-            <div class="modal-body">
-              <table id="myTable">
-                <td>
-                  <img
-                    src={OnData.imageUrl}
-                    alt="Girl in a jacket"
-                    width="500rem"
-                    height="300"
-                  ></img>
-                  <th style={{ width: "40%" }}>
-                    <input
-                      type="text"
-                      ref={drawOnref}
-                      placeholder={`Draw On ${OnData.drawOn}`}
-                    />
-                  </th>
-                  <th style={{ width: "40%" }}>
-                    <input
-                      type="text"
-                      ref={dueOnref}
-                      placeholder={`Due On ${OnData.dueOn}`}
-                    />
-                  </th>
-                  {/* <br />
-                                    <th style={{ width: "40%" }}><input type="text" placeholder='PaymentMode' /></th>
-                                    <th style={{ width: "40%" }}><input type="text" placeholder='status' /></th> */}
-                </td>
-              </table>
-            </div>
+              {/* <!-- Modal body --> */}
+              <div class="modal-body">
+                <table id="myTable">
+                  <td>
+                    <img
+                      src={OnData.imageUrl}
+                      alt="Girl in a jacket"
+                      width="500rem"
+                      height="300"
+                    ></img>
+                    <th style={{ width: "40%" }}>
+                      <input
+                        type="text"
+                        ref={drawOnref}
+                        placeholder={`Draw On ${OnData.drawOn}`}
+                      />
+                    </th>
+                    <th style={{ width: "40%" }}>
+                      <input
+                        type="text"
+                        ref={dueOnref}
+                        placeholder={`Due On ${OnData.dueOn}`}
+                      />
+                    </th>
+                  </td>
+                </table>
+              </div>
 
-            {/* <!-- Modal footer --> */}
-            <div class="modal-footer">
-              {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
-              <button
-                id="sumbit"
-                aria-label=""
-                class="btn btn-success close"
-                data-dismiss="modal"
-                onClick={() => handler()}
-              >
-                SUBMIT
-              </button>
-              {/* <button type="button" onClick={handleSubmit} value={value} class="btn btn-success close">Submit</button> */}
-              <button type="button" class="btn btn-danger" data-dismiss="modal">
-                Close
-              </button>
+              {/* <!-- Modal footer --> */}
+              <div class="modal-footer">
+                {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
+                <button
+                  id="sumbit"
+                  aria-label=""
+                  class="btn btn-success close"
+                  data-dismiss="modal"
+                  onClick={() => handler()}
+                >
+                  SUBMIT
+                </button>
+                {/* <button type="button" onClick={handleSubmit} value={value} class="btn btn-success close">Submit</button> */}
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        <div style={{marginTop:"30px"}}>
+          <Pagination
+            className="pagi__style"
+            count={totalPages}
+            page={page}
+            onChange={handlePageChange}
+            variant="outlined"
+            shape="rounded"
+          />
+        </div>
+      </>}
     </div>
   );
 }
