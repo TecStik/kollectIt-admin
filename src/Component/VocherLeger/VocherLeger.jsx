@@ -23,26 +23,8 @@ export default function VocherLeger() {
   const [allData, setallData] = useState([])
 
   // new state json pagination
-  const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-
-
-  useEffect(() => {
-    // Load data from the JSON file when the component mounts
-    fetch("/Voucher.json")
-      .then((response) => response.json())
-      .then((json) => setData(json));
-  }, []);
-
-  const handlePageChange = (event, value) => {
-    setPage(value);
-  };
-
-  const displayedData = data.slice(
-    (page - 1) * itemsPerPage,
-    page * itemsPerPage
-  );
+  const totalPages = Math.ceil(allData.length / itemsPerPage);
 
 
 
@@ -91,6 +73,17 @@ export default function VocherLeger() {
       });
     }
   }, [allData]);
+
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = allData.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
 
   const downloadReport = async () => {
     setTimeout(() => {
