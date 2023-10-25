@@ -110,10 +110,10 @@ export default function PaymentData() {
         setLoading(false)
       }, 2000);
     });
-  }, [realTime]);
+  }, []);
 
 
-  console.log("ali allData ====>", allData);
+  
 
   // useEffect(() => {
   //     axios({
@@ -190,7 +190,7 @@ export default function PaymentData() {
       csvLinkEl.current.link.click();
     });
   };
-  console.log(filterItem, "filter PAyment Data Data");
+  // console.log(filterItem, "filter PAyment Data Data");
   // useEffect(()=>{
   //   setallData(filterItem)
   // },[])

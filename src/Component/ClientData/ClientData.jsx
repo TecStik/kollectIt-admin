@@ -6,11 +6,71 @@ import "./ClientData.css";
 import axios from "axios";
 import Filter from "../filter/filter";
 
+// loading import material ui here
+import PropTypes from 'prop-types';
+import { Typography, CircularProgress, Box } from "@mui/material";
+
+
+
+
+// loading function here
+function CircularProgressWithLabel(props) {
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress variant="determinate" {...props} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography variant="caption" component="div" color="text.secondary">
+          {`${Math.round(props.value)}%`}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+CircularProgressWithLabel.propTypes = {
+  /**
+   * The value of the progress indicator for the determinate variant.
+   * Value between 0 and 100.
+   * @default 0
+   */
+  value: PropTypes.number.isRequired,
+};
+
+
+
+
 export default function ClientData() {
   const [allData, setallData] = useState([]);
   const UserCredentials = useContext(StoreContext);
   const csvLinkEl = useRef(null);
   const [filterItem, setfilterItem] = useState(allData);
+
+  // new State loading and pagination here
+  const [progress, setProgress] = React.useState(10);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
+    }, 800);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+
 
   const headers = [
     { label: "ClientId", key: "ClientId" },
@@ -32,6 +92,9 @@ export default function ClientData() {
         },
       }).then((response) => {
         setallData(response.data);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       });
     } else {
       axios({
@@ -47,6 +110,7 @@ export default function ClientData() {
       });
     }
   }, []);
+
 
   console.log(filterItem, "filter Client Data");
 
@@ -105,35 +169,40 @@ export default function ClientData() {
           <Filter data={{ allData, setfilterItem }} />
         </div>
       </div>
-      <input
-        type="text"
-        id="myInput"
-        onChange={myFunction}
-        placeholder="Search for names.."
-        title="Type in a name"
-      ></input>
-      <div className="overflow-auto" style={{ maxHeight: "110vh" }}>
-        <table id="myTable">
-          <tr class="header">
-            <th style={{ width: 60 }}>Client ID</th>
-            <th style={{ width: 60 }}>Name</th>
-            <th style={{ width: 60 }}>Number</th>
-            <th style={{ width: 60 }}>Email</th>
-            <th style={{ width: 60 }}>Amount</th>
-          </tr>
-          {allData.map((v, index) => {
-            return (
-              <tr>
-                <td>{v.ClientId}</td>
-                <td>{v.ClientName}</td>
-                <td>{v.ClientPhoneNumber}</td>
-                <td>{v.ClientEmail}</td>
-                <td>{v.ClientAmount}</td>
-              </tr>
-            );
-          })}
-        </table>
-      </div>
+
+      {/* loading here  */}
+
+      {loading ? <CircularProgressWithLabel value={progress} /> : <>
+        <input
+          type="text"
+          id="myInput"
+          onChange={myFunction}
+          placeholder="Search for names.."
+          title="Type in a name"
+        ></input>
+        <div className="overflow-auto" style={{ maxHeight: "110vh" }}>
+          <table id="myTable">
+            <tr class="header">
+              <th style={{ width: 60 }}>Client ID</th>
+              <th style={{ width: 60 }}>Name</th>
+              <th style={{ width: 60 }}>Number</th>
+              <th style={{ width: 60 }}>Email</th>
+              <th style={{ width: 60 }}>Amount</th>
+            </tr>
+            {allData.map((v, index) => {
+              return (
+                <tr>
+                  <td>{v.ClientId}</td>
+                  <td>{v.ClientName}</td>
+                  <td>{v.ClientPhoneNumber}</td>
+                  <td>{v.ClientEmail}</td>
+                  <td>{v.ClientAmount}</td>
+                </tr>
+              );
+            })}
+          </table>
+        </div>
+      </>}
     </div>
   );
 }
