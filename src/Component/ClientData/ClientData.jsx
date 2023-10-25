@@ -5,6 +5,8 @@ import { CSVLink } from "react-csv";
 import "./ClientData.css";
 import axios from "axios";
 import Filter from "../filter/filter";
+import { Pagination } from "@mui/material";
+
 
 // loading import material ui here
 import PropTypes from 'prop-types';
@@ -47,6 +49,7 @@ CircularProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
+const itemsPerPage = 5;
 
 
 
@@ -57,10 +60,13 @@ export default function ClientData() {
   const [filterItem, setfilterItem] = useState(allData);
 
   // new State loading and pagination here
-  const [progress, setProgress] = React.useState(10);
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(allData.length / itemsPerPage);
+  const [progress, setProgress] = useState(10);
   const [loading, setLoading] = useState(true);
 
 
+  // loading useEffect here
   useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
@@ -69,8 +75,6 @@ export default function ClientData() {
       clearInterval(timer);
     };
   }, []);
-
-
 
   const headers = [
     { label: "ClientId", key: "ClientId" },
@@ -87,13 +91,13 @@ export default function ClientData() {
         url: Url + "/filteredClients",
         data: {
           filter: {
-            BelongsTo: UserCredentials.UserData._id,
+            BelongsTo: UserCredentials?.UserData._id,
           },
         },
       }).then((response) => {
-        setallData(response.data);
+        setallData(response?.data);
         setTimeout(() => {
-          setLoading(false);
+          setLoading(false)
         }, 2000);
       });
     } else {
@@ -102,17 +106,31 @@ export default function ClientData() {
         url: Url + "/filteredClients",
         data: {
           filter: {
-            AssignedBy: UserCredentials.UserData._id,
+            AssignedBy: UserCredentials?.UserData._id,
           },
         },
       }).then((response) => {
-        setallData(response.data);
+        setallData(response?.data);
+        setTimeout(() => {
+          setLoading(false)
+        }, 2000);
       });
     }
   }, []);
 
+  // pagination here 
 
-  console.log(filterItem, "filter Client Data");
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = allData.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
+
+  // console.log(filterItem, "filter Client Data");
 
   function myFunction() {
     var input, filter, table, tr, td, i, txtValue;
@@ -172,37 +190,53 @@ export default function ClientData() {
 
       {/* loading here  */}
 
-      {loading ? <CircularProgressWithLabel value={progress} /> : <>
-        <input
-          type="text"
-          id="myInput"
-          onChange={myFunction}
-          placeholder="Search for names.."
-          title="Type in a name"
-        ></input>
-        <div className="overflow-auto" style={{ maxHeight: "110vh" }}>
-          <table id="myTable">
-            <tr class="header">
-              <th style={{ width: 60 }}>Client ID</th>
-              <th style={{ width: 60 }}>Name</th>
-              <th style={{ width: 60 }}>Number</th>
-              <th style={{ width: 60 }}>Email</th>
-              <th style={{ width: 60 }}>Amount</th>
-            </tr>
-            {allData.map((v, index) => {
-              return (
-                <tr>
-                  <td>{v.ClientId}</td>
-                  <td>{v.ClientName}</td>
-                  <td>{v.ClientPhoneNumber}</td>
-                  <td>{v.ClientEmail}</td>
-                  <td>{v.ClientAmount}</td>
-                </tr>
-              );
-            })}
-          </table>
-        </div>
-      </>}
+      {
+        loading ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+          <CircularProgressWithLabel value={progress} />
+        </div> : <>
+          <input
+            type="text"
+            id="myInput"
+            onChange={myFunction}
+            placeholder="Search for names.."
+            title="Type in a name"
+          ></input>
+          <div className="overflow-auto" style={{ maxHeight: "110vh" }}>
+            <table id="myTable">
+              <tr class="header">
+                <th style={{ width: 60 }}>Client ID</th>
+                <th style={{ width: 60 }}>Name</th>
+                <th style={{ width: 60 }}>Number</th>
+                <th style={{ width: 60 }}>Email</th>
+                <th style={{ width: 60 }}>Amount</th>
+              </tr>
+              {displayedData?.map((v, index) => {
+                return (
+                  <tr>
+                    <td>{v?.ClientId}</td>
+                    <td>{v?.ClientName}</td>
+                    <td>{v?.ClientPhoneNumber}</td>
+                    <td>{v?.ClientEmail}</td>
+                    <td>{v?.ClientAmount}</td>
+                  </tr>
+                );
+              })}
+            </table>
+          </div>
+          <div style={{ marginTop: "30px" }}>
+            <Pagination
+              className="pagi__style"
+              count={totalPages}
+              page={page}
+              onChange={handlePageChange}
+              variant="outlined"
+              shape="rounded"
+            />
+          </div>
+        </>
+      }
+
+
     </div>
   );
 }
