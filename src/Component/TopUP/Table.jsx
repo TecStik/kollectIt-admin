@@ -1,62 +1,67 @@
-import {React,useEffect,useState} from 'react';
-import './Table.css';
-import logo from './tecstik.png'
+import React from 'react';
+import logo from "./tecstik.png";
+import "./Table.css";
 
-export default function Table({billObject}) {
-    const[invoice,setInvoice]=useState('-');
-    const[netAmount,setnetAmount]=useState('-');
-    useEffect(() => {
-     
-        console.log("BillObject in Table use effect",billObject);
-        setInvoice(billObject.Bill_Number);
-        setnetAmount(billObject.Aamount_within_dueDat)
-    
-    
-      }, [billObject]);
-  return (
-    <div className='tableComponent'>
-        <table className='table'>
-           
-            <tr>
-                <th colspan="2">
-                <img className='logo' src={logo} alt="" />
-                </th>
-                <td></td>
+const Table = () => {
+    return (
+        <div>
+            <div className='today_box'>
+                <img src={logo} alt="logo" className='logo' />
+                <p className='para'>A Fintech division of Pacific Financial Services(Pvt.) Limited</p>
 
-            </tr>
-            <tr>
-                <th>A fintech division of Pacific Financial Services (Pvt) Limited</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Invoice Number</th>
-                <td>{invoice}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th>Subscription fees for utuilization of KollectIIt App</th>
-                <td></td>
-            </tr>
-            <tr>
-                <th> Net Amount</th>
-                <td>{netAmount}</td>
-            </tr>
-            <tr>
-                <th>Sales Tax @13%</th>
-                <td>1300</td>
-            </tr>
-            <tr>
-                <th>Bank Charges</th>
-                <td>250</td>
-            </tr>
-            <tr>
-                <th>Gross Payable</th>
-                <td>113500</td>
-            </tr>
-        </table>
-    </div>
-  )
+                <h5 className='payment'>Payment Invoice</h5>
+                <div className='container__invoce'>
+                    <div className='first'>
+                        <ul>
+                            <li>Invoice Number</li>
+                            <li>Client</li>
+                            <li>Payee</li>
+                        </ul>
+                    </div>
+                    <div className='second'>
+                        <ul>
+                            <li>0001542</li>
+                            <li>Client Name</li>
+                            <li>Pacific Financial Services(Pvt.) Limited</li>
+                        </ul>
+                    </div>
+                </div>
+                {/* container bill */}
+                <div className='container_bill'>
+                    <ul className='res__container'>
+                        <li className='first_ul'>KuickPay Bill Number</li>
+                        <li className='second_ul'>100000001542</li>
+                    </ul>
+                </div>
+                <div className='desc___container'>
+                    <ul>
+                        <li style={{ fontWeight: "bold" }}>Description</li>
+                        <li>Advance Payment for utlization of Kollectlt app services</li>
+                    </ul>
+                </div>
+                <div className='amount__div'>
+                    <div className='first__amount'>
+                        <ul>
+                            <li>Net Amount</li>
+                            <li>Tax</li>
+                        </ul>
+                    </div>
+                    <div className='second__amount'>
+                        <ul>
+                            <li>Rs.1000</li>
+                            <li>Rs.250</li>
+                        </ul>
+                    </div>
+                </div>
+                <div className='last__para'>
+                    <ul>
+                        <li>Gross Amount</li>
+                        <li>Rs.1250</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    )
 }
+
+export default Table
