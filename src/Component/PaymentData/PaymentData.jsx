@@ -85,7 +85,7 @@ export default function PaymentData() {
     { label: "Image", key: "imageUrl" },
     { label: "Staus", key: "status" },
   ];
-  // const [DueOn, setDueOn] = useState("");
+ const [update, setUpdate] = useState({});
   // const [DownOn, setDownOn] = useState("");
 
   let drawOnref = useRef();
@@ -94,6 +94,10 @@ export default function PaymentData() {
   const UserCredentials = useContext(StoreContext);
 
   useEffect(() => {
+   
+
+  
+   
     axios({
       method: "post",
       url: Url + "/multiFilteredPayments",
@@ -153,7 +157,13 @@ export default function PaymentData() {
   // console.log(OnData.imageUrl, "rrrrr");
 
   function handler() {
-    console.log(dueOnref.current.value);
+    console.log("In Submit Handler",dueOnref.current.value,drawOnref.current.value);
+    let update={
+      drawOn: drawOnref.current.value?drawOnref.current.value: OnData.drawOn,
+      dueOn: dueOnref.current.value?dueOnref.current.value: OnData.dueOn
+    }
+    console.log("Update Object",update);
+    
 
     axios({
       method: "put",
@@ -162,10 +172,7 @@ export default function PaymentData() {
         filter: {
           _id: OnData.ObjId,
         },
-        update: {
-          drawOn: drawOnref.current.value,
-          dueOn: dueOnref.current.value,
-        },
+        update:update,
       },
     })
       .then((res) => {
@@ -317,14 +324,14 @@ export default function PaymentData() {
                       <input
                         type="text"
                         ref={drawOnref}
-                        placeholder={`Draw On ${OnData.drawOn}`}
+                        placeholder={OnData.drawOn?OnData.drawOn:""}
                       />
                     </th>
                     <th style={{ width: "40%" }}>
                       <input
                         type="text"
                         ref={dueOnref}
-                        placeholder={`Due On ${OnData.dueOn}`}
+                        placeholder={`Due On  ${OnData.dueOn?OnData.dueOn:" NA"}`}
                       />
                     </th>
                   </td>
