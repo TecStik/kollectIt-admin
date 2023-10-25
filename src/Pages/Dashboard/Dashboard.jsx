@@ -89,7 +89,7 @@ useEffect(() => {
     setTrigger(23);
 
     }
-      console.log("search in Dashboard",search);
+      console.log("search in Dashboard",1);
      console.log("json in Dashboard",queryParams );
       
     }, [location.search]);

@@ -4,10 +4,13 @@ import axios from 'axios';
 import SMSlegerList from './SMSlegerList';
 import StoreContext from '../../ContextApi';
 import Filter from "../filter/filter";
+import { Pagination } from "@mui/material";
+import "./sms.css";
+
+const itemsPerPage = 5;
 
 
 export default function SMSleger() {
-
     const [allData, setallData] = useState([])
     const UserCredentials = useContext(StoreContext);
     const [filterItem, setfilterItem] = useState(allData);
@@ -16,9 +19,11 @@ export default function SMSleger() {
     let ID = UserCredentials.UserData._id
     console.log(UserCredentials.UserData, "UserCredentials");
 
+    // new state json pagination
+    const [page, setPage] = useState(1);
+    const totalPages = Math.ceil(allData?.length / itemsPerPage);
 
 
-    // console.log(allData);
 
     useEffect(() => {
 
@@ -54,31 +59,28 @@ export default function SMSleger() {
         }
     }, [])
 
+    const handlePageChange = (event, value) => {
+        setPage(value);
+    };
+
+    const displayedData = allData.slice(
+        (page - 1) * itemsPerPage,
+        page * itemsPerPage
+    );
+
+
     return (
         <>
             <div class="card card-cascade narrower">
                 <div class="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
                     <h2>SMS Leger</h2>
                     <div className="d-flex flex-row-reverse m-2">
-        <div className="m-2">
-          {/* <button
-            class="btn text-white "
-            style={{
-              background: "#427D8F",
-              fontSize: 15,
-              marginTop: "-3%",
-            }}
-            onClick={downloadReport}
-            role="button"
-          >
-            Export
-            <i class="far fa-circle-down mx-2 "></i>
-          </button> */}
-        </div>
-        <div className="m-2">
-          <Filter data={{ allData, setfilterItem }} />
-        </div>
-      </div>
+                        <div className="m-2">
+                        </div>
+                        <div className="m-2">
+                            <Filter data={{ allData, setfilterItem }} />
+                        </div>
+                    </div>
                     <table class="table table-hover">
                         <thead class="bg-light">
                             <tr>
@@ -90,9 +92,18 @@ export default function SMSleger() {
                             </tr>
                         </thead>
                         <tbody>
-                            {allData.map((v) => <SMSlegerList alldata={v} />)}
+                            {displayedData.map((v) => <SMSlegerList alldata={v} />)}
                         </tbody>
                     </table>
+                </div>
+                <div style={{ padding: "10px 0px" }}>
+                    <Pagination
+                     className='pagination__handle'
+                        count={totalPages}
+                        page={page}
+                        onChange={handlePageChange}
+                        variant="outlined"
+                        shape="rounded" />
                 </div>
             </div>
         </>

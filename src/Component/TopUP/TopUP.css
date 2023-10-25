@@ -1,5 +1,4 @@
 #backColor {
-  /* background: linear-gradient(to right, rgba(235,224,232,1) 52%,rgba(254,191,1,1) 53%,rgba(254,191,1,1) 100%); */
   background-color: rgba(235, 224, 232, 1);
 }
 .box-right {
@@ -43,13 +42,6 @@
   font-size: 12px;
 }
 
-/* .text-warning {
-  font-size: 12px;
-	font-weight: 500;
-  color: #edb537 !important;
-  text-align: start;
-} */
-
 input {
   border-bottom: 1.5px solid #e8e5d2 !important;
   font-weight: bold;
@@ -63,13 +55,25 @@ input {
 .col-sm-5 {
   padding-left: 90px;
 }
-/* .btn {
-  background: #427D8F !important;
-  background: #f3a002 !important;
-  border: none;
-  border-radius: 30px;
-  width: 100%;
-} */
+
 .btn:focus {
   box-shadow: none;
+}
+
+/* progress style loading here */
+.progress__loader svg {
+  height: 37px !important;
+  color: #427d8f !important;
+}
+
+.left__dropdown {
+  position: relative;
+  top: -30px;
+  left: -50px;
+}
+
+.left__dropdown select{
+  width: 154px;
+  top: -12px;
+  position: relative;
 }

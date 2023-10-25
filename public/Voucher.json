@@ -1,0 +1,641 @@
+[
+    {
+        "_id": "64ca05f79b0687a83ca2c74e",
+        "Mode": "Cradit",
+        "Amount": "10",
+        "BelongsTo": "63db55cf07ec951109a359c7",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-02T07:29:59.488Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca0676cd006ae1ec8ae3fd",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "63db55cf07ec951109a359c7",
+        "Description": "SMS snd to Tata",
+        "createdOn": "2023-08-02T07:32:06.591Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca09644b43fcdc408fc1b5",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "63db55cf07ec951109a359c7",
+        "Description": "SMS snd to Tata Client 02",
+        "createdOn": "2023-08-02T07:44:36.119Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca31659446afd78b0b7d77",
+        "Mode": "Cradit",
+        "Amount": "25",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-02T10:35:17.030Z",
+        "__v": 0,
+        "BelongsTo": "63db55cf07ec951109a359c7"
+    },
+    {
+        "_id": "64ca334682c403281e559aa0",
+        "Mode": "Debit",
+        "Amount": "-21",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-02T10:43:18.171Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca33f782c403281e559aa9",
+        "Mode": "Debit",
+        "Amount": "-19",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-02T10:46:15.437Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca3719b2638bbb2f3b6ddb",
+        "Mode": "Cradit",
+        "Amount": "20",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "SMS snd to Tata Client 02",
+        "createdOn": "2023-08-02T10:59:37.293Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca3c0d1736572effe0bc2f",
+        "Mode": "Cradit",
+        "Amount": "8",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "SMS snd to Tata Client 02",
+        "createdOn": "2023-08-02T11:20:45.654Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca3f090f51688d10e9f6cd",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "63db55cf07ec951109a359c7",
+        "Description": "SMS snd to Tata Client 02",
+        "createdOn": "2023-08-02T11:33:29.330Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca4e6179a0bf6f64d596af",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "SMS snd to client",
+        "createdOn": "2023-08-02T12:38:57.034Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca4f815c884891e5536769",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "SMS snd to client",
+        "createdOn": "2023-08-02T12:43:45.483Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca4f965c884891e5536773",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "SMS snd to client",
+        "createdOn": "2023-08-02T12:44:06.804Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca4fbf5c884891e553677d",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "SMS snd to client",
+        "createdOn": "2023-08-02T12:44:47.662Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca4fea5c884891e5536787",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "SMS snd to client",
+        "createdOn": "2023-08-02T12:45:30.444Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ca51661f27ea4622225d0d",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "SMS snd to client",
+        "createdOn": "2023-08-02T12:51:50.565Z",
+        "__v": 0
+    },
+    {
+        "_id": "64cb4d4e284dd3b689637c77",
+        "Mode": "Cradit",
+        "Amount": "21",
+        "BelongsTo": "63c500f849fa10d695d382ff",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-03T06:46:38.361Z",
+        "__v": 0
+    },
+    {
+        "_id": "64cb4d70284dd3b689637c7b",
+        "Mode": "Cradit",
+        "Amount": "30",
+        "BelongsTo": "642d29f132ca65571ce0955c",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-03T06:47:12.208Z",
+        "__v": 0
+    },
+    {
+        "_id": "64cb4d9c284dd3b689637c7f",
+        "Mode": "Cradit",
+        "Amount": "2",
+        "BelongsTo": "63c500f849fa10d695d382ff",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-03T06:47:56.287Z",
+        "__v": 0
+    },
+    {
+        "_id": "64cb4db0284dd3b689637c83",
+        "Mode": "Cradit",
+        "Amount": "5",
+        "BelongsTo": "6412f0473c88959eb99d231f",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-03T06:48:16.095Z",
+        "__v": 0
+    },
+    {
+        "_id": "64e719871b776af004dca468",
+        "Mode": "Cradit",
+        "Amount": "23",
+        "BelongsTo": "64844123e3d467c586d1751b",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-24T08:49:11.052Z",
+        "__v": 0
+    },
+    {
+        "_id": "64e719ea1b776af004dca5f7",
+        "Mode": "Cradit",
+        "Amount": "2",
+        "BelongsTo": "64e6f423cf0de1d6c95c7866",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-24T08:50:50.116Z",
+        "__v": 0
+    },
+    {
+        "_id": "64e719f41b776af004dca600",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64e6f423cf0de1d6c95c7866",
+        "Description": "SMS snd to undefined",
+        "createdOn": "2023-08-24T08:51:00.897Z",
+        "__v": 0
+    },
+    {
+        "_id": "64e738b03a16ff2c007239e4",
+        "Mode": "Cradit",
+        "Amount": "600",
+        "BelongsTo": "64844123e3d467c586d1751b",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-24T11:02:08.168Z",
+        "__v": 0
+    },
+    {
+        "_id": "64e8953761472408401b605b",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64e88f4b61472408401b5fef",
+        "Description": "SMS snd to Raza",
+        "createdOn": "2023-08-25T11:49:11.967Z",
+        "__v": 0
+    },
+    {
+        "_id": "64e895a161472408401b6064",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64e88f4b61472408401b5fef",
+        "Description": "SMS snd to Raza",
+        "createdOn": "2023-08-25T11:50:57.946Z",
+        "__v": 0
+    },
+    {
+        "_id": "64e89bdc65387636fa03275a",
+        "Mode": "Cradit",
+        "Amount": "30",
+        "BelongsTo": "64e88f4b61472408401b5fef",
+        "Description": "Add Cradit",
+        "createdOn": "2023-08-25T12:17:32.143Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ee07a870a70330d0ef1f9c",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "SMS snd to Pfsl Cl01",
+        "createdOn": "2023-08-29T14:58:48.384Z",
+        "__v": 0
+    },
+    {
+        "_id": "64ee09604c08d4f3f89731bf",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "SMS snd to Pfsl Cl01",
+        "createdOn": "2023-08-29T15:06:08.154Z",
+        "__v": 0
+    },
+    {
+        "_id": "64eef875758a5dd7bfc2dcdc",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "SMS snd to undefined",
+        "createdOn": "2023-08-30T08:06:13.887Z",
+        "__v": 0
+    },
+    {
+        "_id": "65115f089078dfbbb574abbc",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "SMS snd to Asad Mulji",
+        "createdOn": "2023-09-25T10:20:56.697Z",
+        "__v": 0
+    },
+    {
+        "_id": "651166fcaa6b2b00d3874ac6",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "SMS snd to Asad Mulji",
+        "createdOn": "2023-09-25T10:54:52.912Z",
+        "__v": 0
+    },
+    {
+        "_id": "65116d65e0fd496ca2f789df",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "SMS snd to Azfar",
+        "createdOn": "2023-09-25T11:22:14.112Z",
+        "__v": 0
+    },
+    {
+        "_id": "65116db0e0fd496ca2f789e9",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "SMS snd to Pfsl Cl01",
+        "createdOn": "2023-09-25T11:23:29.011Z",
+        "__v": 0
+    },
+    {
+        "_id": "65116e06e0fd496ca2f789f5",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "SMS snd to Azfar",
+        "createdOn": "2023-09-25T11:24:54.280Z",
+        "__v": 0
+    },
+    {
+        "_id": "651569db6cbabec76737477b",
+        "Mode": "Credit",
+        "Amount": "563",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-09-28T11:56:11.419Z",
+        "__v": 0
+    },
+    {
+        "_id": "651a5b6d6ff192b18a00998d",
+        "Mode": "Credit",
+        "Amount": "1",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-02T05:55:57.327Z",
+        "__v": 0
+    },
+    {
+        "_id": "651a5c7c6ff192b18a0099ac",
+        "Mode": "Credit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-02T06:00:28.581Z",
+        "__v": 0
+    },
+    {
+        "_id": "651a5cbe6ff192b18a0099b6",
+        "Mode": "Credit",
+        "Amount": "17",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-02T06:01:34.705Z",
+        "__v": 0
+    },
+    {
+        "_id": "651ba902577cf8af8b9af301",
+        "Mode": "Credit",
+        "Amount": "1.03",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-03T05:39:14.212Z",
+        "__v": 0
+    },
+    {
+        "_id": "651bbf3d63ea8adf2a4f8fd5",
+        "Mode": "Credit",
+        "Amount": "2.05",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-03T07:14:05.106Z",
+        "__v": 0
+    },
+    {
+        "_id": "651bbffd63ea8adf2a4f91b3",
+        "Mode": "Credit",
+        "Amount": "1.03",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-03T07:17:17.986Z",
+        "__v": 0
+    },
+    {
+        "_id": "651bebcc660cdaec3d457660",
+        "Mode": "Credit",
+        "Amount": "12.31",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-03T10:24:12.154Z",
+        "__v": 0
+    },
+    {
+        "_id": "651befa9660cdaec3d457678",
+        "Mode": "Credit",
+        "Amount": "10.26",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-03T10:40:41.831Z",
+        "__v": 0
+    },
+    {
+        "_id": "651befaa660cdaec3d45767a",
+        "Mode": "Credit",
+        "Amount": "10.26",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-03T10:40:42.083Z",
+        "__v": 0
+    },
+    {
+        "_id": "651c07f2b7f62fa8f30005d3",
+        "Mode": "Credit",
+        "Amount": "20.51",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-03T12:24:18.255Z",
+        "__v": 0
+    },
+    {
+        "_id": "651cfd581d291fe2ff104e92",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "SMS snd to Azfar",
+        "createdOn": "2023-10-04T05:51:20.451Z",
+        "__v": 0
+    },
+    {
+        "_id": "651cfda01d291fe2ff104e9b",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "SMS snd to Azfar",
+        "createdOn": "2023-10-04T05:52:32.723Z",
+        "__v": 0
+    },
+    {
+        "_id": "651f95a439228a0bd3d2a34e",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "SMS snd to Azfar",
+        "createdOn": "2023-10-06T05:05:40.026Z",
+        "__v": 0
+    },
+    {
+        "_id": "651f985a57d81961ad0a4c1f",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "SMS snd to Azfar",
+        "createdOn": "2023-10-06T05:17:14.433Z",
+        "__v": 0
+    },
+    {
+        "_id": "651fd01eefbf050265e7e7c3",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "SMS snd to Azfar",
+        "createdOn": "2023-10-06T09:15:10.092Z",
+        "__v": 0
+    },
+    {
+        "_id": "651fd1904d9d663844476080",
+        "Mode": "Debit",
+        "Amount": "10",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "SMS snd to Azfar",
+        "createdOn": "2023-10-06T09:21:20.989Z",
+        "__v": 0
+    },
+    {
+        "_id": "653218194ee8193ba9c67172",
+        "Mode": "Credit",
+        "Amount": "10.58",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T06:03:05.280Z",
+        "__v": 0
+    },
+    {
+        "_id": "6532256c4ee8193ba9c671ec",
+        "Mode": "Credit",
+        "Amount": "11.64",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T06:59:56.695Z",
+        "__v": 0
+    },
+    {
+        "_id": "6532256c4ee8193ba9c671ef",
+        "Mode": "Credit",
+        "Amount": "11.64",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T06:59:56.894Z",
+        "__v": 0
+    },
+    {
+        "_id": "653226344ee8193ba9c6722f",
+        "Mode": "Credit",
+        "Amount": "10.58",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T07:03:16.455Z",
+        "__v": 0
+    },
+    {
+        "_id": "653226344ee8193ba9c67231",
+        "Mode": "Credit",
+        "Amount": "10.58",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T07:03:16.613Z",
+        "__v": 0
+    },
+    {
+        "_id": "653227854ee8193ba9c67262",
+        "Mode": "Credit",
+        "Amount": "15.87",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T07:08:53.776Z",
+        "__v": 0
+    },
+    {
+        "_id": "65322afc4ee8193ba9c67293",
+        "Mode": "Credit",
+        "Amount": "+000000001058",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T07:23:40.430Z",
+        "__v": 0
+    },
+    {
+        "_id": "65324f5e2d0b4c136d8cc161",
+        "Mode": "Credit",
+        "Amount": "10.58",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T09:58:54.070Z",
+        "__v": 0
+    },
+    {
+        "_id": "6532507b2d0b4c136d8cc1cd",
+        "Mode": "Credit",
+        "Amount": "21.15",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T10:03:39.960Z",
+        "__v": 0
+    },
+    {
+        "_id": "65325c709cf439c6ebdc9fe2",
+        "Mode": "Credit",
+        "Amount": "5.29",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T10:54:40.216Z",
+        "__v": 0
+    },
+    {
+        "_id": "65325c709cf439c6ebdc9fe5",
+        "Mode": "Credit",
+        "Amount": "5.29",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T10:54:40.403Z",
+        "__v": 0
+    },
+    {
+        "_id": "653261f39cf439c6ebdca025",
+        "Mode": "Credit",
+        "Amount": "1.06",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T11:18:11.569Z",
+        "__v": 0
+    },
+    {
+        "_id": "6532628f9cf439c6ebdca050",
+        "Mode": "Credit",
+        "Amount": "3.17",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T11:20:47.949Z",
+        "__v": 0
+    },
+    {
+        "_id": "653264899cf439c6ebdca084",
+        "Mode": "Credit",
+        "Amount": "2.12",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T11:29:13.856Z",
+        "__v": 0
+    },
+    {
+        "_id": "653265f59cf439c6ebdca0b3",
+        "Mode": "Credit",
+        "Amount": "1.16",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T11:35:17.414Z",
+        "__v": 0
+    },
+    {
+        "_id": "65327335e5f7cdbd53af854e",
+        "Mode": "Credit",
+        "Amount": "12.69",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T12:31:49.473Z",
+        "__v": 0
+    },
+    {
+        "_id": "65327335e5f7cdbd53af854c",
+        "Mode": "Credit",
+        "Amount": "12.69",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-20T12:31:49.468Z",
+        "__v": 0
+    },
+    {
+        "_id": "65365ad645e927fd702f7bfe",
+        "Mode": "Credit",
+        "Amount": "1.06",
+        "BelongsTo": "64ed8764b75f5cd1bfdeeab9",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-23T11:36:54.476Z",
+        "__v": 0
+    },
+    {
+        "_id": "65375f88d099cf252d4c29e2",
+        "Mode": "Credit",
+        "Amount": "10.58",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-24T06:09:12.729Z",
+        "__v": 0
+    },
+    {
+        "_id": "65375f88d099cf252d4c29e4",
+        "Mode": "Credit",
+        "Amount": "10.58",
+        "BelongsTo": "651cfbe3b91e440bf954ca9a",
+        "Description": "Add Credit",
+        "createdOn": "2023-10-24T06:09:12.731Z",
+        "__v": 0
+    }
+]

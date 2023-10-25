@@ -6,13 +6,27 @@ import Filter from "../filter/filter";
 import { CSVLink } from "react-csv";
 import moment from "moment";
 import axios from "axios";
+import "./Voucher.css";
+// pagination import here
+
+import { Stack, Pagination, Typography } from "@mui/material"
+
+const itemsPerPage = 5;
+
+
 
 export default function VocherLeger() {
   const [prevBalance, setPrevBalance] = useState(0);
-  const [allData, setallData] = useState([]);
   const UserCredentials = useContext(StoreContext);
   const csvLinkEl = useRef(null);
-  const [filterItem, setfilterItem] = useState(allData);
+  const [filterItem, setfilterItem] = useState([]);
+  const [allData, setallData] = useState([])
+
+  // new state json pagination
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(allData.length / itemsPerPage);
+
+
 
   const headers = [
     { label: "Date", key: "createdOn" },
@@ -40,7 +54,7 @@ export default function VocherLeger() {
           },
         },
       }).then((response) => {
-        console.log(response.data, "smsLedger=>Response");
+        // console.log(response.data)
         setallData(response.data);
       });
     } else {
@@ -58,7 +72,18 @@ export default function VocherLeger() {
         setallData(response.data);
       });
     }
-  }, []);
+  }, [allData]);
+
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = allData.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
 
   const downloadReport = async () => {
     setTimeout(() => {
@@ -81,27 +106,27 @@ export default function VocherLeger() {
             ref={csvLinkEl}
           />
 
-          
-<div className="d-flex flex-row-reverse m-2">
-        <div className="m-2">
-          <button
-            class="btn text-white "
-            style={{
-              background: "#427D8F",
-              fontSize: 15,
-              marginTop: "-3%",
-            }}
-            onClick={downloadReport}
-            role="button"
-          >
-            Export
-            <i class="far fa-circle-down mx-2 "></i>
-          </button>
-        </div>
-        <div className="m-2">
-          <Filter data={{ allData, setfilterItem }} />
-        </div>
-      </div>
+
+          <div className="d-flex flex-row-reverse m-2">
+            <div className="m-2">
+              <button
+                class="btn text-white "
+                style={{
+                  background: "#427D8F",
+                  fontSize: 15,
+                  marginTop: "-3%",
+                }}
+                onClick={downloadReport}
+                role="button"
+              >
+                Export
+                <i class="far fa-circle-down mx-2 "></i>
+              </button>
+            </div>
+            <div className="m-2">
+              <Filter data={{ allData, setfilterItem }} />
+            </div>
+          </div>
 
           <table class="table table-hover">
             <thead class="bg-light">
@@ -114,20 +139,30 @@ export default function VocherLeger() {
               </tr>
             </thead>
             <tbody>
-              {allData.map((v) => {
+              {displayedData?.map((v) => {
                 // <VocherLegerList alldata={v} />
 
                 return (
                   <tr>
-                    <td>{moment(v.createdOn).format("llll")}</td>
-                    <td>{v.Description}</td>
-                    <td>{v.Mode}</td>
-                    <td>{v.Amount}</td>
+                    <td>{moment(v?.createdOn).format("llll")}</td>
+                    <td>{v?.Description}</td>
+                    <td>{v?.Mode}</td>
+                    <td>{v?.Amount}</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
+        </div>
+        <div style={{ padding: "30px 0px" }}>
+          <Pagination
+            className="pagi__style"
+            count={totalPages}
+            page={page}
+            onChange={handlePageChange}
+            variant="outlined"
+            shape="rounded"
+          />
         </div>
       </div>
     </>
