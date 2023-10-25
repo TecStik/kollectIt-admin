@@ -48,9 +48,11 @@ export default function PaymentData() {
       setallData(response.data);
       setfilterItem(response.data);
       // setfilterItem();
-      
     });
   }, [realTime]);
+
+
+  console.log("ali allData ====>",allData);
 
   // useEffect(() => {
   //     axios({
