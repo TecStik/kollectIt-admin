@@ -7,7 +7,9 @@ import axios from "axios";
 import Filter from "../filter/filter";
 import moment from "moment";
 import PropTypes from 'prop-types';
-import { CircularProgress, Box, Typography,Pagination } from "@mui/material";
+import { CircularProgress, Box, Typography, Pagination } from "@mui/material";
+// data picker import here
+
 
 
 // loading function here
@@ -61,6 +63,10 @@ export default function PaymentData() {
   const [progress, setProgress] = useState(10);
   const [loading, setLoading] = useState(true);
 
+  // date picker value
+  const [value, setValue] = useState(null);
+
+
   // new state json pagination
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(allData.length / itemsPerPage);
@@ -85,7 +91,7 @@ export default function PaymentData() {
     { label: "Image", key: "imageUrl" },
     { label: "Staus", key: "status" },
   ];
- const [update, setUpdate] = useState({});
+  const [update, setUpdate] = useState({});
   // const [DownOn, setDownOn] = useState("");
 
   let drawOnref = useRef();
@@ -94,10 +100,6 @@ export default function PaymentData() {
   const UserCredentials = useContext(StoreContext);
 
   useEffect(() => {
-   
-
-  
-   
     axios({
       method: "post",
       url: Url + "/multiFilteredPayments",
@@ -117,7 +119,7 @@ export default function PaymentData() {
   }, []);
 
 
-  
+
 
   // useEffect(() => {
   //     axios({
@@ -157,13 +159,13 @@ export default function PaymentData() {
   // console.log(OnData.imageUrl, "rrrrr");
 
   function handler() {
-    console.log("In Submit Handler",dueOnref.current.value,drawOnref.current.value);
-    let update={
-      drawOn: drawOnref.current.value?drawOnref.current.value: OnData?.drawOn,
-      dueOn: dueOnref.current.value?dueOnref.current.value: OnData?.dueOn
+    console.log("In Submit Handler", dueOnref.current.value, drawOnref.current.value);
+    let update = {
+      drawOn: drawOnref.current.value ? drawOnref.current.value : OnData?.drawOn,
+      dueOn: dueOnref.current.value ? dueOnref.current.value : OnData?.dueOn
     }
-    console.log("Update Object",update);
-    
+    console.log("Update Object", update);
+
 
     axios({
       method: "put",
@@ -172,7 +174,7 @@ export default function PaymentData() {
         filter: {
           _id: OnData?._id,
         },
-        update:update,
+        update: update,
       },
     })
       .then((res) => {
@@ -324,16 +326,16 @@ export default function PaymentData() {
                       <input
                         type="text"
                         ref={drawOnref}
-                        placeholder={OnData.drawOn?OnData.drawOn:""}
+                        placeholder={OnData?.drawOn ? OnData?.drawOn : ""}
                       />
                     </th>
-                    <th style={{ width: "40%" }}>
-                      <input
-                        type="text"
-                        ref={dueOnref}
-                        placeholder={`Due On  ${OnData.dueOn?OnData.dueOn:" NA"}`}
-                      />
-                    </th>
+                    <input
+                      type="date"
+                      ref={dueOnref}
+                      value={OnData?.dueOn}
+                    // placeholder={`Due On  ${OnData.dueOn?OnData.dueOn:" NA"}`}
+                    />
+
                   </td>
                 </table>
               </div>
@@ -358,7 +360,7 @@ export default function PaymentData() {
             </div>
           </div>
         </div>
-        <div style={{marginTop:"30px"}}>
+        <div style={{ marginTop: "30px" }}>
           <Pagination
             className="pagi__style"
             count={totalPages}
