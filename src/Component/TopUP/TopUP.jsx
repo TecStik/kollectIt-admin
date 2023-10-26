@@ -356,7 +356,7 @@ export default function TopUP() {
                       "xWX+A8qbYkLgHf3e/pu6PZiycOGc0C/YXOr3XislvxI="
                   ).toString(CryptoJS.enc.Hex)}
                 />
-                <input type="submit" value="PAY NOW" />
+                <input type="submit" value="PAY NOW" style={{width:"100px"}} className="submit___btn1"/>
               </form>
             </>
           ) : (

@@ -77,3 +77,15 @@ input {
   top: -12px;
   position: relative;
 }
+
+
+/* media query start here */
+
+@media only screen and (max-width: 600px){
+
+  .submit___btn1{
+    margin-top: 40px;
+    width: 100%;
+  }
+
+}
