@@ -103,7 +103,7 @@ export default function PaymentData() {
       url: Url + "/multiFilteredPayments",
       data: {
         filter: {
-          BelongsTo: UserCredentials.UserData._id,
+          BelongsTo: UserCredentials?.UserData?._id,
         },
       },
     }).then((response) => {
@@ -159,8 +159,8 @@ export default function PaymentData() {
   function handler() {
     console.log("In Submit Handler",dueOnref.current.value,drawOnref.current.value);
     let update={
-      drawOn: drawOnref.current.value?drawOnref.current.value: OnData.drawOn,
-      dueOn: dueOnref.current.value?dueOnref.current.value: OnData.dueOn
+      drawOn: drawOnref.current.value?drawOnref.current.value: OnData?.drawOn,
+      dueOn: dueOnref.current.value?dueOnref.current.value: OnData?.dueOn
     }
     console.log("Update Object",update);
     
@@ -170,7 +170,7 @@ export default function PaymentData() {
       url: Url + "/UpdateFilteredPayments",
       data: {
         filter: {
-          _id: OnData.ObjId,
+          _id: OnData?._id,
         },
         update:update,
       },
@@ -266,16 +266,16 @@ export default function PaymentData() {
                   // console.log(v.createdOn);
                   return (
                     <tr key={index}>
-                      <td className="text-center">{v.VerificationCode}</td>
-                      <td>{v.PaymentName}</td>
-                      <td>{v.drawOn}</td>
-                      <td>{v.PaymentStatus}</td>
-                      <td className="text-center">{v.dueOn}</td>
-                      <td>{moment(v.createdOn).format("MMM Do YY")}</td>
+                      <td className="text-center">{v?.VerificationCode}</td>
+                      <td>{v?.PaymentName}</td>
+                      <td>{v?.drawOn}</td>
+                      <td>{v?.PaymentStatus}</td>
+                      <td className="text-center">{v?.dueOn}</td>
+                      <td>{moment(v?.createdOn).format("MMM Do YY")}</td>
                       {/* <td>
                       <img src={v.imageUrl} id="tableImage" />
                     </td> */}
-                      <td>{v.status}</td>
+                      <td>{v?.status}</td>
                       <td>
                         <td>
                           <button
@@ -315,7 +315,7 @@ export default function PaymentData() {
                 <table id="myTable">
                   <td>
                     <img
-                      src={OnData.imageUrl}
+                      src={OnData?.imageUrl}
                       alt="Girl in a jacket"
                       width="500rem"
                       height="300"
