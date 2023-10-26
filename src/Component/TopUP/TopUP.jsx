@@ -259,7 +259,7 @@ export default function TopUP() {
       ) : (
         <>
           {/* =========================> TABS */}
-          <SeparateVoucherComponent/>
+          {!billObject &&  <SeparateVoucherComponent/>}
          
           {/* =========================> Payment  Amount field*/}
 

@@ -4,13 +4,14 @@ import axios from "axios";
 import { Url } from '../../Pages/Core';
 import StoreContext from '../../ContextApi';
 import moment from 'moment';
-// import { CSVLink } from "react-csv";
+import { CircularProgress } from "@mui/material";
 
 const itemsPerPage = 5;
 
 const SeparateVoucherComponent = () => {
     const UserCredentials = useContext(StoreContext);
     const [allData, setallData] = useState([])
+    const [loading, setLoading] = useState(true);
 
     // new state json pagination
     const [page, setPage] = useState(1);
@@ -53,6 +54,9 @@ const SeparateVoucherComponent = () => {
             }).then((response) => {
                 // console.log(response.data)
                 setallData(response?.data);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 2000);
             });
         } else {
             axios({
@@ -67,50 +71,59 @@ const SeparateVoucherComponent = () => {
             }).then((response) => {
                 // console.log(response.data,"smsLedger=>Response");
                 setallData(response?.data);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 2000);
             });
         }
     }, [allData]);
 
     return (
         <div>
-            <table class="table table-hover">
-                <thead class="bg-light">
-                    <tr>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Mode</th>
-                        <th>Amount</th>
-                        {/* <th>Balance</th> */}
-                    </tr>
-                </thead>
-                <tbody>
-                    {displayedData?.map((v) => {
-                        // <VocherLegerList alldata={v} />
-
-                        return (
+            {
+                loading ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                    <CircularProgress />
+                </div> : <>
+                    <table class="table table-hover">
+                        <thead class="bg-light">
                             <tr>
-                                <td>{moment(v?.createdOn).format("llll")}</td>
-                                <td>{v?.Description}</td>
-                                <td>{v?.Mode}</td>
-                                <td>{v?.Amount}</td>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Mode</th>
+                                <th>Amount</th>
+                                {/* <th>Balance</th> */}
                             </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            {displayedData?.map((v) => {
+                                // <VocherLegerList alldata={v} />
 
-            {/* pagination start here */}
+                                return (
+                                    <tr>
+                                        <td>{moment(v?.createdOn).format("llll")}</td>
+                                        <td>{v?.Description}</td>
+                                        <td>{v?.Mode}</td>
+                                        <td>{v?.Amount}</td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
 
-            <div style={{ padding: "30px 0px" }}>
-                <Pagination
-                    className="pagi__style"
-                    count={totalPages}
-                    page={page}
-                    onChange={handlePageChange}
-                    variant="outlined"
-                    shape="rounded"
-                />
-            </div>
+                    {/* pagination start here */}
+
+                    <div style={{ padding: "30px 0px" }}>
+                        <Pagination
+                            className="pagi__style"
+                            count={totalPages}
+                            page={page}
+                            onChange={handlePageChange}
+                            variant="outlined"
+                            shape="rounded"
+                        />
+                    </div>
+                </>
+            }
 
         </div>
     )
