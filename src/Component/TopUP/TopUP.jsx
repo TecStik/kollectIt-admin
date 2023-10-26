@@ -9,6 +9,7 @@ import CryptoJS from "crypto-js";
 import PropTypes from "prop-types";
 // dropdown component here
 import SeparateDropDown from "./SeparateDropDown";
+import SeparateVoucherComponent from "../VocherLeger/SeparateVoucherComponent";
 
 // circular loader function timer here
 function CircularProgressWithLabel(props) {
@@ -114,7 +115,7 @@ export default function TopUP() {
   useEffect(() => {
     getRandomNumber(); // Random Number Generate
     // percentage(2.5, 10000); // Calculate Percentage
-    PayOff(); // auth_token Generate
+    // PayOff(); // auth_token Generate
   }, []);
 
   function getRandomNumber() {
@@ -185,19 +186,19 @@ export default function TopUP() {
       });
   }
 
-  function PayOff() {
-    axios({
-      url: "https://testcheckout.kuickpay.com/api/KPToken",
-      method: "post",
-      data: {
-        InstitutionID: "01234",
-        KuickpaySecuredKey: "xWX+A8qbYkLgHf3e/pu6PZiycOGc0C/YXOr3XislvxI=",
-      },
-    }).then((res) => {
-      setFunAuthToken(res.data);
-      // console.log(res.data, "auth Token response ");
-    });
-  }
+  // function PayOff() {
+  //   axios({
+  //     url: "https://testcheckout.kuickpay.com/api/KPToken",
+  //     method: "post",
+  //     data: {
+  //       InstitutionID: "01234",
+  //       KuickpaySecuredKey: "xWX+A8qbYkLgHf3e/pu6PZiycOGc0C/YXOr3XislvxI=",
+  //     },
+  //   }).then((res) => {
+  //     setFunAuthToken(res.data);
+  //     // console.log(res.data, "auth Token response ");
+  //   });
+  // }
 
   return (
     <div>
@@ -246,9 +247,9 @@ export default function TopUP() {
         </div>
       </div>
 
-      <button type="button" class="btn btn-primary mt-4" onClick={PayOff}>
+      {/* <button type="button" class="btn btn-primary mt-4" onClick={PayOff}>
         Pay Off
-      </button>
+      </button> */}
       {/* loading start here */}
 
       {loading ? (
@@ -258,56 +259,8 @@ export default function TopUP() {
       ) : (
         <>
           {/* =========================> TABS */}
-          <p class="ps-3 textmuted fw-bold h4 mb-0 text-center">
-            Choose Payment Mode
-          </p>
-          <br />
-          <ul
-            class="nav nav-pills mb-3 justify-content-center"
-            id="pills-tab"
-            role="tablist"
-          >
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                id="pills-home-tab"
-                data-toggle="pill"
-                href="#pills-home"
-                role="tab"
-                aria-controls="pills-home"
-                aria-selected="true"
-              >
-                Credit or Debit Card
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                id="pills-profile-tab"
-                data-toggle="pill"
-                href="#pills-profile"
-                role="tab"
-                aria-controls="pills-profile"
-                aria-selected="false"
-              >
-                QR-Code
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                id="pills-jazzcash-tab"
-                data-toggle="pill"
-                href="#pills-jazzcash"
-                role="tab"
-                aria-controls="pills-jazzcash"
-                aria-selected="false"
-              >
-                JazzCash
-              </a>
-            </li>
-          </ul>
-
+          <SeparateVoucherComponent/>
+         
           {/* =========================> Payment  Amount field*/}
 
           {/* =========================>First TABS Content*/}

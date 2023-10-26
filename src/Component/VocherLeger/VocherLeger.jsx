@@ -43,19 +43,19 @@ export default function VocherLeger() {
   // console.log(allData);
 
   useEffect(() => {
-    if (UserCredentials.UserData.Role == "Admin") {
+    if (UserCredentials?.UserData?.Role == "Admin") {
       axios({
         method: "Post",
         url: Url + "/filteredVoucher",
         data: {
           filter: {
-            BelongsTo: UserCredentials.UserData._id,
+            BelongsTo: UserCredentials?.UserData?._id,
             // BelongsTo: "63db55cf07ec951109a359c7",
           },
         },
       }).then((response) => {
         // console.log(response.data)
-        setallData(response.data);
+        setallData(response?.data);
       });
     } else {
       axios({
@@ -63,13 +63,13 @@ export default function VocherLeger() {
         url: Url + "/smsLedger",
         data: {
           filter: {
-            createdBy: UserCredentials.UserData.createdBy,
+            createdBy: UserCredentials?.UserData?.createdBy,
             // "createdBy": "646f09d7d9957a50a32abb4c"
           },
         },
       }).then((response) => {
         // console.log(response.data,"smsLedger=>Response");
-        setallData(response.data);
+        setallData(response?.data);
       });
     }
   }, [allData]);
@@ -105,8 +105,6 @@ export default function VocherLeger() {
             data={allData}
             ref={csvLinkEl}
           />
-
-
           <div className="d-flex flex-row-reverse m-2">
             <div className="m-2">
               <button
