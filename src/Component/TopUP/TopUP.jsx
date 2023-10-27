@@ -454,3 +454,64 @@ export default function TopUP() {
     </div>
   );
 }
+
+
+
+
+
+/*
+
+
+ <p class="ps-3 textmuted fw-bold h4 mb-0 text-center">
+            Choose Payment Mode
+          </p>
+          <br />
+          <ul
+            class="nav nav-pills mb-3 justify-content-center"
+            id="pills-tab"
+            role="tablist"
+          >
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                id="pills-home-tab"
+                data-toggle="pill"
+                href="#pills-home"
+                role="tab"
+                aria-controls="pills-home"
+                aria-selected="true"
+              >
+                Credit or Debit Card
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="pills-profile-tab"
+                data-toggle="pill"
+                href="#pills-profile"
+                role="tab"
+                aria-controls="pills-profile"
+                aria-selected="false"
+              >
+                QR-Code
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="pills-jazzcash-tab"
+                data-toggle="pill"
+                href="#pills-jazzcash"
+                role="tab"
+                aria-controls="pills-jazzcash"
+                aria-selected="false"
+              >
+                JazzCash
+              </a>
+            </li>
+          </ul>
+
+          */
+
+        

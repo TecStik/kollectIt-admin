@@ -64,7 +64,6 @@ export default function PaymentData() {
   const [loading, setLoading] = useState(true);
 
   // date picker value
-  const [value, setValue] = useState(null);
 
 
   // new state json pagination
@@ -158,11 +157,13 @@ export default function PaymentData() {
   }
   // console.log(OnData.imageUrl, "rrrrr");
 
+  const [value, setValue] = useState(OnData?.dueOn || "");
+
   function handler() {
     console.log("In Submit Handler", dueOnref.current.value, drawOnref.current.value);
     let update = {
       drawOn: drawOnref.current.value ? drawOnref.current.value : OnData?.drawOn,
-      dueOn: dueOnref.current.value ? dueOnref.current.value : OnData?.dueOn
+      dueOn: value ? value : OnData?.dueOn
     }
     console.log("Update Object", update);
 
@@ -188,6 +189,8 @@ export default function PaymentData() {
   const handlePageChange = (event, value) => {
     setPage(value);
   };
+
+  
 
   const displayedData = allData.slice(
     (page - 1) * itemsPerPage,
@@ -331,8 +334,9 @@ export default function PaymentData() {
                     </th>
                     <input
                       type="date"
-                      ref={dueOnref}
-                      value={OnData?.dueOn}
+                      // ref={dueOnref}
+                      value={value}
+                      onChange={(e) => setValue(e.target.value)}
                     // placeholder={`Due On  ${OnData.dueOn?OnData.dueOn:" NA"}`}
                     />
 
