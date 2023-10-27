@@ -115,7 +115,7 @@ export default function TopUP() {
   useEffect(() => {
     getRandomNumber(); // Random Number Generate
     // percentage(2.5, 10000); // Calculate Percentage
-    // PayOff(); // auth_token Generate
+     PayOff(); // auth_token Generate
   }, []);
 
   function getRandomNumber() {
@@ -186,19 +186,19 @@ export default function TopUP() {
       });
   }
 
-  // function PayOff() {
-  //   axios({
-  //     url: "https://testcheckout.kuickpay.com/api/KPToken",
-  //     method: "post",
-  //     data: {
-  //       InstitutionID: "01234",
-  //       KuickpaySecuredKey: "xWX+A8qbYkLgHf3e/pu6PZiycOGc0C/YXOr3XislvxI=",
-  //     },
-  //   }).then((res) => {
-  //     setFunAuthToken(res.data);
-  //     // console.log(res.data, "auth Token response ");
-  //   });
-  // }
+  function PayOff() {
+    axios({
+      url: "https://testcheckout.kuickpay.com/api/KPToken",
+      method: "post",
+      data: {
+        InstitutionID: "01234",
+        KuickpaySecuredKey: "xWX+A8qbYkLgHf3e/pu6PZiycOGc0C/YXOr3XislvxI=",
+      },
+    }).then((res) => {
+      setFunAuthToken(res.data);
+       console.log(res.data, "auth Token response ");
+    });
+  }
 
   return (
     <div>
