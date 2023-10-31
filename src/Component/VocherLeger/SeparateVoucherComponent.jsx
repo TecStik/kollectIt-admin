@@ -48,12 +48,13 @@ const SeparateVoucherComponent = () => {
                 data: {
                     filter: {
                         BelongsTo: UserCredentials?.UserData?._id,
+                        Mode:"Credit"
                         // BelongsTo: "63db55cf07ec951109a359c7",
                     },
                 },
             }).then((response) => {
                 // console.log(response.data)
-                setallData(response?.data);
+                setallData(response?.data,"Voucher Data. Pagination component");
                 setTimeout(() => {
                     setLoading(false);
                 }, 2000);
