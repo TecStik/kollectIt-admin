@@ -5,7 +5,8 @@ import { CSVLink } from "react-csv";
 import "./ClientData.css";
 import axios from "axios";
 import Filter from "../filter/filter";
-import { Pagination } from "@mui/material";
+// import { Pagination } from "@mui/material";
+import PaginationComponent from "../Pagination";
 
 
 // loading import material ui here
@@ -181,7 +182,7 @@ export default function ClientData() {
           ClientName: clientname.current.value ? clientname.current.value : OnData?.ClientName,
           ClientPhoneNumber: clientphonenumber.current.value ? clientphonenumber.current.value : OnData?.ClientPhoneNumber,
           ClientEmail: clientemail.current.value ? clientemail.current.value : OnData?.ClientEmail
-        }, 
+        },
       },
     })
       .then((res) => {
@@ -351,13 +352,11 @@ export default function ClientData() {
 
           {/* modal end here */}
           <div style={{ marginTop: "30px" }}>
-            <Pagination
-              className="pagi__style"
-              count={totalPages}
+            <PaginationComponent
+              allData={allData}
               page={page}
+              totalPages={totalPages}
               onChange={handlePageChange}
-              variant="outlined"
-              shape="rounded"
             />
           </div>
         </>
