@@ -65,7 +65,8 @@ export default function TopUP() {
   const [billObject, setBillObject] = useState(null);
   const [merchantObject, setMerchantObject] = useState(null);
   const [allData, setallData] = useState([])
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [testLoading, setTestLoading] = useState(false)
   // loading usestate
   const [progress, setProgress] = useState(10);
 
@@ -180,7 +181,7 @@ export default function TopUP() {
       },
     })
       .then((res) => {
-        setLoading(true);
+        setTestLoading(true);
         console.log("Response from Generate Bill", res.data);
         setBillObject(res.data.bill);
         setMerchantObject(res.data.merchant);
@@ -188,7 +189,7 @@ export default function TopUP() {
         console.log("Bill Object", billObject);
 
         setTimeout(() => {
-          setLoading(false);
+          setTestLoading(false)
         }, 2000); // Simulated delay for demonstration
       })
       .catch((err) => {
@@ -197,49 +198,49 @@ export default function TopUP() {
   }
 
   // pagination data here 
-useEffect(() => {
-  if (UserCredentials?.UserData?.Role == "Admin") {
+  useEffect(() => {
+    if (UserCredentials?.UserData?.Role == "Admin") {
       axios({
-          method: "Post",
-          url: Url + "/filteredVoucher",
-          data: {
-              filter: {
-                  BelongsTo: UserCredentials?.UserData?._id,
-                  Mode:"Credit"
-                  // BelongsTo: "63db55cf07ec951109a359c7",
-              },
+        method: "Post",
+        url: Url + "/filteredVoucher",
+        data: {
+          filter: {
+            BelongsTo: UserCredentials?.UserData?._id,
+            Mode: "Credit"
+            // BelongsTo: "63db55cf07ec951109a359c7",
           },
+        },
       }).then((response) => {
-          console.log(response.data)
-          setallData(response?.data,"Voucher Data. Pagination component");
-          setTimeout(() => {
-              setLoading(false);
-          }, 2000);
+        console.log(response.data)
+        setallData(response?.data, "Voucher Data. Pagination component");
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       });
-  } else {
+    } else {
       axios({
-          method: "Post",
-          url: Url + "/smsLedger",
-          data: {
-              filter: {
-                  createdBy: UserCredentials?.UserData?.createdBy,
-                  // "createdBy": "646f09d7d9957a50a32abb4c"
-              },
+        method: "Post",
+        url: Url + "/smsLedger",
+        data: {
+          filter: {
+            createdBy: UserCredentials?.UserData?.createdBy,
+            // "createdBy": "646f09d7d9957a50a32abb4c"
           },
+        },
       }).then((response) => {
-          // console.log(response.data,"smsLedger=>Response");
-          setallData(response?.data);
-          setTimeout(() => {
-              setLoading(false);
-          }, 2000);
+        // console.log(response.data,"smsLedger=>Response");
+        setallData(response?.data);
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
       });
-  }
-}, [allData])
+    }
+  }, [allData])
 
 
-  
-  
-  
+
+
+
   function PayOff() {
     axios({
       url: "https://testcheckout.kuickpay.com/api/KPToken",
@@ -283,8 +284,9 @@ useEffect(() => {
             />
           </div>
           <div class="col-md-4 mt-2">
-            {loading ? (
+            {testLoading ? (
               <CircularProgress className="progress__loader mt-4" />
+              // <h3>LOADING...</h3>
             ) : (
               <button
                 // style={{cursor:"pointer"}}
@@ -306,14 +308,14 @@ useEffect(() => {
       </button> */}
       {/* loading start here */}
 
-      {loading ? (
+      {testLoading ? (
         <Box display="flex" justifyContent="center" alignItems="center">
           <CircularProgressWithLabel value={progress} />
         </Box>
       ) : (
         <>
           {/* =========================> TABS */}
-          {!billObject && <SeparateVoucherComponent allData={allData} loading={loading}/>}
+          {!billObject && <SeparateVoucherComponent allData={allData} loading={loading} />}
 
           {/* =========================> Payment  Amount field*/}
 

@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Stack, Pagination, Typography } from "@mui/material"
+import React, { useState, useContext } from 'react';
+import { Pagination } from "@mui/material"
 import StoreContext from '../../ContextApi';
 import moment from 'moment';
 import { CircularProgress } from "@mui/material";
 
 const itemsPerPage = 5;
 
-const SeparateVoucherComponent = ({allData,loading}) => {
+const SeparateVoucherComponent = ({ allData, loading }) => {
     const UserCredentials = useContext(StoreContext);
-   
+
 
     // new state json pagination
     const [page, setPage] = useState(1);
@@ -38,7 +38,7 @@ const SeparateVoucherComponent = ({allData,loading}) => {
     return (
         <div>
             {
-        loading ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                loading ? <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <CircularProgress />
                 </div> : <>
                     <table class="table table-hover">
