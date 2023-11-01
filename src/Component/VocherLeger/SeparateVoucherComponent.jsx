@@ -6,7 +6,7 @@ import { CircularProgress } from "@mui/material";
 
 const itemsPerPage = 5;
 
-const SeparateVoucherComponent = ({allData,loadings}) => {
+const SeparateVoucherComponent = ({allData,loading}) => {
     const UserCredentials = useContext(StoreContext);
    
 
@@ -38,7 +38,7 @@ const SeparateVoucherComponent = ({allData,loadings}) => {
     return (
         <div>
             {
-        loadings ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+        loading ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
                     <CircularProgress />
                 </div> : <>
                     <table class="table table-hover">

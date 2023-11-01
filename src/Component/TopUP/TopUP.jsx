@@ -210,7 +210,7 @@ useEffect(() => {
               },
           },
       }).then((response) => {
-          // console.log(response.data)
+          console.log(response.data)
           setallData(response?.data,"Voucher Data. Pagination component");
           setTimeout(() => {
               setLoading(false);
@@ -313,7 +313,7 @@ useEffect(() => {
       ) : (
         <>
           {/* =========================> TABS */}
-          {!billObject && <SeparateVoucherComponent allData={allData} loadings={loading}/>}
+          {!billObject && <SeparateVoucherComponent allData={allData} loading={loading}/>}
 
           {/* =========================> Payment  Amount field*/}
 
