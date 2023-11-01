@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Pagination } from "@mui/material";
 
 
-const PaginationComponent = ({allData,onChange,totalPages,page}) => {
+const PaginationComponent = ({ allData, onChange, totalPages, page }) => {
     return (
         <div>
             <Pagination

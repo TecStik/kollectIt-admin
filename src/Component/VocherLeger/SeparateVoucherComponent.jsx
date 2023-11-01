@@ -1,15 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Pagination } from "@mui/material"
-import StoreContext from '../../ContextApi';
 import moment from 'moment';
 import { CircularProgress } from "@mui/material";
 
 const itemsPerPage = 5;
 
 const SeparateVoucherComponent = ({ allData, loading }) => {
-    const UserCredentials = useContext(StoreContext);
-
-
+   
     // new state json pagination
     const [page, setPage] = useState(1);
     const totalPages = Math.ceil(allData.length / itemsPerPage);

@@ -8,8 +8,8 @@ import moment from "moment";
 import axios from "axios";
 import "./Voucher.css";
 // pagination import here
-
-import { Stack, Pagination, Typography } from "@mui/material"
+import PaginationComponent from "../Pagination";
+import { CircularProgress } from "@mui/material";
 
 const itemsPerPage = 5;
 
@@ -72,7 +72,7 @@ export default function VocherLeger() {
         setallData(response?.data);
       });
     }
-  }, [allData]);
+  }, []);
 
 
   const handlePageChange = (event, value) => {
@@ -125,42 +125,35 @@ export default function VocherLeger() {
               <Filter data={{ allData, setfilterItem }} />
             </div>
           </div>
-
-          <table class="table table-hover">
-            <thead class="bg-light">
-              <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Mode</th>
-                <th>Amount</th>
-                {/* <th>Balance</th> */}
-              </tr>
-            </thead>
-            <tbody>
-              {displayedData?.map((v) => {
-                // <VocherLegerList alldata={v} />
-
-                return (
-                  <tr>
-                    <td>{moment(v?.createdOn).format("llll")}</td>
-                    <td>{v?.Description}</td>
-                    <td>{v?.Mode}</td>
-                    <td>{v?.Amount}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
         </div>
+
+       
+             <table class="table table-hover">
+                <thead class="bg-light">
+                  <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Mode</th>
+                    <th>Amount</th>
+                    {/* <th>Balance</th> */}
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayedData?.map((v) => {
+                    // <VocherLegerList alldata={v} />
+                    return (
+                      <tr>
+                        <td>{moment(v?.createdOn).format("llll")}</td>
+                        <td>{v?.Description}</td>
+                        <td>{v?.Mode}</td>
+                        <td>{v?.Amount}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
         <div style={{ padding: "30px 0px" }}>
-          <Pagination
-            className="pagi__style"
-            count={totalPages}
-            page={page}
-            onChange={handlePageChange}
-            variant="outlined"
-            shape="rounded"
-          />
+          <PaginationComponent page={page} totalPages={totalPages} onChange={handlePageChange} allData={allData} />
         </div>
       </div>
     </>

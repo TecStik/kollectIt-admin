@@ -4,8 +4,8 @@ import axios from 'axios';
 import SMSlegerList from './SMSlegerList';
 import StoreContext from '../../ContextApi';
 import Filter from "../filter/filter";
-import { Pagination } from "@mui/material";
 import "./sms.css";
+import PaginationComponent from "../Pagination";
 
 const itemsPerPage = 5;
 
@@ -97,13 +97,7 @@ export default function SMSleger() {
                     </table>
                 </div>
                 <div style={{ padding: "10px 0px" }}>
-                    <Pagination
-                     className='pagination__handle'
-                        count={totalPages}
-                        page={page}
-                        onChange={handlePageChange}
-                        variant="outlined"
-                        shape="rounded" />
+                    <PaginationComponent page={page} onChange={handlePageChange} allData={allData} totalPages={totalPages} />
                 </div>
             </div>
         </>

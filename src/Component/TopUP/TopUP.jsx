@@ -55,6 +55,7 @@ CircularProgressWithLabel.propTypes = {
 
 export default function TopUP() {
   const UserCredentials = useContext(StoreContext).UserData;
+  // console.log(UserCredentials?._id)
   const [OrderId, setOrderId] = useState("");
   const [OrderDate, setOrderDate] = useState("");
   const [merchant, setMerchant] = useState("");
@@ -69,7 +70,7 @@ export default function TopUP() {
   const [testLoading, setTestLoading] = useState(false)
   // loading usestate
   const [progress, setProgress] = useState(10);
-
+  
 
   //  time loader useEffect
   useEffect(() => {
@@ -119,7 +120,7 @@ export default function TopUP() {
       },
     }).then((response) => {
       setCreditBalance(response.data);
-      console.log(response.data, "=================>allData");
+      // console.log(response.data, "=================>allData");
     });
   }, []);
 
@@ -197,45 +198,68 @@ export default function TopUP() {
       });
   }
 
-  // pagination data here 
-  useEffect(() => {
-    if (UserCredentials?.UserData?.Role == "Admin") {
+  
+  // filter quate data 
+
+  const getFilterDatas = () =>{
+  
       axios({
         method: "Post",
         url: Url + "/filteredVoucher",
         data: {
           filter: {
-            BelongsTo: UserCredentials?.UserData?._id,
+            BelongsTo: UserCredentials?._id,
             Mode: "Credit"
-            // BelongsTo: "63db55cf07ec951109a359c7",
-          },
+        }    
         },
       }).then((response) => {
-        console.log(response.data)
+        console.log(response?.data,"response=====>data")
         setallData(response?.data, "Voucher Data. Pagination component");
         setTimeout(() => {
           setLoading(false);
         }, 2000);
       });
-    } else {
-      axios({
-        method: "Post",
-        url: Url + "/smsLedger",
-        data: {
-          filter: {
-            createdBy: UserCredentials?.UserData?.createdBy,
-            // "createdBy": "646f09d7d9957a50a32abb4c"
-          },
-        },
-      }).then((response) => {
-        // console.log(response.data,"smsLedger=>Response");
-        setallData(response?.data);
-        setTimeout(() => {
-          setLoading(false);
-        }, 2000);
-      });
+   
+      // axios({
+      //   method: "Post",
+      //   url: Url + "/smsLedger",
+      //   data: {
+      //     filter: {
+      //       createdBy: UserCredentials?.UserData?.createdBy,
+      //       // "createdBy": "646f09d7d9957a50a32abb4c"
+      //     },
+      //   },
+      // }).then((response) => {
+      //   // console.log(response.data,"smsLedger=>Response");
+      //   setallData(response?.data);
+      //   setTimeout(() => {
+      //     setLoading(false);
+      //   }, 2000);
+      // });
+    
+  }
+
+
+  const getMyALDatas = () =>{
+   axios({
+    method:"Post",
+    url: Url + "/filteredVoucher",
+    data: {
+      filter: {
+        BelongsTo: "64ed8764b75f5cd1bfdeeab9",
+        Mode: "Credit"
     }
-  }, [allData])
+    }
+   }).then((res)=>{
+    console.log("ali===>testing",res)
+   }).catch((err)=>{
+    console.log(err?.message)
+   })
+  }
+
+  useEffect(() => {
+    getFilterDatas()
+  }, [])
 
 
 
