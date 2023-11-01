@@ -41,7 +41,7 @@ const SeparateVoucherComponent = ({allData,loadings}) => {
     return (
         <div>
             {
-                loadings ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+        loadings ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
                     <CircularProgress />
                 </div> : <>
                     <table class="table table-hover">
