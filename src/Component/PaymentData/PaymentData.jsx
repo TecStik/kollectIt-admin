@@ -7,10 +7,12 @@ import axios from "axios";
 import Filter from "../filter/filter";
 import moment from "moment";
 import PropTypes from 'prop-types';
-import { CircularProgress, Box, Typography, Pagination } from "@mui/material";
-// data picker import here
+import { CircularProgress, Box, Typography } from "@mui/material";
+// import  pagination Component 
+import Pagination from "../Pagination";
 
 
+const itemsPerPage = 5;  //pagination limit here
 
 // loading function here
 function CircularProgressWithLabel(props) {
@@ -46,8 +48,6 @@ CircularProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-// pagination limit here
-const itemsPerPage = 5;
 
 
 export default function PaymentData() {
@@ -63,12 +63,10 @@ export default function PaymentData() {
   const [progress, setProgress] = useState(10);
   const [loading, setLoading] = useState(true);
 
-  // date picker value
+   // new state json pagination
+   const [page, setPage] = useState(1);
+   const totalPages = Math.ceil(allData.length / itemsPerPage);
 
-
-  // new state json pagination
-  const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(allData.length / itemsPerPage);
 
   // loading useEffect here
   useEffect(() => {
@@ -184,24 +182,23 @@ export default function PaymentData() {
       })
       .catch((error) => [console.log(error, "error")]);
   }
-  // pagination here 
+  const downloadReport = async () => {
+    setTimeout(() => {
+      csvLinkEl.current.link.click();
+    });
+  };
 
+
+  // pagination functions here
   const handlePageChange = (event, value) => {
     setPage(value);
   };
-
-  
 
   const displayedData = allData.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
 
-  const downloadReport = async () => {
-    setTimeout(() => {
-      csvLinkEl.current.link.click();
-    });
-  };
   // console.log(filterItem, "filter PAyment Data Data");
   // useEffect(()=>{
   //   setallData(filterItem)
@@ -365,14 +362,7 @@ export default function PaymentData() {
           </div>
         </div>
         <div style={{ marginTop: "30px" }}>
-          <Pagination
-            className="pagi__style"
-            count={totalPages}
-            page={page}
-            onChange={handlePageChange}
-            variant="outlined"
-            shape="rounded"
-          />
+          <Pagination allData={allData} onChange={handlePageChange} totalPages={totalPages} page={page}/>
         </div>
       </>}
     </div>
