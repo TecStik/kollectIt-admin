@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Stack, Pagination, Typography } from "@mui/material"
-import axios from "axios";
-import { Url } from '../../Pages/Core';
 import StoreContext from '../../ContextApi';
 import moment from 'moment';
 import { CircularProgress } from "@mui/material";
@@ -16,7 +14,6 @@ const SeparateVoucherComponent = ({allData,loadings}) => {
     const [page, setPage] = useState(1);
     const totalPages = Math.ceil(allData.length / itemsPerPage);
 
-    // calling useEffect here 
 
     // pagination functions here
     const handlePageChange = (event, value) => {
