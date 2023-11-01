@@ -8,10 +8,9 @@ import { CircularProgress } from "@mui/material";
 
 const itemsPerPage = 5;
 
-const SeparateVoucherComponent = () => {
+const SeparateVoucherComponent = ({allData,loadings}) => {
     const UserCredentials = useContext(StoreContext);
-    const [allData, setallData] = useState([])
-    const [loading, setLoading] = useState(true);
+   
 
     // new state json pagination
     const [page, setPage] = useState(1);
@@ -39,50 +38,10 @@ const SeparateVoucherComponent = () => {
         // { label: "Balance", key: "PaymentAmount" },
     ];
 
-
-    useEffect(() => {
-        if (UserCredentials?.UserData?.Role == "Admin") {
-            axios({
-                method: "Post",
-                url: Url + "/filteredVoucher",
-                data: {
-                    filter: {
-                        BelongsTo: UserCredentials?.UserData?._id,
-                        Mode:"Credit"
-                        // BelongsTo: "63db55cf07ec951109a359c7",
-                    },
-                },
-            }).then((response) => {
-                // console.log(response.data)
-                setallData(response?.data,"Voucher Data. Pagination component");
-                setTimeout(() => {
-                    setLoading(false);
-                }, 2000);
-            });
-        } else {
-            axios({
-                method: "Post",
-                url: Url + "/smsLedger",
-                data: {
-                    filter: {
-                        createdBy: UserCredentials?.UserData?.createdBy,
-                        // "createdBy": "646f09d7d9957a50a32abb4c"
-                    },
-                },
-            }).then((response) => {
-                // console.log(response.data,"smsLedger=>Response");
-                setallData(response?.data);
-                setTimeout(() => {
-                    setLoading(false);
-                }, 2000);
-            });
-        }
-    }, [allData]);
-
     return (
         <div>
             {
-                loading ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+                loadings ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
                     <CircularProgress />
                 </div> : <>
                     <table class="table table-hover">

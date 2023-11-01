@@ -10,6 +10,13 @@ import PropTypes from "prop-types";
 // dropdown component here
 import SeparateDropDown from "./SeparateDropDown";
 import SeparateVoucherComponent from "../VocherLeger/SeparateVoucherComponent";
+import {
+  Divider,
+  Button
+} from '@chakra-ui/react'
+//material ui modal import her
+
+
 
 // circular loader function timer here
 function CircularProgressWithLabel(props) {
@@ -45,6 +52,7 @@ CircularProgressWithLabel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
+
 export default function TopUP() {
   const UserCredentials = useContext(StoreContext).UserData;
   const [OrderId, setOrderId] = useState("");
@@ -56,9 +64,11 @@ export default function TopUP() {
   const [FunAuthToken, setFunAuthToken] = useState("");
   const [billObject, setBillObject] = useState(null);
   const [merchantObject, setMerchantObject] = useState(null);
+  const [allData, setallData] = useState([])
+    const [loading, setLoading] = useState(true);
   // loading usestate
-  const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(10);
+
 
   //  time loader useEffect
   useEffect(() => {
@@ -115,7 +125,7 @@ export default function TopUP() {
   useEffect(() => {
     getRandomNumber(); // Random Number Generate
     // percentage(2.5, 10000); // Calculate Percentage
-     PayOff(); // auth_token Generate
+    PayOff(); // auth_token Generate
   }, []);
 
   function getRandomNumber() {
@@ -186,6 +196,50 @@ export default function TopUP() {
       });
   }
 
+  // pagination data here 
+useEffect(() => {
+  if (UserCredentials?.UserData?.Role == "Admin") {
+      axios({
+          method: "Post",
+          url: Url + "/filteredVoucher",
+          data: {
+              filter: {
+                  BelongsTo: UserCredentials?.UserData?._id,
+                  Mode:"Credit"
+                  // BelongsTo: "63db55cf07ec951109a359c7",
+              },
+          },
+      }).then((response) => {
+          // console.log(response.data)
+          setallData(response?.data,"Voucher Data. Pagination component");
+          setTimeout(() => {
+              setLoading(false);
+          }, 2000);
+      });
+  } else {
+      axios({
+          method: "Post",
+          url: Url + "/smsLedger",
+          data: {
+              filter: {
+                  createdBy: UserCredentials?.UserData?.createdBy,
+                  // "createdBy": "646f09d7d9957a50a32abb4c"
+              },
+          },
+      }).then((response) => {
+          // console.log(response.data,"smsLedger=>Response");
+          setallData(response?.data);
+          setTimeout(() => {
+              setLoading(false);
+          }, 2000);
+      });
+  }
+}, [allData])
+
+
+  
+  
+  
   function PayOff() {
     axios({
       url: "https://testcheckout.kuickpay.com/api/KPToken",
@@ -196,7 +250,7 @@ export default function TopUP() {
       },
     }).then((res) => {
       setFunAuthToken(res.data);
-       console.log(res.data, "auth Token response ");
+      console.log(res.data, "auth Token response ");
     });
   }
 
@@ -233,8 +287,8 @@ export default function TopUP() {
               <CircularProgress className="progress__loader mt-4" />
             ) : (
               <button
-                type="button"
-                className={`btn btn-primary mt-4`}
+                // style={{cursor:"pointer"}}
+                className="btn btn-primary mt-4"
                 onClick={handleBill}
               >
                 get Bill
@@ -259,8 +313,8 @@ export default function TopUP() {
       ) : (
         <>
           {/* =========================> TABS */}
-          {!billObject &&  <SeparateVoucherComponent/>}
-         
+          {!billObject && <SeparateVoucherComponent allData={allData} loadings={loading}/>}
+
           {/* =========================> Payment  Amount field*/}
 
           {/* =========================>First TABS Content*/}
@@ -268,6 +322,7 @@ export default function TopUP() {
           {billObject != null ? (
             <>
               <Table billObject={billObject} />
+              <Divider />
               <form
                 method="post"
                 action="https://testcheckout.kuickpay.com/api/Redirection"
@@ -351,12 +406,20 @@ export default function TopUP() {
                   name="Signature"
                   value={CryptoJS.MD5(
                     "01234" +
-                      OrderId +
-                      netAmount +
-                      "xWX+A8qbYkLgHf3e/pu6PZiycOGc0C/YXOr3XislvxI="
+                    OrderId +
+                    netAmount +
+                    "xWX+A8qbYkLgHf3e/pu6PZiycOGc0C/YXOr3XislvxI="
                   ).toString(CryptoJS.enc.Hex)}
                 />
-                <input type="submit" value="PAY NOW" style={{width:"100px"}} className="submit___btn1"/>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: "end", gap: "20px" }}>
+                  <div style={{ cursor: "pointer" }}>
+                    Pay Bill through Online Banking app[How?]
+                  </div>
+                  or
+                  <div>
+                    <input type="submit" value="Card Payment" />
+                  </div>
+                </div>
               </form>
             </>
           ) : (
@@ -364,7 +427,7 @@ export default function TopUP() {
           )}
 
           {/* =========================> Second TABS Content */}
-          <div
+          {/* <div
             class="tab-pane fade d-flex justify-content-center"
             id="pills-profile"
             role="tabpanel"
@@ -385,7 +448,7 @@ export default function TopUP() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* =========================> Third TABS Content */}
           <div
@@ -394,7 +457,7 @@ export default function TopUP() {
             role="tabpanel"
             aria-labelledby="pills-jazzcash-tab"
           >
-            <div class="" style={{ marginTop: "-47%" }}>
+            <div >
               <div class="row d-flex justify-content-center">
                 <div class="col-sm-6">
                   <div class="card mx-auto" id="backColor">
@@ -514,4 +577,3 @@ export default function TopUP() {
 
           */
 
-        

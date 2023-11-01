@@ -66,18 +66,31 @@ input {
   color: #427d8f !important;
 }
 
-.left__dropdown {
-  position: relative;
-  top: -30px;
-  left: -50px;
-}
+
 
 .left__dropdown select{
   width: 154px;
-  top: -12px;
+  top: -43px;
   position: relative;
 }
 
+.submit___btn1{
+  width: 150px !important;
+  cursor: pointer !important;
+}
+
+
+.center___modal{
+  height: 50vh !important;
+  width: 50vw !important;
+  background-color: red !important;
+}
+
+
+.get__bill__btn{
+  cursor: pointer !important;
+  background-color: red !important;
+}
 
 /* media query start here */
 
@@ -86,6 +99,7 @@ input {
   .submit___btn1{
     margin-top: 40px;
     width: 100%;
+    cursor: pointer !important;
   }
 
 }
