@@ -11,8 +11,16 @@ import PropTypes from "prop-types";
 import SeparateDropDown from "./SeparateDropDown";
 import SeparateVoucherComponent from "../VocherLeger/SeparateVoucherComponent";
 import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
   Divider,
-  Button
+  useDisclosure
 } from '@chakra-ui/react'
 //material ui modal import her
 
@@ -70,7 +78,18 @@ export default function TopUP() {
   const [testLoading, setTestLoading] = useState(false)
   // loading usestate
   const [progress, setProgress] = useState(10);
-  
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [size, setSize] = React.useState('md')
+
+  const handleSizeClick = (newSize) => {
+    setSize(newSize)
+    onOpen()
+  }
+
+  const sizes = ['full']
+
+
 
   //  time loader useEffect
   useEffect(() => {
@@ -198,63 +217,63 @@ export default function TopUP() {
       });
   }
 
-  
+
   // filter quate data 
 
-  const getFilterDatas = () =>{
-  
-      axios({
-        method: "Post",
-        url: Url + "/filteredVoucher",
-        data: {
-          filter: {
-            BelongsTo: UserCredentials?._id,
-            Mode: "Credit"
-        }    
-        },
-      }).then((response) => {
-        console.log(response?.data,"response=====>data")
-        setallData(response?.data, "Voucher Data. Pagination component");
-        setTimeout(() => {
-          setLoading(false);
-        }, 2000);
-      });
-   
-      // axios({
-      //   method: "Post",
-      //   url: Url + "/smsLedger",
-      //   data: {
-      //     filter: {
-      //       createdBy: UserCredentials?.UserData?.createdBy,
-      //       // "createdBy": "646f09d7d9957a50a32abb4c"
-      //     },
-      //   },
-      // }).then((response) => {
-      //   // console.log(response.data,"smsLedger=>Response");
-      //   setallData(response?.data);
-      //   setTimeout(() => {
-      //     setLoading(false);
-      //   }, 2000);
-      // });
-    
+  const getFilterDatas = () => {
+
+    axios({
+      method: "Post",
+      url: Url + "/filteredVoucher",
+      data: {
+        filter: {
+          BelongsTo: UserCredentials?._id,
+          Mode: "Credit"
+        }
+      },
+    }).then((response) => {
+      console.log(response?.data, "response=====>data")
+      setallData(response?.data, "Voucher Data. Pagination component");
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    });
+
+    // axios({
+    //   method: "Post",
+    //   url: Url + "/smsLedger",
+    //   data: {
+    //     filter: {
+    //       createdBy: UserCredentials?.UserData?.createdBy,
+    //       // "createdBy": "646f09d7d9957a50a32abb4c"
+    //     },
+    //   },
+    // }).then((response) => {
+    //   // console.log(response.data,"smsLedger=>Response");
+    //   setallData(response?.data);
+    //   setTimeout(() => {
+    //     setLoading(false);
+    //   }, 2000);
+    // });
+
   }
 
 
-  const getMyALDatas = () =>{
-   axios({
-    method:"Post",
-    url: Url + "/filteredVoucher",
-    data: {
-      filter: {
-        BelongsTo: "64ed8764b75f5cd1bfdeeab9",
-        Mode: "Credit"
-    }
-    }
-   }).then((res)=>{
-    console.log("ali===>testing",res)
-   }).catch((err)=>{
-    console.log(err?.message)
-   })
+  const getMyALDatas = () => {
+    axios({
+      method: "Post",
+      url: Url + "/filteredVoucher",
+      data: {
+        filter: {
+          BelongsTo: "64ed8764b75f5cd1bfdeeab9",
+          Mode: "Credit"
+        }
+      }
+    }).then((res) => {
+      console.log("ali===>testing", res)
+    }).catch((err) => {
+      console.log(err?.message)
+    })
   }
 
   useEffect(() => {
@@ -438,15 +457,39 @@ export default function TopUP() {
                   ).toString(CryptoJS.enc.Hex)}
                 />
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: "end", gap: "20px" }}>
-                  <div style={{ cursor: "pointer" }}>
+
+                  {sizes.map((size) => (
+                    <Button
+                      onClick={() => handleSizeClick(size)}
+                      key={size}
+                      m={4}
+                    > Pay Bill through Online Banking app[How?]</Button>
+                  ))}
+
+                  {/* <div style={{ cursor: "pointer" }}>
                     Pay Bill through Online Banking app[How?]
-                  </div>
+                  </div> */}
                   or
                   <div>
                     <input type="submit" value="Card Payment" />
                   </div>
                 </div>
               </form>
+
+              <Modal onClose={onClose} size={size} isOpen={isOpen}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Modal Title</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    {/* <Lorem count={2} /> */}
+                    <p>hello testing modal here</p>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button onClick={onClose}>Close</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
             </>
           ) : (
             <></>

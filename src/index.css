@@ -1,0 +1,17 @@
+.chakra-modal__content-container{
+    background-color:  white !important;
+}
+
+
+.chakra-modal__footer{
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+}
+
+
+.chakra-modal__close-btn{
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
