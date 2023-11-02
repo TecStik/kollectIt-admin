@@ -8,12 +8,25 @@ import axios from "axios";
 import React from "react";
 import "./Transaction.css";
 import moment from "moment";
+// new import pagination here
+import PaginationComponent from "../Pagination";
+
+  
+
+const itemsPerPage = 5;  //pagination limit here
+
 
 export default function TransactionList() {
   const [allData, setallData] = useState([]);
   const [fromName, setFromName] = useState([]);
   const [toName, setToName] = useState([]);
   const [filterItem, setfilterItem] = useState(allData);
+
+  // new state json pagination
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(allData.length / itemsPerPage);
+
+
 
   const UserCredentials = useContext(StoreContext);
   const csvLinkEl = useRef(null);
@@ -44,6 +57,18 @@ export default function TransactionList() {
       })
       .catch((err) => {});
   }, []);
+
+
+  // pagination functions here
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = allData.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
 
   function transaction(data) {
     for (let i = 0; i < data.length; i++) {
@@ -159,14 +184,14 @@ export default function TransactionList() {
             </tr>
           </thead>
           <tbody>
-            {allData.map((v, i) => {
+            {displayedData?.map((v, i) => {
               return (
                 <tr key={i}>
-                  <td>{moment(v.createdOn).format("llll")}</td>
-                  <td>{v.Nature}</td>
+                  <td>{moment(v?.createdOn).format("llll")}</td>
+                  <td>{v?.Nature}</td>
                   <td>{fromName}</td>
                   <td>{toName}</td>
-                  <td>{v.PaymentAmount}</td>
+                  <td>{v?.PaymentAmount}</td>
                   <td>
                     <span class="badge badge-primary rounded-pill d-inline">
                       Active
@@ -200,6 +225,7 @@ export default function TransactionList() {
                         </tr> */}
           </tbody>
         </table>
+        <PaginationComponent totalPages={totalPages} onChange={handlePageChange} page={page}/>
       </div>
     </div>
   );
