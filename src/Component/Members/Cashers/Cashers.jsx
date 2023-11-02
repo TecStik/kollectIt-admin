@@ -3,12 +3,22 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { Url } from "../../../Pages/Core";
 import StoreContext from "../../../ContextApi";
 import Filter from "../../filter/filter";
+import PaginationComponent from "../../Pagination";
+
+const itemsPerPage = 2;  //pagination limit here
+
 
 export default function Cashers() {
   const [allData, setallData] = useState([]);
   const UserCredentials = useContext(StoreContext);
   const [filterItem, setfilterItem] = useState(allData);
   // console.log(UserCredentials.UserData);
+    // new state json pagination
+    const [page, setPage] = useState(1);
+    const totalPages = Math.ceil(allData.length / itemsPerPage);
+  
+  
+
 
   useEffect(() => {
     axios({
@@ -25,6 +35,17 @@ export default function Cashers() {
       setallData(response.data);
     });
   }, []);
+
+      // pagination functions here
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = allData.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
 
   return (
     <div class="card card-cascade narrower">
@@ -63,13 +84,13 @@ export default function Cashers() {
             </tr>
           </thead>
           <tbody>
-            {allData.map((v, i) => {
+            {displayedData?.map((v, i) => {
               return (
                 <tr>
-                  <td>{v.employeeName}</td>
-                  <td>{v.loginId}</td>
-                  <td>{v.employeeEmail}</td>
-                  <td>{v.employeePassword}</td>
+                  <td>{v?.employeeName}</td>
+                  <td>{v?.loginId}</td>
+                  <td>{v?.employeeEmail}</td>
+                  <td>{v?.employeePassword}</td>
                   <td>
                     <span class="badge badge-success rounded-pill d-inline">
                       Active
@@ -78,7 +99,7 @@ export default function Cashers() {
                   <td>Senior</td>
                   <td>
                     <button class="btn btn-warning btn-rounded">
-                      {v.Role}
+                      {v?.Role}
                     </button>
                   </td>
                 </tr>
@@ -106,6 +127,7 @@ export default function Cashers() {
             </tr> */}
           </tbody>
         </table>
+        <PaginationComponent onChange={handlePageChange} page={page}  totalPages={totalPages}/>
       </div>
     </div>
   );
