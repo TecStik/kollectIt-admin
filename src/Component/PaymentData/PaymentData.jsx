@@ -63,9 +63,9 @@ export default function PaymentData() {
   const [progress, setProgress] = useState(10);
   const [loading, setLoading] = useState(true);
 
-   // new state json pagination
-   const [page, setPage] = useState(1);
-   const totalPages = Math.ceil(allData.length / itemsPerPage);
+  // new state json pagination
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(allData.length / itemsPerPage);
 
 
   // loading useEffect here
@@ -155,13 +155,11 @@ export default function PaymentData() {
   }
   // console.log(OnData.imageUrl, "rrrrr");
 
-  const [value, setValue] = useState(OnData?.dueOn || "");
-
   function handler() {
     console.log("In Submit Handler", dueOnref.current.value, drawOnref.current.value);
     let update = {
       drawOn: drawOnref.current.value ? drawOnref.current.value : OnData?.drawOn,
-      dueOn: value ? value : OnData?.dueOn
+      dueOn: dueOnref.current.value ? dueOnref.current.value : OnData?.dueOn
     }
     console.log("Update Object", update);
 
@@ -331,10 +329,10 @@ export default function PaymentData() {
                     </th>
                     <input
                       type="date"
-                      // ref={dueOnref}
-                      value={value}
-                      onChange={(e) => setValue(e.target.value)}
-                    // placeholder={`Due On  ${OnData.dueOn?OnData.dueOn:" NA"}`}
+                      ref={dueOnref}
+                      // value={value}
+                      // onChange={(e) => setValue(e.target.value)}
+                      placeholder={OnData?.dueOn ? OnData.dueOn : ""}
                     />
 
                   </td>
@@ -362,7 +360,7 @@ export default function PaymentData() {
           </div>
         </div>
         <div style={{ marginTop: "30px" }}>
-          <Pagination allData={allData} onChange={handlePageChange} totalPages={totalPages} page={page}/>
+          <Pagination allData={allData} onChange={handlePageChange} totalPages={totalPages} page={page} />
         </div>
       </>}
     </div>
