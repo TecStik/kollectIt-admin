@@ -143,8 +143,8 @@ export default function TransactionList() {
   };
 
   return (
-    <div class="card card-cascade narrower">
-      <div class="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
+    <div className="card card-cascade narrower">
+      <div className="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
         <h2>Transaction List</h2>
 
         <CSVLink
@@ -156,7 +156,7 @@ export default function TransactionList() {
         <div className="d-flex flex-row-reverse m-2">
           <div className="m-2">
             <button
-              class="btn text-white "
+              className="btn text-white "
               style={{
                 background: "#427D8F",
                 fontSize: 15,
@@ -166,7 +166,7 @@ export default function TransactionList() {
               role="button"
             >
               Export
-              <i class="far fa-circle-down mx-2 "></i>
+              <i className="far fa-circle-down mx-2 "></i>
             </button>
           </div>
           <div className="m-2">
@@ -175,8 +175,8 @@ export default function TransactionList() {
         </div>
 
 
-        <table class="table table-hover">
-          <thead class="bg-light">
+        <table className="table table-hover">
+          <thead className="bg-light">
             <tr>
               <th>Date</th>
               <th>Nature</th>
@@ -196,7 +196,7 @@ export default function TransactionList() {
                   <td>{toName}</td>
                   <td>{v?.PaymentAmount}</td>
                   <td>
-                    <span class="badge badge-primary rounded-pill d-inline">
+                    <span className="badge badge-primary rounded-pill d-inline">
                       Active
                     </span>
                   </td>
