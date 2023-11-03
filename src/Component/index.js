@@ -13,5 +13,6 @@ export { default as TransactionList } from "./Transaction/Transaction";
 export { default as SMSleger } from "./SMSleger/SMSleger";
 export { default as VocherLeger } from "./VocherLeger/VocherLeger";
 export { default as TopUP } from "./TopUP/TopUP";
+export { default as ViewMember } from "./Members/ViewMember/ViewsMember";
 // export { default as  } from "";
 

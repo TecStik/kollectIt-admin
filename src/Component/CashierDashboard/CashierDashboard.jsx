@@ -300,7 +300,7 @@ export default function CashierDashboard() {
                     fontWeight="bold"
                     color="#1A7175"
                   >
-                    {Employee.TotalRider}
+                    {Employee?.TotalRider}
                   </Text>
                 </Text>
               </Stack>
@@ -325,7 +325,7 @@ export default function CashierDashboard() {
               p={2}
               m={2}
             >
-              Total Collection: {PaymentData.totalAmount}
+              Total Collection: {PaymentData?.totalAmount}
             </Text>
           </Box>
         </Center>

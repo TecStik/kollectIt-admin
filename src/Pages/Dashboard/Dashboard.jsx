@@ -24,6 +24,7 @@ import {
   AysnRider,
   SMSleger,
   TopUP,
+  ViewMember
 } from "../../Component/index";
 import {
   MenuUnfoldOutlined,
@@ -40,10 +41,10 @@ import {
   DollarCircleOutlined,
   UserOutlined,
   DingtalkOutlined,
-  UsergroupAddOutlined,
   BranchesOutlined,
   TransactionOutlined,
   DatabaseOutlined,
+  UsergroupAddOutlined
 } from "@ant-design/icons";
 import StoreContext from "../../ContextApi";
 import { useNavigate } from "react-router-dom";
@@ -66,33 +67,29 @@ export default function Dashboard() {
 
 
   useEffect(() => {
-   
-
-
-  
     const localRole = JSON.parse(localStorage.getItem("Role"));
     if (localRole) {
       setlocalRole(localRole);
     }
     localRole === "Cashier" ? setTrigger(17) : <></>;
   }, []);
-//useffect for bill
-useEffect(() => {
- 
+  //useffect for bill
+  useEffect(() => {
 
-  const search=location.search;
-  const queryParams = queryString.parse(search);
-  if(queryParams.ResponseCode=="00"){
-  updateBill(queryParams);
-  }else if(queryParams.ResponseCode=="90"){
-    alert("Payment Failed");
-    setTrigger(23);
+
+    const search = location.search;
+    const queryParams = queryString.parse(search);
+    if (queryParams.ResponseCode == "00") {
+      updateBill(queryParams);
+    } else if (queryParams.ResponseCode == "90") {
+      alert("Payment Failed");
+      setTrigger(23);
 
     }
-      console.log("search in Dashboard",1);
-     console.log("json in Dashboard",queryParams );
-      
-    }, [location.search]);
+    console.log("search in Dashboard", 1);
+    console.log("json in Dashboard", queryParams);
+
+  }, [location.search]);
 
   RoleDetails.setRole(localRole);
   const Role = RoleDetails.Role;
@@ -102,9 +99,9 @@ useEffect(() => {
     navigate("/");
   };
 
-  async function  updateBill(data){
-    let amount =parseFloat(data.amountPaid)*100;
-    amount= "+"+"0".repeat(8)+amount;
+  async function updateBill(data) {
+    let amount = parseFloat(data.amountPaid) * 100;
+    amount = "+" + "0".repeat(8) + amount;
 
     const header = {
       'Content-Type': 'application/json', // Example: Sending JSON data
@@ -115,29 +112,29 @@ useEffect(() => {
 
 
     axios({
-        method: "post",
-        url: Url + "/kuickpay/billPayment",
-        data: {
-          
-            consumer_number:data.OrderId,
-            tran_auth_id:data.TransactionId,
-            transaction_amount:amount,
-            tran_date:Date.now().toString(),
-            tran_time: Date.now().toString(), 
-            bank_mnemonic : "HBL",
-            reserved:"something, special, string, can, be, send, into, it."
-        },
-        headers:header
-          
+      method: "post",
+      url: Url + "/kuickpay/billPayment",
+      data: {
+
+        consumer_number: data.OrderId,
+        tran_auth_id: data.TransactionId,
+        transaction_amount: amount,
+        tran_date: Date.now().toString(),
+        tran_time: Date.now().toString(),
+        bank_mnemonic: "HBL",
+        reserved: "something, special, string, can, be, send, into, it."
+      },
+      headers: header
+
     }).then((res) => {
-        console.log("Response from bill Update",res);
-       alert("Your payment is successfully received and recorded in our system");
-       setTrigger(22);
+      console.log("Response from bill Update", res);
+      alert("Your payment is successfully received and recorded in our system");
+      setTrigger(22);
     }).catch((err) => {
-        console.log("zerror in bill",err);
-        setTrigger(22);
+      console.log("zerror in bill", err);
+      setTrigger(22);
     })
-}
+  }
 
   var a = [
     // {
@@ -156,14 +153,26 @@ useEffect(() => {
         </div>
       ),
     },
+    // {
+    //   Admin: "Admin",
+    //   key: "9",
+    //   icon: <DollarCircleOutlined onClick={() => setTrigger(9)} />,
+    //   label: (
+    //     <div onClick={() => setTrigger(9)}>
+    //       <span style={{ marginLeft: "5%" }}>
+    //         {!collapsed ? "Cashier" : ""}
+    //       </span>
+    //     </div>
+    //   ),
+    // },
     {
       Admin: "Admin",
       key: "9",
-      icon: <DollarCircleOutlined onClick={() => setTrigger(9)} />,
+      icon: <UsergroupAddOutlined onClick={() => setTrigger(9)} />,
       label: (
         <div onClick={() => setTrigger(9)}>
           <span style={{ marginLeft: "5%" }}>
-            {!collapsed ? "Cashier" : ""}
+            {!collapsed ? "View Members" : ""}
           </span>
         </div>
       ),
@@ -457,7 +466,7 @@ useEffect(() => {
         trigger={null}
         collapsible
         collapsed={collapsed}
-        // style={{ position: "fixed",zIndex:1 }}
+      // style={{ position: "fixed",zIndex:1 }}
       >
         {/* <div className="logo"> */}
         <img src={Kicon} />
@@ -530,7 +539,8 @@ useEffect(() => {
             </>
           ) : trigger === 9 ? (
             <>
-              <Cashers />
+              {<ViewMember />}
+              {/* <Cashers /> */}
             </>
           ) : trigger === 10 ? (
             <>
@@ -572,20 +582,20 @@ useEffect(() => {
             <>
               <TopUP />
             </>
-            
-          ): trigger === 22 ? (
-           
-           
+
+          ) : trigger === 22 ? (
+
+
             <>
-            <PaymentConfirmation1 />
-          </>
+              <PaymentConfirmation1 />
+            </>
           ) : trigger === 23 ? (
-           
-           
+
+
             <>
-            <PaymentConfirmation2 />
-          </>
-          ): (
+              <PaymentConfirmation2 />
+            </>
+          ) : (
             <>Page Not Found</>
           )}
         </Content>
