@@ -488,14 +488,14 @@ export default function TopUP() {
                     {/* <Lorem count={2} /> */}
                     <div style={{ padding: "20px 50px" }}>
                       <ol>
-                        <li style={{ fontSize: '1rem', padding: '5px 0px' }}>Log in to your mobile banking app or internet banking portal.</li>
-                        <li style={{ fontSize: '1rem', padding: '5px 0px' }}>Select Payments and then Select Bills.</li>
-                        <li style={{ fontSize: '1rem', padding: '5px 0px' }}>Click (+) to Add Bill.</li>
-                        <li style={{ fontSize: '1rem', padding: '5px 0px' }}>Select Others as Bill Type and then Select Kuickpay as Company Type.</li>
-                        <li style={{ fontSize: '1rem', padding: '5px 0px' }}>Enter Consumer Number or Kuickpay id mentioned in the bill/voucher and click Confirm.</li>
-                        <li style={{ fontSize: '1rem', padding: '5px 0px' }}>Enter Referance Name (for your own memorization) and then Enter OTP. Click Confirm.</li>
-                        <li style={{ fontSize: '1rem', padding: '5px 0px' }}>Select Kuickpay – Relevant Bill Nick Name from Billing List.</li>
-                        <li style={{ fontSize: '1rem', padding: '5px 0px' }}>Confirm details and Pay.
+                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Log in to your mobile banking app or internet banking portal.</li>
+                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Select Payments and then Select Bills.</li>
+                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Click (+) to Add Bill.</li>
+                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Select Others as Bill Type and then Select Kuickpay as Company Type.</li>
+                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Enter Consumer Number or Kuickpay id mentioned in the bill/voucher and click Confirm.</li>
+                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Enter Referance Name (for your own memorization) and then Enter OTP. Click Confirm.</li>
+                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Select Kuickpay – Relevant Bill Nick Name from Billing List.</li>
+                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Confirm details and Pay.
                         </li>
                       </ol>
                     </div>
