@@ -38,8 +38,8 @@ const SeparateVoucherComponent = ({ allData, loading }) => {
                 loading ? <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <CircularProgress />
                 </div> : <>
-                    <table class="table table-hover">
-                        <thead class="bg-light">
+                    <table className="table table-hover">
+                        <thead className="bg-light">
                             <tr>
                                 <th>Date</th>
                                 <th>Description</th>
