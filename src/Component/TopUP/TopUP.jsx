@@ -111,7 +111,7 @@ export default function TopUP() {
       setMerchant(merchantObject.MerchantName);
       setOrderDate(billObject.Due_date.toString());
     }
-  }, [billObject]);
+  }, []);
 
   // console.log(UserCredentials, "PaymentAmount");
   let JazzMobiNum = useRef();
@@ -142,6 +142,8 @@ export default function TopUP() {
       // console.log(response.data, "=================>allData");
     });
   }, []);
+
+
 
   useEffect(() => {
     getRandomNumber(); // Random Number Generate
@@ -308,7 +310,7 @@ export default function TopUP() {
             <p class="h1 fw-bold d-flex">
               <span class=" fas fa-dollar-sign textmuted pe-1 h6 align-text-top mt-1"></span>
               {CreditBalance[0] ? (
-                <>{CreditBalance[0].CreditBalance}</>
+                <>{CreditBalance[0]?.CreditBalance?.toString()?.slice(0,7)}</>
               ) : (
                 <>00</>
               )}
