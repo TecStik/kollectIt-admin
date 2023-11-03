@@ -237,7 +237,7 @@ export default function PaymentData() {
       <div className="d-flex flex-row-reverse m-2">
         <div className="m-2">
           <button
-            class="btn text-white "
+            className="btn text-white "
             style={{
               background: "#427D8F",
               fontSize: 15,
@@ -247,7 +247,7 @@ export default function PaymentData() {
             role="button"
           >
             Export
-            <i class="far fa-circle-down mx-2 "></i>
+            <i className="far fa-circle-down mx-2 "></i>
           </button>
         </div>
         <div className="m-2">
@@ -266,9 +266,9 @@ export default function PaymentData() {
           placeholder="Search for names.."
           title="Type in a name"
         ></input>
-        <div class=" overflow-auto" style={{ maxHeight: "110vh" }}>
+        <div className=" overflow-auto" style={{ maxHeight: "110vh" }}>
           <table id="myTable">
-            <tr class="header">
+            <tr className="header">
               <th>Verify Code</th>
               <th>Name</th>
               <th>Draw On</th>
@@ -301,7 +301,7 @@ export default function PaymentData() {
                       <td>
                         <td>
                           <button
-                            class="badge badge-primary rounded-pill d-inline"
+                            className="badge badge-primary rounded-pill d-inline"
                             data-toggle="modal"
                             data-target="#myModal"
                             onClick={() => creatID(v)}
@@ -317,15 +317,15 @@ export default function PaymentData() {
             )}
           </table>
         </div>
-        <div class="modal" id="myModal">
-          <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content" style={{ width: "115%" }}>
+        <div className="modal" id="myModal">
+          <div className="modal-dialog modal-dialog-scrollable">
+            <div className="modal-content" style={{ width: "115%" }}>
               {/* <!-- Modal Header --> */}
-              <div class="modal-header">
-                <h1 class="modal-title">View & Update</h1>
+              <div className="modal-header">
+                <h1 className="modal-title">View & Update</h1>
                 <button
                   type="button"
-                  class="btn btn-danger close"
+                  className="btn btn-danger close"
                   data-dismiss="modal"
                 >
                   X
@@ -333,7 +333,7 @@ export default function PaymentData() {
               </div>
 
               {/* <!-- Modal body --> */}
-              <div class="modal-body">
+              <div className="modal-body">
                 <table id="myTable">
                   <td>
                     <img
@@ -362,19 +362,19 @@ export default function PaymentData() {
               </div>
 
               {/* <!-- Modal footer --> */}
-              <div class="modal-footer">
+              <div className="modal-footer">
                 {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
                 <button
                   id="sumbit"
                   aria-label=""
-                  class="btn btn-success close"
+                  className="btn btn-success close"
                   data-dismiss="modal"
                   onClick={() => handler()}
                 >
                   SUBMIT
                 </button>
                 {/* <button type="button" onClick={handleSubmit} value={value} class="btn btn-success close">Submit</button> */}
-                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                <button type="button" className="btn btn-danger" data-dismiss="modal">
                   Close
                 </button>
               </div>
