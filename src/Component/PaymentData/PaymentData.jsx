@@ -163,7 +163,6 @@ export default function PaymentData() {
     }
     console.log("Update Object", update);
 
-
     axios({
       method: "put",
       url: Url + "/UpdateFilteredPayments",
@@ -179,7 +178,30 @@ export default function PaymentData() {
         setRealTime(!realTime);
       })
       .catch((error) => [console.log(error, "error")]);
+
+    //  update to fetch all data here
+
+    setTimeout(() => {
+      axios({
+        method: "post",
+        url: Url + "/multiFilteredPayments",
+        data: {
+          filter: {
+            BelongsTo: UserCredentials?.UserData?._id,
+          },
+        },
+      }).then((response) => {
+        console.log(response?.data, "response");
+        setallData(response?.data);
+        setfilterItem(response?.data);
+        setTimeout(() => {
+          setLoading(false)
+        }, 2000);
+      });
+    }, 100);
   }
+
+
   const downloadReport = async () => {
     setTimeout(() => {
       csvLinkEl.current.link.click();
