@@ -56,15 +56,15 @@ export default function QuotaList(data) {
         {/* {ClientData.map((v, i) => { return (<td>{v.ClientName}</td>) })}  */}
       </tr>
 
-      <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-scrollable">
-          <div class="modal-content" style={{ width: "115%" }}>
+      <div className="modal" id="myModal">
+        <div className="modal-dialog modal-dialog-scrollable">
+          <div className="modal-content" style={{ width: "115%" }}>
             {/* <!-- Modal Header --> */}
-            <div class="modal-header">
-              <h1 class="modal-title">Limits Update</h1>
+            <div className="modal-header">
+              <h1 className="modal-title">Limits Update</h1>
               <button
                 type="button"
-                class="btn btn-danger close"
+                className="btn btn-danger close"
                 data-dismiss="modal"
               >
                 X
@@ -72,7 +72,7 @@ export default function QuotaList(data) {
             </div>
 
             {/* <!-- Modal body --> */}
-            <div class="modal-body">
+            <div className="modal-body">
               <table id="myTable">
                 <th style={{ width: 60 }}>
                   <input
