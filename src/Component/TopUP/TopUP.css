@@ -92,6 +92,10 @@ input {
   background-color: red !important;
 }
 
+.unpaid_bills{
+  padding: 3px 0px;
+}
+
 /* media query start here */
 
 @media only screen and (max-width: 600px){
@@ -101,5 +105,21 @@ input {
     width: 100%;
     cursor: pointer !important;
   }
+
+}
+
+
+
+@media only screen and (max-width: 1046px){
+.my__res{
+  /* display: none; */
+  width: 100%;
+}
+
+.left__dropdown select{
+  position: relative;
+  top: 18px;
+  width: 100%;
+}
 
 }

@@ -16,12 +16,12 @@ const SeparateDropDown = () => {
     setSelectedData(selectedDatas);
   };
 
-//   useEffect(() => {
-//     setData(droData);
-//   }, []);
+  //   useEffect(() => {
+  //     setData(droData);
+  //   }, []);
 
   return (
-    <div className="d-flex justify-content-end left__dropdown">
+    <div className="d-flex justify-content-end  left__dropdown">
       <select
         name="select"
         id="select"

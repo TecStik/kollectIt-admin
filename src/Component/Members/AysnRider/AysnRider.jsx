@@ -104,25 +104,25 @@ export default function AysnRider() {
 
 
   return (
-    <div class="modal-dialog-scrollable">
-      <div class="card card-cascade narrower ">
-        <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+    <div className="modal-dialog-scrollable">
+      <div className="card card-cascade narrower ">
+        <div className="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
           <div>
             <button
               type="button"
-              class="btn btn-outline-white btn-rounded btn-sm px-2"
+              className="btn btn-outline-white btn-rounded btn-sm px-2"
             >
-              <i class="fas fa-th-large mt-0"></i>
+              <i className="fas fa-th-large mt-0"></i>
             </button>
             <button
               type="button"
-              class="btn btn-outline-white btn-rounded btn-sm px-2"
+              className="btn btn-outline-white btn-rounded btn-sm px-2"
             >
-              <i class="fas fa-columns mt-0"></i>
+              <i className="fas fa-columns mt-0"></i>
             </button>
           </div>
 
-          <a href="" class="white-text mx-3">
+          <a href="" className="white-text mx-3">
             Allow Access
           </a>
           <div>
@@ -146,7 +146,7 @@ export default function AysnRider() {
             </button> */}
           </div>
         </div>
-        <div class="container overflow-auto" style={{ maxHeight: "110vh" }}>
+        <div className="container overflow-auto" style={{ maxHeight: "110vh" }}>
           <h2>Assign Rider</h2>
           <div className="d-flex flex-row-reverse m-2">
             <div className="m-2">
@@ -169,8 +169,8 @@ export default function AysnRider() {
             </div>
           </div>
 
-          <table class="table table-hover ">
-            <thead class="bg-light">
+          <table className="table table-hover ">
+            <thead className="bg-light">
               <tr>
                 <th>Client ID</th>
                 <th>Name</th>
@@ -192,14 +192,14 @@ export default function AysnRider() {
                     <td>{v?.ClientPhoneNumber}</td>
                     <td>{v?.ClientAmount}</td>
                     <td>
-                      <span class="badge badge-warning rounded-pill d-inline">
+                      <span className="badge badge-warning rounded-pill d-inline">
                         {v.ClientRider}
                       </span>
                     </td>
                     <td>
                       <button
                         type="button"
-                        class="btn btn-warning btn-rounded"
+                        className="btn btn-warning btn-rounded"
                         data-toggle="modal"
                         data-target="#myModal"
                         onClick={() => setClinetID(v._id)}
@@ -215,15 +215,15 @@ export default function AysnRider() {
       
         </div>
 
-        <div class="modal" id="myModal">
-          <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content" style={{ width: "115%" }}>
+        <div className="modal" id="myModal">
+          <div className="modal-dialog modal-dialog-scrollable">
+            <div className="modal-content" style={{ width: "115%" }}>
               {/* <!-- Modal Header --> */}
-              <div class="modal-header">
-                <h1 class="modal-title">Rider Name</h1>
+              <div className="modal-header">
+                <h1 className="modal-title">Rider Name</h1>
                 <button
                   type="button"
-                  class="btn btn-danger close"
+                  className="btn btn-danger close"
                   data-dismiss="modal"
                 >
                   X
@@ -231,9 +231,9 @@ export default function AysnRider() {
               </div>
 
               {/* <!-- Modal body --> */}
-              <div class="modal-body">
+              <div className="modal-body">
                 <table id="myTable">
-                  <tr class="header">
+                  <tr className="header">
                     {/* <th style={{ width: 60 }}>RiderId</th> */}
                     <th style={{ width: 60 }}>Name</th>
                     <th style={{ width: 60 }}>Number</th>
@@ -247,7 +247,7 @@ export default function AysnRider() {
                         {/* <td>{v.employeePassword}</td> */}
                         <td>
                           <button
-                            class="btn btn-warning"
+                            className="btn btn-warning"
                             onClick={() => Rider(v.employeeName)}
                             data-dismiss="modal"
                           >
@@ -261,7 +261,7 @@ export default function AysnRider() {
               </div>
 
               {/* <!-- Modal footer --> */}
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                   type="button"
                   class="btn btn-danger"

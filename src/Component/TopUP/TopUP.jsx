@@ -335,7 +335,7 @@ export default function TopUP() {
             ) : (
               <button
                 // style={{cursor:"pointer"}}
-                className="btn btn-primary mt-4"
+                className="btn btn-primary mt-4 my__res"
                 onClick={handleBill}
               >
                 get Bill
