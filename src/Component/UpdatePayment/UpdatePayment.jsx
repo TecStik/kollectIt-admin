@@ -72,7 +72,7 @@ export default function UpdatePayment() {
                             <td>{v.status}</td>
                             <td>
                                 <td>
-                                    <span class="badge badge-primary rounded-pill d-inline">view</span>
+                                    <span className="badge badge-primary rounded-pill d-inline">view</span>
                                 </td>
                             </td>
                         </tr>
