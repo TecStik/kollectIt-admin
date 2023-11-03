@@ -58,7 +58,7 @@ export default function ThankyouPayment() {
       <br />
       <br /> */}
 
-      <div class="container col-50" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"}}>
+      <div className="container col-50" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"}}>
         <img className='icon' src={iconTick} alt="" />
         
         <p className='title'>Thank You For The Payment</p>
