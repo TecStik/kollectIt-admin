@@ -58,7 +58,7 @@ export default function DeclinedPayment() {
       <br />
       <br /> */}
 
-      <div class="container col-50" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"}}>
+      <div className="container col-50" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column"}}>
         <img className='icon' src={iconCross} alt="" />
         
         <p className='title'>Your Payment Has Been Declined</p>
