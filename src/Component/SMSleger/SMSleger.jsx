@@ -71,8 +71,8 @@ export default function SMSleger() {
 
     return (
         <>
-            <div class="card card-cascade narrower">
-                <div class="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
+            <div className="card card-cascade narrower">
+                <div className="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
                     <h2>SMS Leger</h2>
                     <div className="d-flex flex-row-reverse m-2">
                         <div className="m-2">
@@ -81,8 +81,8 @@ export default function SMSleger() {
                             <Filter data={{ allData, setfilterItem }} />
                         </div>
                     </div>
-                    <table class="table table-hover">
-                        <thead class="bg-light">
+                    <table className="table table-hover">
+                        <thead className="bg-light">
                             <tr>
                                 <th>Date</th>
                                 <th>Mode</th>
