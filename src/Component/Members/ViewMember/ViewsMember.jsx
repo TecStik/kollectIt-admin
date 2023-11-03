@@ -4,6 +4,55 @@ import { Url } from "../../../Pages/Core";
 import StoreContext from "../../../ContextApi";
 import Filter from "../../filter/filter";
 import PaginationComponent from "../../Pagination";
+// loading import material ui here
+import PropTypes from 'prop-types';
+import { Typography, CircularProgress, Box } from "@mui/material";
+
+
+
+
+
+// loading function here
+function CircularProgressWithLabel(props) {
+    return (
+        <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+            <CircularProgress variant="determinate" {...props} />
+            <Box
+                sx={{
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    right: 0,
+                    position: 'absolute',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                <Typography variant="caption" component="div" color="text.secondary">
+                    {`${Math.round(props.value)}%`}
+                </Typography>
+            </Box>
+        </Box>
+    );
+}
+
+CircularProgressWithLabel.propTypes = {
+    /**
+     * The value of the progress indicator for the determinate variant.
+     * Value between 0 and 100.
+     * @default 0
+     */
+    value: PropTypes.number.isRequired,
+};
+
+
+
+
+
+
+
+
 
 const itemsPerPage = 2;  //pagination limit here
 
@@ -17,6 +66,19 @@ export default function ViewMember() {
     const [page, setPage] = useState(1);
     const totalPages = Math.ceil(allData.length / itemsPerPage);
     const [OnData, setOnData] = useState("");
+    const [progress, setProgress] = useState(10);
+    const [loading, setLoading] = useState(true);
+
+
+    // loading useEffect here
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
+        }, 800);
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
 
 
     let employeeName = useRef();
@@ -38,8 +100,12 @@ export default function ViewMember() {
                 },
             },
         }).then((response) => {
+            setTimeout(() => {
+                setLoading(false)
+            }, 2000);
             console.log(response.data, "response");
             setallData(response.data);
+
         });
     }, []);
 
@@ -60,6 +126,25 @@ export default function ViewMember() {
 
     function handler() {
         console.log(employeeName.current.value)
+        // update api calling here
+        axios({
+            method: "post",
+            url: Url + "/UpdateEmpolyee",
+            data: {
+                filter: {
+                    _id: OnData?._id
+                },
+                Update: {
+                    employeeName: employeeName.current.value ? employeeName.current.value : OnData?.employeeName,
+                    Role: Role.current.value ? Role.current.value : OnData?.Role,
+                    employeeEmail: employeeEmail.current.value ? employeeEmail.current.value : OnData?.employeeEmail,
+                    loginId: loginId.current.value ? loginId.current.value : OnData?.loginId,
+                    employeePassword: employeePassword.current.value ? employeePassword.current.value : OnData?.employeePassword
+                }
+            }
+        }).then((res) => {
+            console.log("Employee Update ====>", res?.data)
+        }).catch((err) => console.log(err?.message))
     }
 
 
@@ -74,124 +159,131 @@ export default function ViewMember() {
                         <Filter data={{ allData, setfilterItem }} />
                     </div>
                 </div>
-                <table class="table table-hover">
-                    <thead class="bg-light">
-                        <tr>
-                            <th>Employee Name</th>
-                            <th>Role</th>
-                            <th>Employee Email</th>
-                            <th>Contact Number</th>
-                            <th>Login Id</th>
-                            <th>Password</th>
-                            <th>Action/Roles</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {displayedData?.map((v, i) => {
-                            return (
-                                <tr key={v?._id}>
-                                    <td>{v?.employeeName}</td>
-                                    <td>{v?.Role}</td>
-                                    <td>{v?.employeeEmail}</td>
-                                    <td>No Number</td>
-                                    <td>{v?.loginId}</td>
-                                    <td>
-                                        {v?.employeePassword}
-                                    </td>
-                                    <td>
-                                        <button className="badge badge-primary rounded-pill d-inline"
-                                            data-toggle="modal"
-                                            data-target="#myModal"
-                                            onClick={() => creatID(v)}
-                                        >View</button>
-                                    </td>
+
+                {
+                    loading ? <div>
+                        <CircularProgressWithLabel value={progress} />
+                    </div> : <>
+                        <table class="table table-hover">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Role</th>
+                                    <th>Employee Email</th>
+                                    <th>Contact Number</th>
+                                    <th>Login Id</th>
+                                    <th>Password</th>
+                                    <th>Action/Roles</th>
                                 </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                                {displayedData?.map((v, i) => {
+                                    return (
+                                        <tr key={v?._id}>
+                                            <td>{v?.employeeName}</td>
+                                            <td>{v?.Role}</td>
+                                            <td>{v?.employeeEmail}</td>
+                                            <td>No Number</td>
+                                            <td>{v?.loginId}</td>
+                                            <td>
+                                                {v?.employeePassword}
+                                            </td>
+                                            <td>
+                                                <button className="badge badge-primary rounded-pill d-inline"
+                                                    data-toggle="modal"
+                                                    data-target="#myModal"
+                                                    onClick={() => creatID(v)}
+                                                >View</button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
 
-                {/* modal start here */}
+                        {/* modal start here */}
 
-                <div class="modal" id="myModal">
-                    <div class="modal-dialog modal-dialog-scrollable">
-                        <div class="modal-content" style={{ width: "115%" }}>
-                            {/* <!-- Modal Header --> */}
-                            <div class="modal-header">
-                                <h1 class="modal-title">View & Update</h1>
-                                <button
-                                    type="button"
-                                    class="btn btn-danger close"
-                                    data-dismiss="modal"
-                                >
-                                    X
-                                </button>
-                            </div>
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content" style={{ width: "115%" }}>
+                                    {/* <!-- Modal Header --> */}
+                                    <div class="modal-header">
+                                        <h1 class="modal-title">View & Update</h1>
+                                        <button
+                                            type="button"
+                                            class="btn btn-danger close"
+                                            data-dismiss="modal"
+                                        >
+                                            X
+                                        </button>
+                                    </div>
 
-                            {/* <!-- Modal body --> */}
-                            <div class="modal-body">
-                                <table id="myTable">
-                                    <td className="client__update_container_th">
-                                        <th style={{ width: '100%' }}>
-                                            <input ref={employeeName} placeholder={`Employee Name ${OnData?.employeeName}`} />
-                                        </th>
-                                        <th style={{ width: "100%" }}>
-                                            <input
-                                                type="text"
-                                                ref={Role}
-                                                placeholder={`Role ${OnData?.Role}`}
-                                            />
-                                        </th>
-                                        <th style={{ width: "100%" }}>
-                                            <input
-                                                type="text"
-                                                ref={employeeEmail}
-                                                placeholder={`Email ${OnData?.employeeEmail}`}
-                                            />
-                                        </th>
-                                        <th style={{ width: "100%" }}>
-                                            <input
-                                                type="text"
-                                                ref={loginId}
-                                                placeholder={`Login Id ${OnData?.loginId}`}
-                                            />
-                                        </th>
-                                        <th style={{ width: "100%" }}>
-                                            <input
-                                                type="text"
-                                                ref={employeePassword}
-                                                placeholder={`Password ${OnData?.employeePassword}`}
-                                            />
-                                        </th>
-                                    </td>
-                                </table>
-                            </div>
+                                    {/* <!-- Modal body --> */}
+                                    <div class="modal-body">
+                                        <table id="myTable">
+                                            <td className="client__update_container_th">
+                                                <th style={{ width: '100%' }}>
+                                                    <input ref={employeeName} placeholder={`Employee Name ${OnData?.employeeName}`} />
+                                                </th>
+                                                <th style={{ width: "100%" }}>
+                                                    <input
+                                                        type="text"
+                                                        ref={Role}
+                                                        placeholder={`Role ${OnData?.Role}`}
+                                                    />
+                                                </th>
+                                                <th style={{ width: "100%" }}>
+                                                    <input
+                                                        type="text"
+                                                        ref={employeeEmail}
+                                                        placeholder={`Email ${OnData?.employeeEmail}`}
+                                                    />
+                                                </th>
+                                                <th style={{ width: "100%" }}>
+                                                    <input
+                                                        type="text"
+                                                        ref={loginId}
+                                                        placeholder={`Login Id ${OnData?.loginId}`}
+                                                    />
+                                                </th>
+                                                <th style={{ width: "100%" }}>
+                                                    <input
+                                                        type="text"
+                                                        ref={employeePassword}
+                                                        placeholder={`Password ${OnData?.employeePassword}`}
+                                                    />
+                                                </th>
+                                            </td>
+                                        </table>
+                                    </div>
 
-                            {/* <!-- Modal footer --> */}
-                            <div class="modal-footer">
-                                {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
-                                <button
-                                    id="sumbit"
-                                    aria-label=""
-                                    class="btn btn-success close"
-                                    data-dismiss="modal"
-                                    onClick={() => handler()}
-                                >
-                                    SUBMIT
-                                </button>
-                                {/* <button type="button" onClick={handleSubmit} value={value} class="btn btn-success close">Submit</button> */}
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">
-                                    Close
-                                </button>
+                                    {/* <!-- Modal footer --> */}
+                                    <div class="modal-footer">
+                                        {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
+                                        <button
+                                            id="sumbit"
+                                            aria-label=""
+                                            class="btn btn-success close"
+                                            data-dismiss="modal"
+                                            onClick={() => handler()}
+                                        >
+                                            SUBMIT
+                                        </button>
+                                        {/* <button type="button" onClick={handleSubmit} value={value} class="btn btn-success close">Submit</button> */}
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                {/* modal end here */}
+                        {/* modal end here */}
 
-                {/* pagination start here */}
-                <PaginationComponent onChange={handlePageChange} page={page} totalPages={totalPages} />
+                        {/* pagination start here */}
+                        <PaginationComponent onChange={handlePageChange} page={page} totalPages={totalPages} />
+                    </>
+                }
             </div>
         </div>
     );
