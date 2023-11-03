@@ -33,7 +33,7 @@ export default function AdminList(data) {
                 <td>{data.alldata.employeeEmail}</td>
                 <td>{data.alldata.employeePassword}</td>
                 <td>
-                    <span class="badge badge-success rounded-pill d-inline">Active</span>
+                    <span className="badge badge-success rounded-pill d-inline">Active</span>
                 </td>
                 <td>Senior</td>
                 <td>{""}
@@ -43,7 +43,7 @@ export default function AdminList(data) {
                         )
                     })}
                 </td>
-                <td><button class="btn btn-warning btn-rounded" >{data.alldata.Role}</button></td>
+                <td><button className="btn btn-warning btn-rounded" >{data.alldata.Role}</button></td>
             </tr>
         </>
     )
