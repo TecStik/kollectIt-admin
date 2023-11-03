@@ -190,6 +190,25 @@ export default function ClientData() {
         setRealTime(!realTime);
       })
       .catch((error) => [console.log(error, "error")]);
+
+    // after after reload all data here
+
+    setTimeout(() => {
+      axios({
+        method: "post",
+        url: Url + "/filteredClients",
+        data: {
+          filter: {
+            BelongsTo: UserCredentials?.UserData._id,
+          },
+        },
+      }).then((response) => {
+        setallData(response?.data);
+        setTimeout(() => {
+          setLoading(false)
+        }, 2000);
+      });
+    }, 100);
   }
 
 

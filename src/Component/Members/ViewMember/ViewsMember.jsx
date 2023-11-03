@@ -145,6 +145,28 @@ export default function ViewMember() {
         }).then((res) => {
             console.log("Employee Update ====>", res?.data)
         }).catch((err) => console.log(err?.message))
+
+        //  fetch api call here
+
+        setTimeout(() => {
+            axios({
+                method: "post",
+                url: Url + "/filteredEmployee",
+                data: {
+                    filter: {
+                        createdBy: UserCredentials.UserData._id,
+                        Role: "Cashier",
+                    },
+                },
+            }).then((response) => {
+                setTimeout(() => {
+                    setLoading(false)
+                }, 2000);
+                console.log(response.data, "response");
+                setallData(response.data);
+    
+            }).catch(err => console.log(err?.message));
+        }, 100);
     }
 
 
