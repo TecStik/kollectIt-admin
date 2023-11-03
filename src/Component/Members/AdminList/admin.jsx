@@ -18,12 +18,12 @@ export default function Admin() {
 
     return (
         <>
-            <div class="card card-cascade narrower">
-                <div class="container mt-3">
+            <div className="card card-cascade narrower">
+                <div className="container mt-3">
                     <h2>Admin</h2>
 
-                    <table class="table table-hover">
-                        <thead class="bg-light">
+                    <table className="table table-hover">
+                        <thead className="bg-light">
                             <tr>
                                 <th>Admin Name</th>
                                 <th>Login ID</th>
