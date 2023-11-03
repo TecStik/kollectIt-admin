@@ -11,7 +11,10 @@ import moment from "moment";
 // new import pagination here
 import PaginationComponent from "../Pagination";
 
-  
+
+
+
+
 
 const itemsPerPage = 5;  //pagination limit here
 
@@ -55,7 +58,7 @@ export default function TransactionList() {
         setallData(res.data);
         transaction(res.data);
       })
-      .catch((err) => {});
+      .catch((err) => { });
   }, []);
 
 
@@ -143,33 +146,33 @@ export default function TransactionList() {
     <div class="card card-cascade narrower">
       <div class="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
         <h2>Transaction List</h2>
-      
+
         <CSVLink
           headers={headers}
           filename="Transaction List.csv"
           data={allData}
           ref={csvLinkEl}
         />
-      <div className="d-flex flex-row-reverse m-2">
-        <div className="m-2">
-          <button
-            class="btn text-white "
-            style={{
-              background: "#427D8F",
-              fontSize: 15,
-              marginTop: "-3%",
-            }}
-            onClick={downloadReport}
-            role="button"
-          >
-            Export
-            <i class="far fa-circle-down mx-2 "></i>
-          </button>
+        <div className="d-flex flex-row-reverse m-2">
+          <div className="m-2">
+            <button
+              class="btn text-white "
+              style={{
+                background: "#427D8F",
+                fontSize: 15,
+                marginTop: "-3%",
+              }}
+              onClick={downloadReport}
+              role="button"
+            >
+              Export
+              <i class="far fa-circle-down mx-2 "></i>
+            </button>
+          </div>
+          <div className="m-2">
+            <Filter data={{ allData, setfilterItem }} />
+          </div>
         </div>
-        <div className="m-2">
-          <Filter data={{ allData, setfilterItem }} />
-        </div>
-      </div>
 
 
         <table class="table table-hover">
@@ -225,7 +228,7 @@ export default function TransactionList() {
                         </tr> */}
           </tbody>
         </table>
-        <PaginationComponent totalPages={totalPages} onChange={handlePageChange} page={page}/>
+        <PaginationComponent totalPages={totalPages} onChange={handlePageChange} page={page} />
       </div>
     </div>
   );

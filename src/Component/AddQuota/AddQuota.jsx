@@ -3,11 +3,77 @@ import { Url } from "../../Pages/Core";
 import axios from "axios";
 import AddQuotaList from "./AddQuotaList";
 import { CSVLink } from "react-csv";
+import PaginationComponent from "../Pagination";
+// loading import material ui here
+import PropTypes from 'prop-types';
+import { Typography, CircularProgress, Box } from "@mui/material";
+
+
+
+
+
+// loading function here
+function CircularProgressWithLabel(props) {
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress variant="determinate" {...props} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography variant="caption" component="div" color="text.secondary">
+          {`${Math.round(props.value)}%`}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+CircularProgressWithLabel.propTypes = {
+  /**
+   * The value of the progress indicator for the determinate variant.
+   * Value between 0 and 100.
+   * @default 0
+   */
+  value: PropTypes.number.isRequired,
+};
+
+
+
+
+
+
+const itemsPerPage = 2;  //pagination limit here
 
 export default function AddQuota() {
   const [allData, setallData] = useState([]);
   const [refresher, setRefresher] = useState(false);
   const csvLinkEl = useRef(null);
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(allData.length / itemsPerPage);
+
+
+  const [progress, setProgress] = useState(10);
+  const [loading, setLoading] = useState(true);
+
+
+  // loading useEffect here
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
+    }, 800);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   const headers = [
     { label: "Admin Name", key: "employeeName" },
@@ -21,6 +87,9 @@ export default function AddQuota() {
       method: "get",
       url: Url + "/auth/AdminEmploye",
     }).then((response) => {
+      setTimeout(() => {
+        setLoading(false)
+      }, 2000);
       console.log(response.data, "response");
       setallData(response.data);
     });
@@ -31,6 +100,17 @@ export default function AddQuota() {
       csvLinkEl.current.link.click();
     });
   };
+
+
+  // pagination functions here
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = allData.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
 
   return (
     <>
@@ -58,26 +138,32 @@ export default function AddQuota() {
             </button>
           </div>
 
-          <table class="table table-hover">
-            <thead class="bg-light">
-              <tr>
-                <th>Admin Name</th>
-                <th>Email</th>
-                {/* <th>Password</th> */}
-                {/* <th>Stutus</th> */}
-                {/* <th>Position</th> */}
-                <th>Limit</th>
-                <th>Blance</th>
-                <th>Add Quota</th>
-                <th>Add Credit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allData.map((v) => (
-                <AddQuotaList alldata={v} />
-              ))}
-            </tbody>
-          </table>
+          {
+            loading ? <CircularProgressWithLabel value={progress} /> : <>
+              <table class="table table-hover">
+                <thead class="bg-light">
+                  <tr>
+                    <th>Admin Name</th>
+                    <th>Email</th>
+                    {/* <th>Password</th> */}
+                    {/* <th>Stutus</th> */}
+                    {/* <th>Position</th> */}
+                    <th>Limit</th>
+                    <th>Blance</th>
+                    <th>Add Quota</th>
+                    <th>Add Credit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {displayedData.map((v) => (
+                    <AddQuotaList alldata={v} />
+                  ))}
+                </tbody>
+              </table>
+              <div>
+                <PaginationComponent page={page} totalPages={totalPages} onChange={handlePageChange} />
+              </div></>
+          }
         </div>
       </div>
     </>

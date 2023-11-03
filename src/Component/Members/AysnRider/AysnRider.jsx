@@ -5,6 +5,7 @@ import { Url } from "../../../Pages/Core";
 import StoreContext from "../../../ContextApi";
 import Filter from "../../filter/filter";
 
+
 export default function AysnRider() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [allData, setallData] = useState([]);
@@ -99,9 +100,8 @@ export default function AysnRider() {
       });
   }
 
-  // console.log(ClinetID, "allData");
 
-  // Rider()
+
 
   return (
     <div class="modal-dialog-scrollable">
@@ -182,15 +182,15 @@ export default function AysnRider() {
                 <th>Assign Rider</th>
               </tr>
             </thead>
-            {Client.map((v, i) => {
+            {Client?.map((v, i) => {
               return (
                 <tbody>
                   <tr>
-                    <td>{v.ClientId}</td>
-                    <td>{v.ClientName}</td>
-                    <td>{v.ClientEmail}</td>
-                    <td>{v.ClientPhoneNumber}</td>
-                    <td>{v.ClientAmount}</td>
+                    <td>{v?.ClientId}</td>
+                    <td>{v?.ClientName}</td>
+                    <td>{v?.ClientEmail}</td>
+                    <td>{v?.ClientPhoneNumber}</td>
+                    <td>{v?.ClientAmount}</td>
                     <td>
                       <span class="badge badge-warning rounded-pill d-inline">
                         {v.ClientRider}
@@ -212,6 +212,7 @@ export default function AysnRider() {
               );
             })}
           </table>
+      
         </div>
 
         <div class="modal" id="myModal">
