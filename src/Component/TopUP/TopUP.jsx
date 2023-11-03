@@ -234,7 +234,7 @@ export default function TopUP() {
         }
       },
     }).then((response) => {
-      console.log(response?.data, "response=====>data")
+      // console.log(response?.data, "response=====>data")
       setallData(response?.data, "Voucher Data. Pagination component");
       setTimeout(() => {
         setLoading(false);
@@ -272,7 +272,7 @@ export default function TopUP() {
         }
       }
     }).then((res) => {
-      console.log("ali===>testing", res)
+      // console.log("ali===>testing", res)
     }).catch((err) => {
       console.log(err?.message)
     })
@@ -296,31 +296,31 @@ export default function TopUP() {
       },
     }).then((res) => {
       setFunAuthToken(res.data);
-      console.log(res.data, "auth Token response ");
+      // console.log(res.data, "auth Token response ");
     });
   }
 
   return (
     <div>
-      <div class="col-12 mb-4">
-        <div class="row box-right">
-          <div class="col-md-4 ps-0 ">
-            <p class="ps-3 textmuted fw-bold h6 mb-0">Your Balance</p>
+      <div className="col-12 mb-4">
+        <div className="row box-right">
+          <div className="col-md-4 ps-0 ">
+            <p className="ps-3 textmuted fw-bold h6 mb-0">Your Balance</p>
 
-            <p class="h1 fw-bold d-flex">
-              <span class=" fas fa-dollar-sign textmuted pe-1 h6 align-text-top mt-1"></span>
+            <p className="h1 fw-bold d-flex">
+              <span className=" fas fa-dollar-sign textmuted pe-1 h6 align-text-top mt-1"></span>
               {CreditBalance[0] ? (
                 <>{CreditBalance[0]?.CreditBalance?.toString()?.slice(0,7)}</>
               ) : (
                 <>00</>
               )}
-              <span class="textmuted"></span>
+              <span className="textmuted"></span>
             </p>
-            <p class="ms-3 px-2 bg-green">+10% since last month</p>
+            <p className="ms-3 px-2 bg-green">+10% since last month</p>
           </div>
 
-          <div class="col-md-4">
-            <p class="text-warning mb-0">Payment Amount</p>
+          <div className="col-md-4">
+            <p className="text-warning mb-0">Payment Amount</p>
             <input
               type="text"
               placeholder="Your Amount"
@@ -328,7 +328,7 @@ export default function TopUP() {
               onChange={(e) => setPaymentAmount(e.target.value)}
             />
           </div>
-          <div class="col-md-4 mt-2">
+          <div className="col-md-4 mt-2">
             {testLoading ? (
               <CircularProgress className="progress__loader mt-4" />
               // <h3>LOADING...</h3>
@@ -460,10 +460,10 @@ export default function TopUP() {
                 />
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: "end", gap: "20px" }}>
 
-                  {sizes.map((size) => (
+                  {sizes.map((size,i) => (
                     <Button
                       onClick={() => handleSizeClick(size)}
-                      key={size}
+                      key={i}
                       m={4}
                     > Pay Bill through Online Banking app[How?]</Button>
                   ))}
@@ -538,17 +538,17 @@ export default function TopUP() {
 
           {/* =========================> Third TABS Content */}
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="pills-jazzcash"
             role="tabpanel"
             aria-labelledby="pills-jazzcash-tab"
           >
             <div >
-              <div class="row d-flex justify-content-center">
-                <div class="col-sm-6">
-                  <div class="card mx-auto" id="backColor">
-                    <p class="heading">PAYMENT DETAILS</p>
-                    <form class="card-details ">
+              <div className="row d-flex justify-content-center">
+                <div className="col-sm-6">
+                  <div className="card mx-auto" id="backColor">
+                    <p className="heading">PAYMENT DETAILS</p>
+                    <form className="card-details ">
                       <img
                         src="https://upload.wikimedia.org/wikipedia/en/b/b4/JazzCash_logo.png"
                         width="64px"
@@ -560,8 +560,8 @@ export default function TopUP() {
                           marginTop: "-10%",
                         }}
                       />
-                      <div class="form-group mb-0">
-                        <p class="text-warning mb-0">Mobile Number</p>
+                      <div className="form-group mb-0">
+                        <p className="text-warning mb-0">Mobile Number</p>
                         <input
                           type="text"
                           name="card-num"
@@ -573,8 +573,8 @@ export default function TopUP() {
                         />
                       </div>
 
-                      <div class="form-group">
-                        <p class="text-warning mb-0">CNIC (Last 6 digits)</p>
+                      <div className="form-group">
+                        <p className="text-warning mb-0">CNIC (Last 6 digits)</p>
                         <input
                           type="text"
                           name="name"
@@ -587,10 +587,10 @@ export default function TopUP() {
                       </div>
                       <button
                         type="button"
-                        class="btn btn-primary mt-4"
+                        className="btn btn-primary mt-4"
                         onClick={JazzCashHandler}
                       >
-                        <i class="fas fa-arrow-right px-3 py-2"></i>
+                        <i className="fas fa-arrow-right px-3 py-2"></i>
                       </button>
                     </form>
                   </div>
