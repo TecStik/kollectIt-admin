@@ -111,7 +111,7 @@ export default function TopUP() {
       setMerchant(merchantObject.MerchantName);
       setOrderDate(billObject.Due_date.toString());
     }
-  }, []);
+  }, [merchantObject,billObject]);
 
   // console.log(UserCredentials, "PaymentAmount");
   let JazzMobiNum = useRef();
