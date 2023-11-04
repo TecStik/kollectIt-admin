@@ -166,7 +166,7 @@ export default function TopUP() {
     setnetAmount(netAmnt);
   }
   const handleBill = async () => {
-    percentage(2.5, PaymentAmount);
+    percentage(0, PaymentAmount);//zero percent
     let data = {
       clientName: UserCredentials.employeeName,
       clientId: "UserCredentials.employeeEmail",
