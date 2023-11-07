@@ -121,7 +121,7 @@ export default function Dashboard() {
         transaction_amount: amount,
         tran_date: Date.now().toString(),
         tran_time: Date.now().toString(),
-        bank_mnemonic: "HBL",
+        bank_mnemonic: "KUICK",
         reserved: "something, special, string, can, be, send, into, it."
       },
       headers: header
