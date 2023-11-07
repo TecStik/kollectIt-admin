@@ -55,6 +55,9 @@ const itemsPerPage = 5;
 
 
 export default function ClientData() {
+
+  //  console.log("checking...",checkdata)
+
   const [allData, setallData] = useState([]);
   const UserCredentials = useContext(StoreContext);
   const csvLinkEl = useRef(null);
@@ -211,6 +214,25 @@ export default function ClientData() {
     }, 100);
   }
 
+  const createFilter = (filterParams) => {
+    const { ClientId, CashierName, ClientPhoneNumber, ClientEmail } = filterParams;
+
+    if (!ClientId && !CashierName && !ClientPhoneNumber && !ClientEmail) {
+      // If no filter parameters are provided, return the original data
+      return allData;
+    }
+
+    return allData.filter((elm) => {
+      return (
+        (!ClientId || elm.ClientId === ClientId) &&
+        (!CashierName || elm.CashierName === CashierName) &&
+        (!ClientPhoneNumber || elm.ClientPhoneNumber === ClientPhoneNumber) &&
+        (!ClientEmail || elm.ClientEmail === ClientEmail)
+      );
+    });
+  };
+
+  
 
 
 
@@ -249,7 +271,7 @@ export default function ClientData() {
           </button>
         </div>
         <div className="m-2">
-          <Filter data={{ allData, setfilterItem }} />
+          <Filter data={{ allData,createFilter}} />
         </div>
       </div>
 

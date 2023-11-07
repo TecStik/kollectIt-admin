@@ -1,16 +1,25 @@
 import { React, useState, useEffect, useRef } from "react";
 import { Form } from "react-bootstrap";
-import { Input } from "antd";
-import moment from "moment";
+// import { Input } from "antd";
+// import moment from "moment";
 import "./filter.css";
 
 export default function Filter({ data }) {
-  let StartDate = useRef();
-  let EndDate = useRef();
-  let refData = useRef();
-  let issuerData = useRef();
+  const [clientid, setClientId] = useState("");
+  const [clientname, setClientName] = useState("");
+  const [clientPhoneNumber, setClientPhoneNumber] = useState("");
+  const [clientEmail, setClientEmail] = useState("")
 
-  let datafilter = data.allData;
+
+
+  // let ClientId = useRef();
+  // let ClientName = useRef();
+  // let ClientPhoneNumber = useRef();
+  // let ClientEmail = useRef();
+
+
+
+  // let datafilter = data.allData;
   //   console.log(datafilter.allData);
   //   data.setfilterItem(datafilter)
 
@@ -19,34 +28,23 @@ export default function Filter({ data }) {
   //     "value.date >= EndDate && value.date <= StartDate"
   //   );
 
-  function handler() {
-    let Start_Date = StartDate.current.value;
-    let End_Date = EndDate.current.value;
-    // let filterendref = refData.current.input.value;
-    // let filterendissuer = issuerData.current.input.value;
-    console.log(moment(Start_Date).format("MMM Do YY"), "Start_Date");
-    let filteration = {
-      Start_Date: Start_Date,
-      Start_Date: Start_Date,
-      //   filterendref: filterendref,
-      //   filterendissuer: filterendissuer,
-    };
 
-    // console.log(filteration, "filteration");
 
-    let filtertion = datafilter.filter((value) => {
-      if (
-        moment(value.createdOn).format("MMM Do YY") >=
-          moment(Start_Date).format("MMM Do YY") && // input
-        moment(value.createdOn).format("MMM Do YY") <=
-          moment(End_Date).format("MMM Do YY")
-      ) {
-        return value;
-      }
-    });
-    console.log(filteration,"filteration"); //
-    data.setfilterItem(filtertion);
+  const filterParams = {
+    ClientId: clientid,
+    ClientName: clientname,
+    ClientPhoneNumber: clientPhoneNumber,
+    ClientEmail: clientEmail
+  };
+
+  const result = data?.createFilter(filterParams);
+  console.log("Filter ===> component here", result);
+
+
+  function handler(){
+    data.myFunc(result)
   }
+
 
   return (
     <div>
@@ -82,13 +80,14 @@ export default function Filter({ data }) {
               <div class="col-example z-depth-4 flex-center">
                 <p>
                   <label class="form-label text-white">
-                    Start Date<span class="text-danger"> *</span>
+                    Client Id<span class="text-danger"> *</span>
                   </label>
                   <Form.Control
-                    type="date"
-                    name="dob"
-                    placeholder="End of Data"
-                    ref={StartDate}
+                    type="text"
+                    name="ClientId"
+                    placeholder="Client Id"
+                    value={clientid}
+                    onChange={(e) => setClientId(e.target.value)}
                   />
                 </p>
               </div>
@@ -98,42 +97,60 @@ export default function Filter({ data }) {
               <div class="col-example z-depth-4 flex-center">
                 <p>
                   <label class="form-label text-white">
-                    End Date<span class="text-danger"> *</span>
+                    Client Name<span class="text-danger"> *</span>
                   </label>
                   <Form.Control
-                    type="date"
-                    name="dob"
-                    placeholder="Date of Birth"
-                    ref={EndDate}
+                    type="text"
+                    name="ClientName"
+                    placeholder="Client Name"
+                    value={clientname}
+                    onChange={(e) => setClientName(e.target.value)}
                   />
                 </p>
               </div>
             </div>
 
-            {/* <div class="col-md-3">
-              <div class="col-example z-depth-5 flex-center">
-                <p class="white-text">
+
+            <div class="col-md-3">
+              <div class="col-example z-depth-4 flex-center">
+                <p>
                   <label class="form-label text-white">
-                    Number<span class="text-danger"> *</span>
+                    Client Number<span class="text-danger"> *</span>
                   </label>
-                  <Input placeholder=" Refrence Number" ref={refData} />
+                  <Form.Control
+                    type="text"
+                    name="ClientPhoneNumber"
+                    placeholder="Client Phone Number"
+                    value={clientPhoneNumber}
+                    onChange={(e) => setClientPhoneNumber(e.target.value)}
+                  />
                 </p>
               </div>
             </div>
 
             <div class="col-md-3">
-              <div class="col-example   flex-center">
-                <p class="white-text">
+              <div class="col-example z-depth-4 flex-center">
+                <p>
                   <label class="form-label text-white">
-                    Email<span class="text-danger"> *</span>
+                    Client Email<span class="text-danger"> *</span>
                   </label>
-                  <Input placeholder=" Issuer Number" ref={issuerData} />
+                  <Form.Control
+                    type="text"
+                    name="ClientEmail"
+                    placeholder="Client Email"
+                    value={clientEmail}
+                    onChange={(e) => setClientEmail(e.target.value)}
+                  />
                 </p>
               </div>
-            </div> */}
+            </div>
+
+
+
+
             <div class="d-flex">
               <div class="p-2 w-100">s
-              
+
                 <div class="  flex-center">
                   <p class="white-text">
                     <button
@@ -145,7 +162,7 @@ export default function Filter({ data }) {
                       <i class="fas fa-search"></i> Search
                     </button>
                   </p>
-              {/* <div class="col-md-2"> */}
+                  {/* <div class="col-md-2"> */}
                 </div>
               </div>
             </div>
