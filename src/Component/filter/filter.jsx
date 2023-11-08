@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 // import moment from "moment";
 import "./filter.css";
 
-export default function Filter({ data }) {
+export default function Filter({ data}) {
   const [clientid, setClientId] = useState("");
   const [clientname, setClientName] = useState("");
   const [clientPhoneNumber, setClientPhoneNumber] = useState("");
@@ -37,12 +37,12 @@ export default function Filter({ data }) {
     ClientEmail: clientEmail
   };
 
-  const result = data?.createFilter(filterParams);
-  console.log("Filter ===> component here", result);
+  // const result = data?.createFilter(filterParams);
+  // console.log("Filter ===> component here", result);
 
 
   function handler(){
-    data.myFunc(result)
+    data?.createFilter(filterParams);
   }
 
 

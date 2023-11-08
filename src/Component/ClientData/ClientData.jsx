@@ -196,22 +196,22 @@ export default function ClientData() {
 
     // after after reload all data here
 
-    setTimeout(() => {
-      axios({
-        method: "post",
-        url: Url + "/filteredClients",
-        data: {
-          filter: {
-            BelongsTo: UserCredentials?.UserData._id,
-          },
-        },
-      }).then((response) => {
-        setallData(response?.data);
-        setTimeout(() => {
-          setLoading(false)
-        }, 2000);
-      });
-    }, 100);
+    // setTimeout(() => {
+    //   axios({
+    //     method: "post",
+    //     url: Url + "/filteredClients",
+    //     data: {
+    //       filter: {
+    //         BelongsTo: UserCredentials?.UserData._id,
+    //       },
+    //     },
+    //   }).then((response) => {
+    //     setallData(response?.data);
+    //     setTimeout(() => {
+    //       setLoading(false)
+    //     }, 2000);
+    //   });
+    // }, 100);
   }
 
   const createFilter = (filterParams) => {
@@ -222,6 +222,7 @@ let filtered=allData;
  filtered= (ClientName)?filtered.filter((item)=>item.ClientName === ClientName):filtered;
 
  console.log("Filtered item in create filter",filtered);
+ setfilterItem(filtered);
 
  return filtered
  
@@ -402,7 +403,7 @@ let filtered=allData;
           {/* modal end here */}
           <div style={{ marginTop: "30px" }}>
             <PaginationComponent
-              allData={allData}
+              allData={filterItem}
               page={page}
               totalPages={totalPages}
               onChange={handlePageChange}
