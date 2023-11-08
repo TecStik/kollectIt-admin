@@ -135,7 +135,7 @@ export default function ClientData() {
     setPage(value);
   };
 
-  const displayedData = allData.slice(
+  const displayedData = filterItem.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
