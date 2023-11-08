@@ -215,21 +215,29 @@ export default function ClientData() {
   }
 
   const createFilter = (filterParams) => {
-    const { ClientId, CashierName, ClientPhoneNumber, ClientEmail } = filterParams;
+    console.log("FilterParams in createFilter",filterParams);
+    const { ClientId, ClientName, ClientPhoneNumber, ClientEmail } = filterParams;
+let filtered=allData;
+ filtered= (ClientId)?filtered.filter((item)=>item.ClientId === ClientId):filtered;
+ filtered= (ClientName)?filtered.filter((item)=>item.ClientName === ClientName):filtered;
 
-    if (!ClientId && !CashierName && !ClientPhoneNumber && !ClientEmail) {
-      // If no filter parameters are provided, return the original data
-      return allData;
-    }
+ console.log("Filtered item in create filter",filtered);
 
-    return allData.filter((elm) => {
-      return (
-        (!ClientId || elm.ClientId === ClientId) &&
-        (!CashierName || elm.CashierName === CashierName) &&
-        (!ClientPhoneNumber || elm.ClientPhoneNumber === ClientPhoneNumber) &&
-        (!ClientEmail || elm.ClientEmail === ClientEmail)
-      );
-    });
+ return filtered
+ 
+    // if (!ClientId && !CashierName && !ClientPhoneNumber && !ClientEmail) {
+    //   // If no filter parameters are provided, return the original data
+    //   return allData;
+    // }
+
+    // return allData.filter((elm) => {
+    //   return (
+    //     (!ClientId || elm.ClientId === ClientId) &&
+    //     (!CashierName || elm.CashierName === CashierName) &&
+    //     (!ClientPhoneNumber || elm.ClientPhoneNumber === ClientPhoneNumber) &&
+    //     (!ClientEmail || elm.ClientEmail === ClientEmail)
+    //   );
+    // });
   };
 
   
