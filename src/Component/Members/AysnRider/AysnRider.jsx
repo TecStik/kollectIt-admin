@@ -198,13 +198,14 @@ export default function AysnRider() {
                     </td>
                     <td>
                       <button
+                      style={{width:'87px'}}
                         type="button"
                         className="btn btn-warning btn-rounded"
                         data-toggle="modal"
                         data-target="#myModal"
                         onClick={() => setClinetID(v._id)}
                       >
-                        Select Rider
+                        Select
                       </button>
                     </td>
                   </tr>

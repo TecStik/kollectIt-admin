@@ -271,11 +271,11 @@ export default function PaymentData() {
             <tr className="header">
               <th>Verify Code</th>
               <th>Name</th>
-              <th>Draw On</th>
+              <th>Drawn on</th>
               <th>Payment Status</th>
               <th>Due On</th>
               <th>Date</th>
-              <th>Staus</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
             {!allData?.length ? (

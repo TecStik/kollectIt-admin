@@ -295,7 +295,7 @@ export default function Dashboard() {
       label: (
         <div onClick={() => setTrigger(4)}>
           <span style={{ marginLeft: "5%" }}>
-            {!collapsed ? "View Payment" : ""}
+            {!collapsed ? "View Payments" : ""}
           </span>
         </div>
       ),

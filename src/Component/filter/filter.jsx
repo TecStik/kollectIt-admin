@@ -30,19 +30,19 @@ export default function Filter({ data }) {
 
 
 
-  const filterParams = {
-    ClientId: clientid,
-    ClientName: clientname,
-    ClientPhoneNumber: clientPhoneNumber,
-    ClientEmail: clientEmail
-  };
+  // const filterParams = {
+  //   ClientId: clientid,
+  //   ClientName: clientname,
+  //   ClientPhoneNumber: clientPhoneNumber,
+  //   ClientEmail: clientEmail
+  // };
 
-  const result = data?.createFilter(filterParams);
-  console.log("Filter ===> component here", result);
+  // const result = data?.createFilter(filterParams);
+  // console.log("Filter ===> component here", result);
 
 
   function handler(){
-    data.myFunc(result)
+    // data.myFunc(result)
   }
 
 
