@@ -217,27 +217,27 @@ export default function Dashboard() {
 
   var item = [
     {
-      // Cashier: "Cashier",
+      Cashier: "Cashier",
       Admin: "Admin",
       key: "1",
       icon: <HomeOutlined onClick={() => setTrigger(1)} />,
       label: (
         <div onClick={() => setTrigger(1)}>
-          <span style={{ marginLeft: "5%" }}> {!collapsed ? " Home" : ""}</span>
-        </div>
-      ),
-    },
-
-    {
-      Cashier: "Cashier",
-      key: "17",
-      icon: <BranchesOutlined onClick={() => setTrigger(17)} />,
-      label: (
-        <div onClick={() => setTrigger(17)}>
           <span style={{ marginLeft: "5%" }}> {!collapsed ? "Home" : ""}</span>
         </div>
       ),
     },
+
+    // {
+    //   Cashier: "Cashier",
+    //   key: "17",
+    //   icon: <BranchesOutlined onClick={() => setTrigger(17)} />,
+    //   label: (
+    //     <div onClick={() => setTrigger(17)}>
+    //       <span style={{ marginLeft: "5%" }}> {!collapsed ? "Home" : ""}</span>
+    //     </div>
+    //   ),
+    // },
     {
       Cashier: "Cashier",
       Admin: "Admin",

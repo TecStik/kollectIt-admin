@@ -83,7 +83,7 @@ function Login() {
         }}
       >
         <img src={Kicon} height={80} />
-        <h1 style={{ color: "#427d8f" }}>Kollectlt Dahboard</h1>
+        <h1 style={{ color: "#427d8f" }}>Kollectlt Dashboard</h1>
       </div>
       <ToastContainer />
       <Container>
