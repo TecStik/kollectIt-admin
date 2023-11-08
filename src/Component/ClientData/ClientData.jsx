@@ -62,6 +62,7 @@ export default function ClientData() {
   const UserCredentials = useContext(StoreContext);
   const csvLinkEl = useRef(null);
   const [filterItem, setfilterItem] = useState(allData);
+ // const [displaytData, setDisplayData] = useState(allData);
   const [OnData, setOnData] = useState("");
   const [realTime, setRealTime] = useState(true);
 
@@ -107,6 +108,7 @@ export default function ClientData() {
         },
       }).then((response) => {
         setallData(response?.data);
+        setfilterItem(response?.data);
         setTimeout(() => {
           setLoading(false)
         }, 2000);
@@ -122,6 +124,7 @@ export default function ClientData() {
         },
       }).then((response) => {
         setallData(response?.data);
+       setfilterItem(response?.data);
         setTimeout(() => {
           setLoading(false)
         }, 2000);
@@ -215,7 +218,7 @@ export default function ClientData() {
   }
 
   const createFilter = (filterParams) => {
-    console.log("FilterParams in createFilter",filterParams);
+    console.log("FilterParams in createFilter",filterItem);
     const { ClientId, ClientName, ClientPhoneNumber, ClientEmail } = filterParams;
 let filtered=allData;
  filtered= (ClientId)?filtered.filter((item)=>item.ClientId === ClientId):filtered;
