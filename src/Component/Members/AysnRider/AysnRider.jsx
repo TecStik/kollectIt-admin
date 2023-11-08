@@ -200,7 +200,7 @@ export default function AysnRider() {
                       <button
                       style={{width:'87px'}}
                         type="button"
-                        className="btn btn-warning btn-rounded"
+                        className="btn btn-primary btn-rounded"
                         data-toggle="modal"
                         data-target="#myModal"
                         onClick={() => setClinetID(v._id)}
