@@ -61,7 +61,6 @@ export default function ClientData() {
   const [allData, setallData] = useState([]);
   const UserCredentials = useContext(StoreContext);
   const csvLinkEl = useRef(null);
-  const [filterItem, setfilterItem] = useState(allData);
   const [OnData, setOnData] = useState("");
   const [realTime, setRealTime] = useState(true);
 
@@ -70,6 +69,21 @@ export default function ClientData() {
   const totalPages = Math.ceil(allData.length / itemsPerPage);
   const [progress, setProgress] = useState(10);
   const [loading, setLoading] = useState(true);
+  const [filterItem, setfilterItem] = useState(allData);
+
+
+
+ // pagination here .
+
+ const handlePageChange = (event, value) => {
+  setPage(value);
+};
+
+const displayedData = filterItem.slice(
+  (page - 1) * itemsPerPage,
+  page * itemsPerPage
+);
+
 
 
   // loading useEffect here
@@ -127,18 +141,8 @@ export default function ClientData() {
         }, 2000);
       });
     }
-  }, []);
+  }, [displayedData,allData]);
 
-  // pagination here .
-
-  const handlePageChange = (event, value) => {
-    setPage(value);
-  };
-
-  const displayedData = filterItem.slice(
-    (page - 1) * itemsPerPage,
-    page * itemsPerPage
-  );
 
 
   // console.log(filterItem, "filter Client Data");
@@ -215,33 +219,21 @@ export default function ClientData() {
   }
 
   const createFilter = (filterParams) => {
-    console.log("FilterParams in createFilter",filterParams);
+    console.log("FilterParams in createFilter", filterParams);
     const { ClientId, ClientName, ClientPhoneNumber, ClientEmail } = filterParams;
-let filtered=allData;
- filtered= (ClientId)?filtered.filter((item)=>item.ClientId === ClientId):filtered;
- filtered= (ClientName)?filtered.filter((item)=>item.ClientName === ClientName):filtered;
+    let filtered = allData;
+    filtered = (ClientId) ? filtered.filter((item) => item.ClientId === ClientId) : filtered;
+    filtered = (ClientName) ? filtered.filter((item) => item.ClientName === ClientName) : filtered;
+    filtered = (ClientPhoneNumber) ? filtered.filter((item) => item?.ClientPhoneNumber === ClientPhoneNumber) : filtered
+    filtered = (ClientEmail) ? filtered.filter((item) => item?.ClientEmail === ClientEmail) : filtered
 
- console.log("Filtered item in create filter",filtered);
- setfilterItem(filtered);
+    console.log("Filtered item in create filter", filtered);
+    setfilterItem(filtered);
 
- return filtered
- 
-    // if (!ClientId && !CashierName && !ClientPhoneNumber && !ClientEmail) {
-    //   // If no filter parameters are provided, return the original data
-    //   return allData;
-    // }
-
-    // return allData.filter((elm) => {
-    //   return (
-    //     (!ClientId || elm.ClientId === ClientId) &&
-    //     (!CashierName || elm.CashierName === CashierName) &&
-    //     (!ClientPhoneNumber || elm.ClientPhoneNumber === ClientPhoneNumber) &&
-    //     (!ClientEmail || elm.ClientEmail === ClientEmail)
-    //   );
-    // });
+    return filtered
   };
 
-  
+
 
 
 
@@ -280,7 +272,7 @@ let filtered=allData;
           </button>
         </div>
         <div className="m-2">
-          <Filter data={{ allData,createFilter}} />
+          <Filter data={{ allData, createFilter }} />
         </div>
       </div>
 

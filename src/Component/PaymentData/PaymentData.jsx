@@ -4,7 +4,8 @@ import { Url } from "../../Pages/Core";
 import { CSVLink } from "react-csv";
 import "./PaymentData.css";
 import axios from "axios";
-import Filter from "../filter/filter";
+// import Filter from "../filter/filter";
+import PaymentFilter from "../filter/PaymentFIlter";
 import moment from "moment";
 import PropTypes from 'prop-types';
 import { CircularProgress, Box, Typography } from "@mui/material";
@@ -56,8 +57,9 @@ export default function PaymentData() {
   const [realTime, setRealTime] = useState(true);
   const [ObjId, setObjId] = useState("");
   const [Imagelink, setImagelink] = useState([]);
-  const [filterItem, setfilterItem] = useState([]);
   const csvLinkEl = useRef(null);
+  const [filterItem, setfilterItem] = useState(allData);
+
 
   // loading state
   const [progress, setProgress] = useState(10);
@@ -214,15 +216,29 @@ export default function PaymentData() {
     setPage(value);
   };
 
-  const displayedData = allData.slice(
+  const displayedData = filterItem.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
+  // filter functionality here
 
-  // console.log(filterItem, "filter PAyment Data Data");
-  // useEffect(()=>{
-  //   setallData(filterItem)
-  // },[])
+
+  const createFilter = (filterParams) => {
+    console.log("FilterParams in createFilter", filterParams);
+    const { VerificationCode, PaymentName, drawOn, PaymentStatus } = filterParams;
+    let filtered = allData;
+    filtered = (VerificationCode) ? filtered.filter((item) => item.VerificationCode === VerificationCode) : filtered;
+    filtered = (PaymentName) ? filtered.filter((item) => item.PaymentName === PaymentName) : filtered;
+    filtered = (drawOn) ? filtered.filter((item) => item?.drawOn === drawOn) : filtered
+    filtered = (PaymentStatus) ? filtered.filter((item) => item?.PaymentStatus === PaymentStatus) : filtered
+
+    console.log("Filtered item in create filter", filtered);
+    setfilterItem(filtered);
+
+    return filtered
+  };
+
+
   return (
     <div>
       <CSVLink
@@ -251,7 +267,7 @@ export default function PaymentData() {
           </button>
         </div>
         <div className="m-2">
-          <Filter data={{ allData, setfilterItem }} />
+          <PaymentFilter data={{ allData, createFilter }} />
         </div>
       </div>
       {/* loading here */}
