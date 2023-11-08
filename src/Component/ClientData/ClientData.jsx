@@ -135,7 +135,7 @@ export default function ClientData() {
     setPage(value);
   };
 
-  const displayedData = allData.slice(
+  const displayedData = filterItem.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
@@ -196,40 +196,49 @@ export default function ClientData() {
 
     // after after reload all data here
 
-    setTimeout(() => {
-      axios({
-        method: "post",
-        url: Url + "/filteredClients",
-        data: {
-          filter: {
-            BelongsTo: UserCredentials?.UserData._id,
-          },
-        },
-      }).then((response) => {
-        setallData(response?.data);
-        setTimeout(() => {
-          setLoading(false)
-        }, 2000);
-      });
-    }, 100);
+    // setTimeout(() => {
+    //   axios({
+    //     method: "post",
+    //     url: Url + "/filteredClients",
+    //     data: {
+    //       filter: {
+    //         BelongsTo: UserCredentials?.UserData._id,
+    //       },
+    //     },
+    //   }).then((response) => {
+    //     setallData(response?.data);
+    //     setTimeout(() => {
+    //       setLoading(false)
+    //     }, 2000);
+    //   });
+    // }, 100);
   }
 
   const createFilter = (filterParams) => {
-    const { ClientId, CashierName, ClientPhoneNumber, ClientEmail } = filterParams;
+    console.log("FilterParams in createFilter",filterParams);
+    const { ClientId, ClientName, ClientPhoneNumber, ClientEmail } = filterParams;
+let filtered=allData;
+ filtered= (ClientId)?filtered.filter((item)=>item.ClientId === ClientId):filtered;
+ filtered= (ClientName)?filtered.filter((item)=>item.ClientName === ClientName):filtered;
 
-    if (!ClientId && !CashierName && !ClientPhoneNumber && !ClientEmail) {
-      // If no filter parameters are provided, return the original data
-      return allData;
-    }
+ console.log("Filtered item in create filter",filtered);
+ setfilterItem(filtered);
 
-    return allData.filter((elm) => {
-      return (
-        (!ClientId || elm.ClientId === ClientId) &&
-        (!CashierName || elm.CashierName === CashierName) &&
-        (!ClientPhoneNumber || elm.ClientPhoneNumber === ClientPhoneNumber) &&
-        (!ClientEmail || elm.ClientEmail === ClientEmail)
-      );
-    });
+ return filtered
+ 
+    // if (!ClientId && !CashierName && !ClientPhoneNumber && !ClientEmail) {
+    //   // If no filter parameters are provided, return the original data
+    //   return allData;
+    // }
+
+    // return allData.filter((elm) => {
+    //   return (
+    //     (!ClientId || elm.ClientId === ClientId) &&
+    //     (!CashierName || elm.CashierName === CashierName) &&
+    //     (!ClientPhoneNumber || elm.ClientPhoneNumber === ClientPhoneNumber) &&
+    //     (!ClientEmail || elm.ClientEmail === ClientEmail)
+    //   );
+    // });
   };
 
   
@@ -394,7 +403,7 @@ export default function ClientData() {
           {/* modal end here */}
           <div style={{ marginTop: "30px" }}>
             <PaginationComponent
-              allData={allData}
+              allData={filterItem}
               page={page}
               totalPages={totalPages}
               onChange={handlePageChange}
