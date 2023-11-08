@@ -129,7 +129,7 @@ export default function ClientData() {
     }
   }, []);
 
-  // pagination here 
+  // pagination here .
 
   const handlePageChange = (event, value) => {
     setPage(value);
