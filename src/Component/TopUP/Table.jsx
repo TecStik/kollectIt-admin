@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from "./tecstik.png";
 import "./Table.css";
+import StoreContext from '../../ContextApi';
 
-const Table = () => {
+
+
+const Table = ({ clientName, billObject, netAmnt }) => {
+    const StoreData = useContext(StoreContext);
+    // console.log(StoreData?.separateData)
+    let data = StoreData?.separateData;
+
+    // console.log(data)
+
     return (
         <div>
             <div className='today_box'>
@@ -20,9 +29,10 @@ const Table = () => {
                     </div>
                     <div className='second'>
                         <ul>
-                            <li>0001542</li>
-                            <li>Client Name</li>
-                            <li>Pacific Financial Services(Pvt.) Limited</li>
+                            <li>{data?.MerchantId ? data?.MerchantId : 0}</li>
+                            <li>{clientName && clientName}</li>
+                            <li>{data?.MerchantName ? data?.MerchantName : ""}</li>
+                            {/* <li>Pacific Financial Services(Pvt.) Limited</li> */}
                         </ul>
                     </div>
                 </div>
@@ -30,7 +40,7 @@ const Table = () => {
                 <div className='container_bill'>
                     <ul className='res__container'>
                         <li className='first_ul'>KuickPay Bill Number</li>
-                        <li className='second_ul'>100000001542</li>
+                        <li className='second_ul'>{data?.Bill_Number ? data?.Bill_Number : 0}</li>
                     </ul>
                 </div>
                 <div className='desc___container'>
@@ -48,7 +58,7 @@ const Table = () => {
                     </div>
                     <div className='second__amount'>
                         <ul>
-                            <li>Rs.1000</li>
+                            <li>Rs.{netAmnt && netAmnt}</li>
                             <li>Rs.250</li>
                         </ul>
                     </div>

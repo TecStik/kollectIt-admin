@@ -29,7 +29,8 @@ const theme = extendBaseTheme({
 function App() {
 
   const [Role, setRole] = useState([])
-  const [UserData, setUserData] = useState([])
+  const [UserData, setUserData] = useState([]);
+  const [separateData,setSeparateData] = useState({})
   // console.log(Role, "Rollll");
   // useEffect(() => {
   //   axios({
@@ -51,7 +52,7 @@ function App() {
   return (
     <div>
       <ChakraBaseProvider theme={theme}>
-        <StoreProvider value={{ Role, setRole, UserData, setUserData  }}>
+        <StoreProvider value={{ Role, setRole, UserData, setUserData,separateData,setSeparateData  }}>
           <BrowserRouter>
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />

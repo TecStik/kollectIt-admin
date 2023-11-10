@@ -76,6 +76,10 @@ export default function TopUP() {
   const [allData, setallData] = useState([])
   const [loading, setLoading] = useState(true);
   const [testLoading, setTestLoading] = useState(false)
+
+  // props state 
+
+
   // loading usestate
   const [progress, setProgress] = useState(10);
 
@@ -108,10 +112,10 @@ export default function TopUP() {
       console.log("BillObject in use effect", billObject);
       setOrderId(billObject.Bill_Number);
 
-      setMerchant(merchantObject.MerchantName);
+    //  setMerchant(merchantObject.MerchantName);
       setOrderDate(billObject.Due_date.toString());
     }
-  }, [merchantObject,billObject]);
+  }, [merchantObject, billObject]);
 
   // console.log(UserCredentials, "PaymentAmount");
   let JazzMobiNum = useRef();
@@ -177,7 +181,7 @@ export default function TopUP() {
   };
   async function generateBilll(payload) {
     let today = new Date();
-    console.log("Payload", payload);
+    console.log("Payload", payload?.clientName);
     let billmonth =
       today.getFullYear().toString().slice(-2) +
       (today.getMonth() + 1).toString();
@@ -186,7 +190,7 @@ export default function TopUP() {
       today.getFullYear().toString() +
       (today.getMonth() + 1).toString() +
       today.getDate().toString();
-    console.log("Bill Month", billmonth, "----", dueDate);
+    // console.log("Bill Month", billmonth, "----", dueDate);
 
     axios({
       method: "post",
@@ -204,11 +208,17 @@ export default function TopUP() {
     })
       .then((res) => {
         setTestLoading(true);
-        console.log("Response from Generate Bill", res.data);
-        setBillObject(res.data.bill);
+        console.log("Response from Generate Bill", res?.data?.bill);
+        
+        
+        setBillObject(res?.data?.bill);
+
+
+
+
         setMerchantObject(res.data.merchant);
         alert("You Successfully Generated Bill in our system");
-        console.log("Bill Object", billObject);
+        console.log("Bill Object", billObject && billObject);
 
         setTimeout(() => {
           setTestLoading(false)
@@ -218,9 +228,9 @@ export default function TopUP() {
         console.log("zerror in Generatebill", err);
       });
   }
-
-
   // filter quate data 
+
+
 
   const getFilterDatas = () => {
 
@@ -310,7 +320,7 @@ export default function TopUP() {
             <p className="h1 fw-bold d-flex">
               <span className=" fas fa-dollar-sign textmuted pe-1 h6 align-text-top mt-1"></span>
               {CreditBalance[0] ? (
-                <>{CreditBalance[0]?.CreditBalance?.toString()?.slice(0,7)}</>
+                <>{CreditBalance[0]?.CreditBalance?.toString()?.slice(0, 7)}</>
               ) : (
                 <>00</>
               )}
@@ -342,7 +352,7 @@ export default function TopUP() {
               </button>
             )}
             {/* add dropdown component here */}
-            <SeparateDropDown />
+            <SeparateDropDown setBillObject={setBillObject}/>
             {/* end dropdown component here */}
           </div>
         </div>
@@ -360,7 +370,7 @@ export default function TopUP() {
       ) : (
         <>
           {/* =========================> TABS */}
-          {!billObject && <SeparateVoucherComponent allData={allData} loading={loading} />}
+          {!billObject && <SeparateVoucherComponent allData={allData} loading={loading} clientName={UserCredentials.employeeName} />}
 
           {/* =========================> Payment  Amount field*/}
 
@@ -368,7 +378,7 @@ export default function TopUP() {
 
           {billObject != null ? (
             <>
-              <Table billObject={billObject} />
+              <Table billObject={billObject} clientName={UserCredentials?.employeeName} netAmnt={netAmount}/>
               <Divider />
               <form
                 method="post"
@@ -460,7 +470,7 @@ export default function TopUP() {
                 />
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: "end", gap: "20px" }}>
 
-                  {sizes.map((size,i) => (
+                  {sizes.map((size, i) => (
                     <Button
                       onClick={() => handleSizeClick(size)}
                       key={i}

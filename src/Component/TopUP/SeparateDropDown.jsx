@@ -1,41 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./TopUP.css";
-import droData from "./drop.json";
+import axios from "axios";
+import { Url } from "../../Pages/Core";
+import StoreContext from "../../ContextApi";
 
-const SeparateDropDown = () => {
-  const [dropDown, setDropDown] = useState("");
-  const [data, setData] = useState(droData);
-  const [selectedData, setSelectedData] = useState(null);
+
+const SeparateDropDown = ({setBillObject}) => {
+  const [data, setData] = useState([]);
+  const StoreData = useContext(StoreContext);
+
+
+
+
+  const getDat = async () => {
+    axios({
+      method: "post",
+      url: Url + "/kuickpay/filteredBills",
+      data: {
+        filter: {
+          Bill_status: "U"
+        }
+      }
+    }).then((res) => {
+      console.log(res?.data, "get bills");
+      setData(res?.data)
+    }).catch(err => console.log(err?.message))
+  }
+
+  useEffect(() => {
+    getDat()
+  }, [])
+
 
   const handleChange = (event) => {
     const selectedValue = event.target.value;
-    setDropDown(selectedValue);
+    const selectedDatas = data.find((elm) => elm?.Bill_Number === selectedValue);
+    // setSelectedData(selectedDatas);
 
-    const selectedDatas = data.find((elm) => elm.Bill_Number === selectedValue);
-    console.log(selectedDatas)
-    setSelectedData(selectedDatas);
+    setBillObject(selectedDatas);
+    StoreData.setSeparateData(selectedDatas)
+
   };
 
-  //   useEffect(() => {
-  //     setData(droData);
-  //   }, []);
+
 
   return (
     <div className="d-flex justify-content-end  left__dropdown">
       <select
         name="select"
         id="select"
-        value={dropDown}
         onChange={handleChange}
       >
         {data?.map((elm) => (
-          <option key={elm?._id} value={elm}>
+          <option key={elm?._id} value={elm?.Bill_Number} >
             {elm?.Bill_Number}
           </option>
         ))}
       </select>
 
-      <div >
+      {/* <div >
         <p>{selectedData?._id}</p>
         <p>{selectedData?.Aamount_within_dueDate}</p>
         <p>{selectedData?.Amount_after_dueDate}</p>
@@ -53,7 +76,7 @@ const SeparateDropDown = () => {
         <p>{selectedData?.Trans_Time}</p>
         <p>{selectedData?.salesTax}</p>
         <p>{selectedData?.createdOn}</p>
-      </div>
+      </div> */}
     </div>
   );
 };
