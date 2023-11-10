@@ -71,7 +71,7 @@ export default function ClientData() {
   const totalPages = Math.ceil(allData.length / itemsPerPage);
   const [progress, setProgress] = useState(10);
   const [loading, setLoading] = useState(true);
-  const [filterItem, setfilterItem] = useState(allData);
+ 
 
 
 
