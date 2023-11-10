@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import { CircularProgress, Box, Typography } from "@mui/material";
 // import  pagination Component 
 import Pagination from "../Pagination";
+import { Input } from "@chakra-ui/react";
+
 
 
 const itemsPerPage = 5;  //pagination limit here
@@ -225,9 +227,8 @@ export default function PaymentData() {
 
   const createFilter = (filterParams) => {
     console.log("FilterParams in createFilter", filterParams);
-    const { VerificationCode, PaymentName, drawOn, PaymentStatus } = filterParams;
+    const { PaymentName, drawOn, PaymentStatus } = filterParams;
     let filtered = allData;
-    filtered = (VerificationCode) ? filtered.filter((item) => item.VerificationCode === VerificationCode) : filtered;
     filtered = (PaymentName) ? filtered.filter((item) => item.PaymentName === PaymentName) : filtered;
     filtered = (drawOn) ? filtered.filter((item) => item?.drawOn === drawOn) : filtered
     filtered = (PaymentStatus) ? filtered.filter((item) => item?.PaymentStatus === PaymentStatus) : filtered

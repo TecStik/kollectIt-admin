@@ -1,11 +1,11 @@
 import { React, useState, useEffect, useRef } from "react";
 import { Form } from "react-bootstrap";
-// import { Input } from "antd";
-// import moment from "moment";
+import { Input, Box } from "@chakra-ui/react";
+
+
 import "./filter.css";
 
 export default function PaymentFilter({ data }) {
-    const [verifycode, setVerifyCode] = useState("");
     const [PaymentName, setName] = useState("");
     const [drawnon, setDrawnOn] = useState("");
     const [paymentstatus, setPaymentStatus] = useState("")
@@ -13,7 +13,6 @@ export default function PaymentFilter({ data }) {
 
 
     const filterParams = {
-        VerificationCode: verifycode,
         PaymentName: PaymentName,
         drawOn: drawnon,
         PaymentStatus: paymentstatus
@@ -58,22 +57,6 @@ export default function PaymentFilter({ data }) {
             <div class="collapse mt-3" id="collapseExample">
                 <div>
                     <div class="row mb-5 mx-5" id="filterColor">
-                        <div class="col-md-3">
-                            <div class="col-example z-depth-4 flex-center">
-                                <p>
-                                    <label class="form-label text-white">
-                                        Verify Code<span class="text-danger"> *</span>
-                                    </label>
-                                    <Form.Control
-                                        type="text"
-                                        name="VerifyCode"
-                                        placeholder="Verify Code"
-                                        value={verifycode}
-                                        onChange={(e) => setVerifyCode(e.target.value)}
-                                    />
-                                </p>
-                            </div>
-                        </div>
 
                         <div class="col-md-3">
                             <div class="col-example z-depth-4 flex-center">
@@ -126,6 +109,36 @@ export default function PaymentFilter({ data }) {
                                 </p>
                             </div>
                         </div>
+
+                        <div class="col-md-3">
+                            <div class="col-example z-depth-4 flex-center">
+                                <p>
+                                    <label class="form-label text-white">
+                                        Due On<span class="text-danger"> *</span>
+                                    </label>
+                                    <div style={{display:"flex",alignItems:"center",padding:"10px 20px"}}>
+                                        <Form.Control
+                                         style={{width:'100px'}}
+                                            type="date"
+                                            name="startdate"
+                                            placeholder="startdate"
+                                            // value={PaymentName}
+                                            // onChange={(e) => setName(e.target.value)}
+                                        />
+
+                                        <Form.Control
+                                        style={{width:'100px'}}
+                                            type="date"
+                                            name="enddate"
+                                            placeholder="enddate"
+                                            value={PaymentName}
+                                            onChange={(e) => setName(e.target.value)}
+                                        />
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+
 
 
 
