@@ -165,13 +165,13 @@ export default function ViewMember() {
 
     const createFilter = (filterParams) => {
         console.log("FilterParams in createFilter", filterParams);
-        const { employeeName, employeeEmail, Role} = filterParams;
+        const { employeeName, employeeEmail, Role } = filterParams;
         let filtered = allData;
-       
+
         filtered = (employeeName) ? filtered.filter((item) => item.employeeName === employeeName) : filtered;
         filtered = (employeeEmail) ? filtered.filter((item) => item?.employeeEmail === employeeEmail) : filtered
         filtered = (Role) ? filtered.filter((item) => item?.Role === Role) : filtered;
-       
+
 
 
 
@@ -180,7 +180,7 @@ export default function ViewMember() {
         setfilterItem(filtered);
 
         return filtered
-    }; 
+    };
 
 
     return (
