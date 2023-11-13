@@ -10,7 +10,7 @@ import "./Transaction.css";
 import moment from "moment";
 // new import pagination here
 import PaginationComponent from "../Pagination";
-
+import TransactionFilter from "./TransactionFilter";
 
 
 
@@ -142,6 +142,29 @@ export default function TransactionList() {
     });
   };
 
+
+  const createFilter = (filterParams) => {
+    console.log("FilterParams in createFilter", filterParams);
+    const { nature, from, to, enddate, createdOn } = filterParams;
+    let filtered = allData;
+    filtered = (nature) ? filtered.filter((item) => item.Nature === nature) : filtered;
+    filtered = (from) ? filtered.filter((item) => item?.fromName === from) : filtered
+    filtered = (to) ? filtered.filter((item) => item?.toName === to) : filtered;
+
+    //payment start date
+    filtered = (createdOn) ? filtered.filter((item) => new Date(item?.createdOn) >= new Date(createdOn)) : filtered;
+    //payment  end date
+    filtered = (enddate) ? filtered.filter((item) => new Date(item?.createdOn) <= new Date(enddate)) : filtered;
+
+
+
+
+    console.log("Filtered item in create filter", filtered);
+    setfilterItem(filtered);
+
+    return filtered
+  };
+
   return (
     <div className="card card-cascade narrower">
       <div className="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
@@ -170,7 +193,7 @@ export default function TransactionList() {
             </button>
           </div>
           <div className="m-2">
-            <Filter data={{ allData, setfilterItem }} />
+            <TransactionFilter data={{ allData, createFilter }} />
           </div>
         </div>
 
