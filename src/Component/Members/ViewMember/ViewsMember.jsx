@@ -48,12 +48,6 @@ CircularProgressWithLabel.propTypes = {
 
 
 
-
-
-
-
-
-
 const itemsPerPage = 3;  //pagination limit here
 
 
