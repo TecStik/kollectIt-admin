@@ -9,7 +9,10 @@ export default function PaymentFilter({ data }) {
     const [drawnon, setDrawnOn] = useState("");
     const [paymentstatus, setPaymentStatus] = useState("");
     const [startdate, setStartDate] = useState("");
-    const [enddate, setEndDate] = useState("");
+    const [enddate, setEndDate] = useState("");;
+    const [paymentstartdate, setPaymentStartDate] = useState("");
+    const [paymentenddate, setPaymentEndDate] = useState("");
+
 
 
 
@@ -18,7 +21,9 @@ export default function PaymentFilter({ data }) {
         drawOn: drawnon,
         PaymentStatus: paymentstatus,
         dueOn: startdate,
-        enddate: enddate
+        enddate: enddate,
+        createdOn: paymentstartdate,
+        paymentenddate: paymentenddate
     };
 
     // const result = data?.createFilter(filterParams);
@@ -61,7 +66,7 @@ export default function PaymentFilter({ data }) {
                 <div>
                     <div class="row mb-5 mx-5" id="filterColor">
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="col-example z-depth-4 flex-center">
                                 <p>
                                     <label class="form-label text-white">
@@ -79,7 +84,7 @@ export default function PaymentFilter({ data }) {
                         </div>
 
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="col-example z-depth-4 flex-center">
                                 <p>
                                     <label class="form-label text-white">
@@ -96,7 +101,7 @@ export default function PaymentFilter({ data }) {
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="col-example z-depth-4 flex-center">
                                 <p>
                                     <label class="form-label text-white">
@@ -113,29 +118,63 @@ export default function PaymentFilter({ data }) {
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        {/* due on start date or end date filter here */}
+                        <div class="col-md-6">
                             <div class="col-example z-depth-4 flex-center">
                                 <p>
                                     <label class="form-label text-white">
-                                        Due On<span class="text-danger"> *</span>
+                                        Due On From<span class="text-danger"> *</span>
                                     </label>
-                                    <div style={{ display: "flex",flexDirection:"column",  gap: "3px", alignItems: "center", position: "relative", top: "7px", right: "30px" }}>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "3px", alignItems: "center" }}>
                                         <Form.Control
-                                            style={{ width: '140px' }}
+                                            style={{ width: '100%' }}
                                             type="date"
                                             name="startdate"
                                             placeholder="startdate"
                                             value={startdate}
                                             onChange={(e) => setStartDate(e.target.value)}
                                         />
-
+                                        <label class="form-label text-white" style={{ width: '100%', textAlign: "left", padding: "2px 0px" }}>
+                                            Due On To<span class="text-danger"> *</span>
+                                        </label>
                                         <Form.Control
-                                            style={{ width: '140px' }}
+                                            style={{ width: '100%' }}
                                             type="date"
                                             name="enddate"
                                             placeholder="enddate"
                                             value={enddate}
                                             onChange={(e) => setEndDate(e.target.value)}
+                                        />
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+
+                        {/*  payment date filter start date or end date her*/}
+                        <div class="col-md-6">
+                            <div class="col-example z-depth-4">
+                                <p>
+                                    <label class="form-label text-white">
+                                        Payment Date From<span class="text-danger"> *</span>
+                                    </label>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "3px", alignItems: "center" }}>
+                                        <Form.Control
+                                            style={{ width: '100%' }}
+                                            type="date"
+                                            name="paymentstartdate"
+                                            value={paymentstartdate}
+                                            onChange={(e) => setPaymentStartDate(e.target.value)}
+                                        />
+                                        <label class="form-label text-white" style={{width:"100%",padding:"2px 0px"}}>
+                                            Payment Date To<span class="text-danger"> *</span>
+                                        </label>
+                                        <Form.Control
+                                            style={{ width: '100%' }}
+                                            type="date"
+                                            name="enddate"
+                                            placeholder="enddate"
+                                            value={paymentenddate}
+                                            onChange={(e) => setPaymentEndDate(e.target.value)}
                                         />
                                     </div>
                                 </p>

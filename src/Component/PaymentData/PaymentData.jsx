@@ -227,20 +227,25 @@ export default function PaymentData() {
 
   const createFilter = (filterParams) => {
     console.log("FilterParams in createFilter", filterParams);
-    const { PaymentName, drawOn, PaymentStatus, dueOn, enddate } = filterParams;
+    const { PaymentName, drawOn, PaymentStatus, dueOn, enddate, createdOn, paymentenddate } = filterParams;
     let filtered = allData;
     filtered = (PaymentName) ? filtered.filter((item) => item.PaymentName === PaymentName) : filtered;
     filtered = (drawOn) ? filtered.filter((item) => item?.drawOn === drawOn) : filtered
     filtered = (PaymentStatus) ? filtered.filter((item) => item?.PaymentStatus === PaymentStatus) : filtered;
     // start date
-    filtered = (dueOn) ? filtered.filter((item) => new Date(item?.dueOn) > new Date(dueOn)) : filtered;
-
+    filtered = (dueOn) ? filtered.filter((item) => new Date(item?.dueOn) >= new Date(dueOn)) : filtered;
     // end date
-    filtered = (enddate) ? filtered.filter((item) => new Date(item?.dueOn) < new Date(enddate)) : filtered;
+    filtered = (enddate) ? filtered.filter((item) => new Date(item?.dueOn) <= new Date(enddate)) : filtered;
+
+    // next date created on filter
 
 
-    // filtered = (dueOn) ? filtered?.filter((item) => item?.dueOn === dueOn) : filtered;
-    // filtered = (enddate) ? filtered?.filter((item) => item?.dueOn <= enddate) : filtered
+    //payment start date
+    filtered = (createdOn) ? filtered.filter((item) => new Date(item?.createdOn) >= new Date(createdOn)) : filtered;
+    //payment  end date
+    filtered = (paymentenddate) ? filtered.filter((item) => new Date(item?.createdOn) <= new Date(paymentenddate)) : filtered;
+
+
 
 
     console.log("Filtered item in create filter", filtered);
@@ -301,7 +306,7 @@ export default function PaymentData() {
               <th>Drawn on</th>
               <th>Payment Status</th>
               <th>Due On</th>
-              <th>Date</th>
+              <th>Payment Date</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
