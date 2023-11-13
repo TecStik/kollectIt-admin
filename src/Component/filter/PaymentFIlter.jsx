@@ -1,21 +1,24 @@
 import { React, useState, useEffect, useRef } from "react";
 import { Form } from "react-bootstrap";
-import { Input, Box } from "@chakra-ui/react";
 
 
 import "./filter.css";
-
 export default function PaymentFilter({ data }) {
+    // console.log(data)
     const [PaymentName, setName] = useState("");
     const [drawnon, setDrawnOn] = useState("");
-    const [paymentstatus, setPaymentStatus] = useState("")
+    const [paymentstatus, setPaymentStatus] = useState("");
+    const [startdate, setStartDate] = useState("");
+    const [enddate, setEndDate] = useState("");
 
 
 
     const filterParams = {
         PaymentName: PaymentName,
         drawOn: drawnon,
-        PaymentStatus: paymentstatus
+        PaymentStatus: paymentstatus,
+        dueOn: startdate,
+        enddate: enddate
     };
 
     // const result = data?.createFilter(filterParams);
@@ -116,23 +119,23 @@ export default function PaymentFilter({ data }) {
                                     <label class="form-label text-white">
                                         Due On<span class="text-danger"> *</span>
                                     </label>
-                                    <div style={{display:"flex",alignItems:"center",padding:"10px 20px"}}>
+                                    <div style={{ display: "flex",flexDirection:"column",  gap: "3px", alignItems: "center", position: "relative", top: "7px", right: "30px" }}>
                                         <Form.Control
-                                         style={{width:'100px'}}
+                                            style={{ width: '140px' }}
                                             type="date"
                                             name="startdate"
                                             placeholder="startdate"
-                                            // value={PaymentName}
-                                            // onChange={(e) => setName(e.target.value)}
+                                            value={startdate}
+                                            onChange={(e) => setStartDate(e.target.value)}
                                         />
 
                                         <Form.Control
-                                        style={{width:'100px'}}
+                                            style={{ width: '140px' }}
                                             type="date"
                                             name="enddate"
                                             placeholder="enddate"
-                                            value={PaymentName}
-                                            onChange={(e) => setName(e.target.value)}
+                                            value={enddate}
+                                            onChange={(e) => setEndDate(e.target.value)}
                                         />
                                     </div>
                                 </p>
