@@ -7,7 +7,7 @@ import PaginationComponent from "../../Pagination";
 // loading import material ui here
 import PropTypes from 'prop-types';
 import { Typography, CircularProgress, Box } from "@mui/material";
-
+import ViewMemberFilter from "./ViewMemberFilter";
 
 
 
@@ -114,7 +114,7 @@ export default function ViewMember() {
         setPage(value);
     };
 
-    const displayedData = allData.slice(
+    const displayedData = filterItem.slice(
         (page - 1) * itemsPerPage,
         page * itemsPerPage
     );
@@ -164,10 +164,29 @@ export default function ViewMember() {
                 }, 2000);
                 console.log(response.data, "response");
                 setallData(response.data);
-    
+
             }).catch(err => console.log(err?.message));
         }, 100);
     }
+
+    const createFilter = (filterParams) => {
+        console.log("FilterParams in createFilter", filterParams);
+        const { employeeName, employeeEmail, Role} = filterParams;
+        let filtered = allData;
+       
+        filtered = (employeeName) ? filtered.filter((item) => item.employeeName === employeeName) : filtered;
+        filtered = (employeeEmail) ? filtered.filter((item) => item?.employeeEmail === employeeEmail) : filtered
+        filtered = (Role) ? filtered.filter((item) => item?.Role === Role) : filtered;
+       
+
+
+
+
+        console.log("Filtered item in create filter", filtered);
+        setfilterItem(filtered);
+
+        return filtered
+    }; 
 
 
     return (
@@ -178,7 +197,7 @@ export default function ViewMember() {
                     <div className="m-2">
                     </div>
                     <div className="m-2">
-                        <Filter data={{ allData, setfilterItem }} />
+                        <ViewMemberFilter data={{ allData, createFilter }} />
                     </div>
                 </div>
 
