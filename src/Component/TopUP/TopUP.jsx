@@ -167,9 +167,9 @@ export default function TopUP() {
       clientName: UserCredentials.employeeName,
       clientId: UserCredentials.employeeEmail,
       clientObjId: UserCredentials._id,
-      amount: netAmount,
+      amount: PaymentAmount,
     };
-    if(netAmount!=0){
+    ifPaymentAmount!=0){
     generateBilll(data);
     }else{
       alert("amount cant be null");
