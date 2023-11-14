@@ -169,7 +169,7 @@ export default function TopUP() {
       clientObjId: UserCredentials._id,
       amount: PaymentAmount,
     };
-    ifPaymentAmount!=0){
+    if(PaymentAmount!=0){
     generateBilll(data);
     }else{
       alert("amount cant be null");
@@ -189,6 +189,7 @@ export default function TopUP() {
       today.getDate().toString();
     // console.log("Bill Month", billmonth, "----", dueDate);
 
+    let billAmount= payload?.amount;
     axios({
       method: "post",
       url: Url + "/kuickpay/generateBill",
@@ -197,8 +198,8 @@ export default function TopUP() {
         ClientObjectId: payload.clientObjId,
         ClientName: payload.clientName,
         Due_date: dueDate,
-        Aamount_within_dueDate: netAmount,
-        Amount_after_dueDate: netAmount,
+        Aamount_within_dueDate: billAmount,
+        Amount_after_dueDate: billAmount,
         Billing_month: billmonth,
         MerchantId: "00001",
       },
