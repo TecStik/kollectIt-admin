@@ -150,19 +150,11 @@ export default function TopUP() {
 
 
   useEffect(() => {
-    getRandomNumber(); // Random Number Generate
-    // percentage(2.5, 10000); // Calculate Percentage
+ 
+   
     PayOff(); // auth_token Generate
   }, []);
 
-  function getRandomNumber() {
-    let Letters = "0123456789ABCDEF";
-    let RandomNum = "9";
-    for (let i = 0; i < 8; i++) {
-      RandomNum += Letters[Math.floor(Math.random() * 16)];
-    }
-    setOrderId("Order-1234");
-  }
 
   function percentage(percent, amount) {
     let netAmnt = parseFloat(amount) / (1 - parseFloat(percent) / 100);
@@ -173,13 +165,18 @@ export default function TopUP() {
     percentage(0, PaymentAmount);//zero percent
     let data = {
       clientName: UserCredentials.employeeName,
-      clientId: "UserCredentials.employeeEmail",
+      clientId: UserCredentials.employeeEmail,
       clientObjId: UserCredentials._id,
       amount: netAmount,
     };
+    if(netAmount!=0){
     generateBilll(data);
+    }else{
+      alert("amount cant be null");
+    }
   };
   async function generateBilll(payload) {
+    console.log("Payload in gen bill",payload,netAmount);
     let today = new Date();
     console.log("Payload", payload?.clientName);
     let billmonth =
