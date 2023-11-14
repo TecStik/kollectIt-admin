@@ -177,6 +177,8 @@ export default function TopUP() {
       clientObjId: UserCredentials._id,
       amount: netAmount,
     };
+
+    console.log("Live Data testing here",data)
     generateBilll(data);
   };
   async function generateBilll(payload) {
