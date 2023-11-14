@@ -123,8 +123,10 @@ export default function PaymentFilter({ data }) {
                             <div class="col-example z-depth-4 flex-center">
                                 <p>
                                     <label class="form-label text-white">
-                                        Due On From<span class="text-danger"> *</span>
+                                        Due On<span class="text-danger"> *</span>
                                     </label>
+                                    {/* <br /> */}
+                                    <p>From</p>
                                     <div style={{ display: "flex", flexDirection: "column", gap: "3px", alignItems: "center" }}>
                                         <Form.Control
                                             style={{ width: '100%' }}
@@ -134,9 +136,12 @@ export default function PaymentFilter({ data }) {
                                             value={startdate}
                                             onChange={(e) => setStartDate(e.target.value)}
                                         />
-                                        <label class="form-label text-white" style={{ width: '100%', textAlign: "left", padding: "2px 0px" }}>
-                                            Due On To<span class="text-danger"> *</span>
-                                        </label>
+                                        <div style={{ width: "100%", textAlign: "left", padding: '3px 0px' }}>
+                                            <label class="form-label text-white" >
+                                                Due On<span class="text-danger"> *</span>
+                                            </label>
+                                            <p >To</p>
+                                        </div>
                                         <Form.Control
                                             style={{ width: '100%' }}
                                             type="date"
@@ -155,8 +160,9 @@ export default function PaymentFilter({ data }) {
                             <div class="col-example z-depth-4">
                                 <p>
                                     <label class="form-label text-white">
-                                        Payment Date From<span class="text-danger"> *</span>
+                                        Payment Date<span class="text-danger"> *</span>
                                     </label>
+                                    <p>From</p>
                                     <div style={{ display: "flex", flexDirection: "column", gap: "3px", alignItems: "center" }}>
                                         <Form.Control
                                             style={{ width: '100%' }}
@@ -165,9 +171,12 @@ export default function PaymentFilter({ data }) {
                                             value={paymentstartdate}
                                             onChange={(e) => setPaymentStartDate(e.target.value)}
                                         />
-                                        <label class="form-label text-white" style={{width:"100%",padding:"2px 0px"}}>
-                                            Payment Date To<span class="text-danger"> *</span>
-                                        </label>
+                                        <div style={{ width: "100%", textAlign: "left", padding: '3px 0px' }}>
+                                            <label class="form-label text-white">
+                                                Payment Date<span class="text-danger"> *</span>
+                                            </label>
+                                            <p>To</p>
+                                        </div>
                                         <Form.Control
                                             style={{ width: '100%' }}
                                             type="date"
