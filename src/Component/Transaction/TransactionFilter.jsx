@@ -64,9 +64,12 @@ export default function TransactionFilter({ data }) {
                         <div class="col-md-3">
                             <div class="col-example z-depth-4 flex-center">
                                 <p>
-                                    <label class="form-label text-white" style={{ width: "100%", textAlign: "left" }}>
-                                        Date From<span class="text-danger"> *</span>
-                                    </label>
+                                    <div style={{ width: '100%', textAlign: "left",padding:"2px 0px" }}>
+                                        <label class="form-label text-white">
+                                            Date<span class="text-danger"> *</span>
+                                        </label>
+                                        <p>From</p>
+                                    </div>
                                     <div style={{ display: "flex", flexDirection: "column", gap: "3px", alignItems: "center" }}>
                                         <Form.Control
                                             style={{ width: '100%' }}
@@ -76,9 +79,12 @@ export default function TransactionFilter({ data }) {
                                             value={startdate}
                                             onChange={(e) => setStartDate(e.target.value)}
                                         />
-                                        <label class="form-label text-white" style={{ width: '100%', textAlign: "left", padding: "2px 0px" }}>
-                                            Date To<span class="text-danger"> *</span>
-                                        </label>
+                                        <div style={{width:'100%',textAlign:"left",padding:'2px 0px'}}>
+                                            <label class="form-label text-white">
+                                                Date<span class="text-danger"> *</span>
+                                            </label>
+                                            <p>To</p>
+                                        </div>
                                         <Form.Control
                                             style={{ width: '100%' }}
                                             type="date"
