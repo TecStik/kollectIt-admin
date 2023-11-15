@@ -65,7 +65,7 @@ export default function AddMember() {
                         <input type="text" placeholder="Number or Login ID" name="email" ref={email} required/>
                     </div>
                     <div>
-                        <label for="email">Secoundry Conatct</label>
+                        <label for="email">Secondary Contact</label>
                         <input type="text" placeholder="Enter Email" name="number" ref={ConatactNumber} required/>
                     </div>
 
