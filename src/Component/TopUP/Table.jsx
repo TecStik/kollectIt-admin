@@ -8,7 +8,8 @@ import StoreContext from '../../ContextApi';
 const Table = ({ clientName, billObject, netAmnt }) => {
     const StoreData = useContext(StoreContext);
     // console.log(StoreData?.separateData)
-    let data = StoreData?.separateData;
+    let data = billObject; //StoreData?.separateData;
+    const tax= Number( data?.salesTax);
 
     // console.log(data)
 
@@ -58,15 +59,15 @@ const Table = ({ clientName, billObject, netAmnt }) => {
                     </div>
                     <div className='second__amount'>
                         <ul>
-                            <li>Rs.{netAmnt && netAmnt}</li>
-                            <li>Rs.250</li>
+                            <li>Rs.{data?.Aamount_within_dueDate}</li>
+                            <li>Rs.0</li>
                         </ul>
                     </div>
                 </div>
                 <div className='last__para'>
                     <ul>
                         <li>Gross Amount</li>
-                        <li>Rs.1250</li>
+                        <li>Rs.{data?.Aamount_within_dueDate}</li>
                     </ul>
                 </div>
             </div>
