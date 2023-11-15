@@ -112,7 +112,7 @@ export default function TopUP() {
       console.log("BillObject in use effect", billObject);
       setOrderId(billObject.Bill_Number);
 
-    //  setMerchant(merchantObject.MerchantName);
+      //  setMerchant(merchantObject.MerchantName);
       setOrderDate(billObject.Due_date.toString());
     }
   }, [merchantObject, billObject]);
@@ -150,8 +150,8 @@ export default function TopUP() {
 
 
   useEffect(() => {
- 
-   
+
+
     PayOff(); // auth_token Generate
   }, []);
 
@@ -169,14 +169,14 @@ export default function TopUP() {
       clientObjId: UserCredentials._id,
       amount: PaymentAmount,
     };
-    if(PaymentAmount!=0){
-    generateBilll(data);
-    }else{
+    if (PaymentAmount != 0) {
+      generateBilll(data);
+    } else {
       alert("amount cant be null");
     }
   };
   async function generateBilll(payload) {
-    console.log("Payload in gen bill",payload,netAmount);
+    console.log("Payload in gen bill", payload, netAmount);
     let today = new Date();
     console.log("Payload", payload?.clientName);
     let billmonth =
@@ -189,7 +189,7 @@ export default function TopUP() {
       today.getDate().toString();
     // console.log("Bill Month", billmonth, "----", dueDate);
 
-    let billAmount= payload?.amount;
+    let billAmount = payload?.amount;
     axios({
       method: "post",
       url: Url + "/kuickpay/generateBill",
@@ -207,8 +207,8 @@ export default function TopUP() {
       .then((res) => {
         setTestLoading(true);
         console.log("Response from Generate Bill", res?.data?.bill);
-        
-        
+
+
         setBillObject(res?.data?.bill);
 
 
@@ -248,24 +248,6 @@ export default function TopUP() {
         setLoading(false);
       }, 2000);
     });
-
-    // axios({
-    //   method: "Post",
-    //   url: Url + "/smsLedger",
-    //   data: {
-    //     filter: {
-    //       createdBy: UserCredentials?.UserData?.createdBy,
-    //       // "createdBy": "646f09d7d9957a50a32abb4c"
-    //     },
-    //   },
-    // }).then((response) => {
-    //   // console.log(response.data,"smsLedger=>Response");
-    //   setallData(response?.data);
-    //   setTimeout(() => {
-    //     setLoading(false);
-    //   }, 2000);
-    // });
-
   }
 
 
@@ -350,7 +332,7 @@ export default function TopUP() {
               </button>
             )}
             {/* add dropdown component here */}
-            <SeparateDropDown setBillObject={setBillObject}/>
+            <SeparateDropDown setBillObject={setBillObject} />
             {/* end dropdown component here */}
           </div>
         </div>
@@ -376,7 +358,7 @@ export default function TopUP() {
 
           {billObject != null ? (
             <>
-              <Table billObject={billObject} clientName={UserCredentials?.employeeName} netAmnt={netAmount}/>
+              <Table billObject={billObject} clientName={UserCredentials?.employeeName} netAmnt={netAmount} />
               <Divider />
               <form
                 method="post"
@@ -502,7 +484,7 @@ export default function TopUP() {
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Select Payments and then Select Bills.</li>
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Click (+) to Add Bill.</li>
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Select Others as Bill Type and then Select Kuickpay as Company Type.</li>
-                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Enter Consumer Number or Kuickpay id mentioned in the bill/voucher and click Confirm.</li>
+                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Enter Consumer Number ({billObject?.Bill_Number}) mentioned in the bill/voucher and click Confirm.</li>
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Enter Referance Name (for your own memorization) and then Enter OTP. Click Confirm.</li>
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Select Kuickpay – Relevant Bill Nick Name from Billing List.</li>
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Confirm details and Pay.
@@ -520,29 +502,6 @@ export default function TopUP() {
             <></>
           )}
 
-          {/* =========================> Second TABS Content */}
-          {/* <div
-            class="tab-pane fade d-flex justify-content-center"
-            id="pills-profile"
-            role="tabpanel"
-            aria-labelledby="pills-profile-tab"
-          >
-            <div class="card col-4 mt-5 mx-auto">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">
-                  Lorem, ipsum dolor sit amet consectetur elit.
-                </h5>
-                <p class="card-text">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ma.
-                </p>
-              </div>
-            </div>
-          </div> */}
 
           {/* =========================> Third TABS Content */}
           <div
@@ -616,58 +575,4 @@ export default function TopUP() {
 
 
 
-/*
-
-
- <p class="ps-3 textmuted fw-bold h4 mb-0 text-center">
-            Choose Payment Mode
-          </p>
-          <br />
-          <ul
-            class="nav nav-pills mb-3 justify-content-center"
-            id="pills-tab"
-            role="tablist"
-          >
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                id="pills-home-tab"
-                data-toggle="pill"
-                href="#pills-home"
-                role="tab"
-                aria-controls="pills-home"
-                aria-selected="true"
-              >
-                Credit or Debit Card
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                id="pills-profile-tab"
-                data-toggle="pill"
-                href="#pills-profile"
-                role="tab"
-                aria-controls="pills-profile"
-                aria-selected="false"
-              >
-                QR-Code
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                id="pills-jazzcash-tab"
-                data-toggle="pill"
-                href="#pills-jazzcash"
-                role="tab"
-                aria-controls="pills-jazzcash"
-                aria-selected="false"
-              >
-                JazzCash
-              </a>
-            </li>
-          </ul>
-
-          */
 
