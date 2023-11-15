@@ -58,22 +58,22 @@ export default function AddMember() {
                     <hr />
                     <div>
                         <label for="psw-repeat">User Name</label>
-                        <input type="text" placeholder="User name of team member" name="name" ref={name} />
+                        <input type="text" placeholder="User name of team member" name="name" ref={name} required/>
                     </div>
                     <div>
                         <label for="loginId">Number or Login ID</label>
-                        <input type="text" placeholder="Number or Login ID" name="email" ref={email} />
+                        <input type="text" placeholder="Number or Login ID" name="email" ref={email} required/>
                     </div>
                     <div>
                         <label for="email">Secoundry Conatct</label>
-                        <input type="text" placeholder="Enter Email" name="number" ref={ConatactNumber} />
+                        <input type="text" placeholder="Enter Email" name="number" ref={ConatactNumber} required/>
                     </div>
 
                     <label for="psw">Password</label>
-                    <input type="password" placeholder="Enter Password" name="psw" ref={password} />
+                    <input type="password" placeholder="Enter Password" name="psw" ref={password} required/>
 
                     <label for="role">Choose a Role:</label>
-                    <select name="role" id="role" onChange={(e) => { setRole(e.target.value) }}>
+                    <select name="role" id="role" onChange={(e) => { setRole(e.target.value) }} required>
                         <option value="Rider">Select Role</option>
                         <option value="Rider">Rider</option>
                         <option value="Cashier">Cashier</option>
