@@ -33,7 +33,7 @@ export default function AddMember() {
                 Role: Role
             }
         }).then((res) => {
-            alert(res.data.message)
+            alert("Member has been Created")
             name.current.value = ""
             email.current.value = ""
             password.current.value = ""
