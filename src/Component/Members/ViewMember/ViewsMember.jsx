@@ -153,7 +153,7 @@ export default function ViewMember() {
                 data: {
                     filter: {
                         createdBy: UserCredentials.UserData._id,
-                        Role: "Cashier",
+                        // Role: "Cashier",
                     },
                 },
             }).then((response) => {
@@ -161,11 +161,13 @@ export default function ViewMember() {
                     setLoading(false)
                 }, 2000);
                 console.log(response.data, "response");
-                setallData(response.data);
+                setallData(response?.data);
 
             }).catch(err => console.log(err?.message));
         }, 100);
     }
+
+    console.log("allData",allData)
 
     const createFilter = (filterParams) => {
         console.log("FilterParams in createFilter", filterParams);
