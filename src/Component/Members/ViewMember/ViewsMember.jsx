@@ -6,7 +6,7 @@ import Filter from "../../filter/filter";
 import PaginationComponent from "../../Pagination";
 // loading import material ui here
 import PropTypes from 'prop-types';
-import { Typography, CircularProgress, Box } from "@mui/material";
+import { Typography, CircularProgress, Box, Select } from "@mui/material";
 import ViewMemberFilter from "./ViewMemberFilter";
 
 
@@ -110,36 +110,11 @@ export default function ViewMember() {
             });
     };
 
-
-    // useEffect(() => {
-    //     axios({
-    //         method: "post",
-    //         url: Url + "/filteredEmployee",
-    //         data: {
-    //             filter: {
-    //                 createdBy: UserCredentials.UserData._id,
-    //                 Role: "Cashier",
-    //             },
-    //         },
-    //     }).then((response) => {
-    //         setTimeout(() => {
-    //             setLoading(false)
-    //         }, 2000);
-    //         console.log(response.data, "response");
-    //         setallData(response.data);
-
-    //     });
-    // }, []);
-
     // pagination functions here
     const handlePageChange = (event, value) => {
         setPage(value);
     };
 
-    // const displayedData = filterItem.slice(
-    //     (page - 1) * itemsPerPage,
-    //     page * itemsPerPage
-    // );
 
     const creatID = (e) => {
         console.log(e, "EEE")

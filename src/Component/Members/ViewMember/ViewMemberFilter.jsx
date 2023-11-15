@@ -1,5 +1,5 @@
 import { React, useState, useEffect, useRef } from "react";
-import { Form } from "react-bootstrap";
+import { Form} from "react-bootstrap";
 import "../../filter/filter.css";
 
 export default function ViewMemberFilter({ data }) {
@@ -97,13 +97,18 @@ export default function ViewMemberFilter({ data }) {
                                     <label class="form-label text-white">
                                         Role<span class="text-danger"> *</span>
                                     </label>
-                                    <Form.Control
+                                    <Form.Select
+                                    style={{padding:'15px 10px'}}
                                         type="text"
                                         name="role"
                                         placeholder="Role"
                                         value={role}
                                         onChange={(e) => setRole(e.target.value)}
-                                    />
+                                    >
+                                        <option value="Cashier">Cashier</option>
+                                        <option value="Rider">Rider</option>
+                                        <option value="Osd">Osd</option>
+                                    </Form.Select>
                                 </p>
                             </div>
                         </div>
