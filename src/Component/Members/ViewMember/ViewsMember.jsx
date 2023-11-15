@@ -8,6 +8,7 @@ import PaginationComponent from "../../Pagination";
 import PropTypes from 'prop-types';
 import { Typography, CircularProgress, Box, Select } from "@mui/material";
 import ViewMemberFilter from "./ViewMemberFilter";
+import { Form } from "react-bootstrap";
 
 
 
@@ -261,35 +262,40 @@ export default function ViewMember() {
                                         <table id="myTable">
                                             <td className="client__update_container_th">
                                                 <th style={{ width: '100%' }}>
-                                                    <input ref={employeeName} placeholder={`Employee Name ${OnData?.employeeName}`} />
+                                                    <Form.Control ref={employeeName} placeholder={`Employee Name ${OnData?.employeeName}`} style={{ padding: '15px 10px' }} />
                                                 </th>
                                                 <th style={{ width: "100%" }}>
-                                                    <input
-                                                        type="text"
-                                                        ref={Role}
-                                                        placeholder={`Role ${OnData?.Role}`}
-                                                    />
-                                                </th>
-                                                <th style={{ width: "100%" }}>
-                                                    <input
+                                                    <Form.Control
                                                         type="text"
                                                         ref={employeeEmail}
                                                         placeholder={`Email ${OnData?.employeeEmail}`}
                                                     />
                                                 </th>
                                                 <th style={{ width: "100%" }}>
-                                                    <input
+                                                    <Form.Control
                                                         type="text"
                                                         ref={loginId}
                                                         placeholder={`Login Id ${OnData?.loginId}`}
                                                     />
                                                 </th>
                                                 <th style={{ width: "100%" }}>
-                                                    <input
+                                                    <Form.Control
                                                         type="text"
                                                         ref={employeePassword}
                                                         placeholder={`Password ${OnData?.employeePassword}`}
                                                     />
+                                                </th>
+                                                <th style={{ width: "100%" }}>
+                                                    <Form.Select
+                                                        type="text"
+                                                        ref={Role}
+                                                        placeholder={`Role ${OnData?.Role}`}
+                                                        style={{ padding: '15px 10px' }}
+                                                    >
+                                                        <option value="Cashier">Cashier</option>
+                                                        <option value="Rider">Rider</option>
+                                                        <option value="Osd">Osd</option>
+                                                    </Form.Select>
                                                 </th>
                                             </td>
                                         </table>
