@@ -12,24 +12,6 @@ export default function Filter({ data }) {
 
 
 
-  // let ClientId = useRef();
-  // let ClientName = useRef();
-  // let ClientPhoneNumber = useRef();
-  // let ClientEmail = useRef();
-
-
-
-  // let datafilter = data.allData;
-  //   console.log(datafilter.allData);
-  //   data.setfilterItem(datafilter)
-
-  //   console.log(
-  //     moment(datafilter.createdOn).format("MMM Do YY"),
-  //     "value.date >= EndDate && value.date <= StartDate"
-  //   );
-
-
-
   const filterParams = {
     ClientId: clientid,
     ClientName: clientname,

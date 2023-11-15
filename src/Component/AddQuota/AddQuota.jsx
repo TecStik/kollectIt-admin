@@ -7,6 +7,7 @@ import PaginationComponent from "../Pagination";
 // loading import material ui here
 import PropTypes from 'prop-types';
 import { Typography, CircularProgress, Box } from "@mui/material";
+import AddQuotaFilter from "./AddQuotaFilter";
 
 
 
@@ -59,7 +60,7 @@ export default function AddQuota() {
   const csvLinkEl = useRef(null);
   const [page, setPage] = useState(1);
   const totalPages = Math.ceil(allData.length / itemsPerPage);
-
+  const [filterItem, setfilterItem] = useState([]);
 
   const [progress, setProgress] = useState(10);
   const [loading, setLoading] = useState(true);
@@ -90,8 +91,9 @@ export default function AddQuota() {
       setTimeout(() => {
         setLoading(false)
       }, 2000);
-      console.log(response.data, "response");
+      // console.log(response.data, "response");
       setallData(response.data);
+      setfilterItem(response.data);
     });
   }, []);
 
@@ -112,6 +114,27 @@ export default function AddQuota() {
     page * itemsPerPage
   );
 
+  // console.log(displayedData)
+
+  const createFilter = (filterParams) => {
+    console.log("FilterParams in createFilter", filterParams);
+    const { employeeName, employeeEmail } = filterParams;
+    let filtered = allData;
+
+    filtered = (employeeName) ? filtered.filter((item) => item.employeeName === employeeName) : filtered;
+    filtered = (employeeEmail) ? filtered.filter((item) => item?.employeeEmail === employeeEmail) : filtered
+
+
+
+
+    console.log("Filtered item in create filter", filtered);
+    setfilterItem(filtered);
+
+    return filtered
+  };
+
+
+
   return (
     <>
       <div class="card card-cascade narrower">
@@ -120,22 +143,30 @@ export default function AddQuota() {
           style={{ maxHeight: "110vh" }}
         >
           <h2>Add Quota</h2>
-          <CSVLink
-            headers={headers}
-            filename="Quota Data.csv"
-            data={allData}
-            ref={csvLinkEl}
-          />
-          <div className="d-flex flex-row-reverse m-2">
-            <button
-              class="btn text-white"
-              style={{ background: "#427D8F", fontSize: 15 }}
-              onClick={downloadReport}
-              role="button"
-            >
-              Export
-              <i class="far fa-circle-down mx-2 "></i>
-            </button>
+          <div style={{ display: "flex", alignItems: 'center', justifyContent: "end" }}>
+            <div className="m-2">
+              <AddQuotaFilter data={{ allData, createFilter }} />
+            </div>
+            <div>
+              <CSVLink
+                headers={headers}
+                filename="Quota Data.csv"
+                data={allData}
+                ref={csvLinkEl}
+              />
+              <div className="d-flex flex-row-reverse m-2">
+                <button
+                  class="btn text-white"
+                  style={{ background: "#427D8F", fontSize: 15 }}
+                  onClick={downloadReport}
+                  role="button"
+                >
+                  Export
+                  <i class="far fa-circle-down mx-2 "></i>
+                </button>
+              </div>
+            </div>
+
           </div>
 
           {
@@ -155,7 +186,7 @@ export default function AddQuota() {
                   </tr>
                 </thead>
                 <tbody>
-                  {displayedData.map((v) => (
+                  {filterItem?.map((v) => (
                     <AddQuotaList alldata={v} />
                   ))}
                 </tbody>

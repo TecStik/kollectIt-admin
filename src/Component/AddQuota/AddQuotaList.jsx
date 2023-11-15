@@ -4,7 +4,7 @@ import axios from "axios";
 import { Url } from "../../Pages/Core";
 
 export default function AddQuotaList(data) {
-  console.log(data)
+  // console.log(data)
   const [allData, setallData] = useState([]);
   const [BelongsID, setBelongsID] = useState("");
   const [CreditValue, setCreditValue] = useState(null);
