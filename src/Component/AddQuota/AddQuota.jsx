@@ -149,7 +149,7 @@ export default function AddQuota() {
                     {/* <th>Stutus</th> */}
                     {/* <th>Position</th> */}
                     <th>Limit</th>
-                    <th>Blance</th>
+                    <th>Balance</th>
                     <th>Add Quota</th>
                     <th>Add Credit</th>
                   </tr>
