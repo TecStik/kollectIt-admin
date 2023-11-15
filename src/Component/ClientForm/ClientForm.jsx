@@ -82,15 +82,15 @@ export default function ClientForm() {
           {/* </div> */}
           <div class="row p-2">
             <label for="lname">Contact Number</label>
-            <input type="text" id="lname" name="lastname" ref={ClientPhoneNumber} placeholder="Client Phone Number.." />
+            <input type="text" id="lname" name="lastname" ref={ClientPhoneNumber} placeholder="Client Phone Number.." required/>
           </div>
           <div class="row p-2">
             <label for="lname">Email</label>
-            <input type="text" id="lname" name="lastname" ref={ClientEmail} placeholder="Client Email.." />
+            <input type="text" id="lname" name="lastname" ref={ClientEmail} placeholder="Client Email.." required/>
           </div>
           <div class="row p-2">
             <label for="lname">Amount</label>
-            <input type="text" id="lname" name="lastname" ref={ClientAmount} placeholder="Client Amount.." />
+            <input type="text" id="lname" name="lastname" ref={ClientAmount} placeholder="Client Amount.." required />
           </div>
           <br />
           <div class="row p-2">
