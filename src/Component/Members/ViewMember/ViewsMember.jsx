@@ -52,17 +52,17 @@ const itemsPerPage = 3;  //pagination limit here
 
 
 export default function ViewMember() {
-    const [allData, setallData] = useState([]);
     const UserCredentials = useContext(StoreContext);
-    const [filterItem, setfilterItem] = useState(allData);
+    const [allData, setallData] = useState([]);
+    const [filterItem, setfilterItem] = useState([]);
     // console.log(UserCredentials.UserData);
     // new state json pagination
     const [page, setPage] = useState(1);
     const totalPages = Math.ceil(allData.length / itemsPerPage);
-    const [OnData, setOnData] = useState("");
+    // const [OnData, setOnData] = useState("");
+    const [OnData, setOnData] = useState(null);
     const [progress, setProgress] = useState(10);
     const [loading, setLoading] = useState(true);
-
 
     // loading useEffect here
     useEffect(() => {
@@ -82,8 +82,12 @@ export default function ViewMember() {
     let employeePassword = useRef();
 
 
-
     useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = () => {
+        setLoading(true);
         axios({
             method: "post",
             url: Url + "/filteredEmployee",
@@ -93,25 +97,49 @@ export default function ViewMember() {
                     Role: "Cashier",
                 },
             },
-        }).then((response) => {
-            setTimeout(() => {
-                setLoading(false)
-            }, 2000);
-            console.log(response.data, "response");
-            setallData(response.data);
+        })
+            .then((response) => {
+                setallData(response.data);
+                setfilterItem(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    };
 
-        });
-    }, []);
+
+    // useEffect(() => {
+    //     axios({
+    //         method: "post",
+    //         url: Url + "/filteredEmployee",
+    //         data: {
+    //             filter: {
+    //                 createdBy: UserCredentials.UserData._id,
+    //                 Role: "Cashier",
+    //             },
+    //         },
+    //     }).then((response) => {
+    //         setTimeout(() => {
+    //             setLoading(false)
+    //         }, 2000);
+    //         console.log(response.data, "response");
+    //         setallData(response.data);
+
+    //     });
+    // }, []);
 
     // pagination functions here
     const handlePageChange = (event, value) => {
         setPage(value);
     };
 
-    const displayedData = filterItem.slice(
-        (page - 1) * itemsPerPage,
-        page * itemsPerPage
-    );
+    // const displayedData = filterItem.slice(
+    //     (page - 1) * itemsPerPage,
+    //     page * itemsPerPage
+    // );
 
     const creatID = (e) => {
         console.log(e, "EEE")
@@ -212,7 +240,7 @@ export default function ViewMember() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {displayedData?.map((v, i) => {
+                                {filterItem?.slice((page - 1) * itemsPerPage, page * itemsPerPage).map((v, i) => {
                                     return (
                                         <tr key={v?._id}>
                                             <td>{v?.employeeName}</td>
