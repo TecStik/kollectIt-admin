@@ -487,6 +487,7 @@ export default function Dashboard() {
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
+              style:{color:"#fff",position:"relative",right:'70px',top:'40px'},
               className: "trigger",
               onClick: () => setCollapsed(!collapsed),
             }
@@ -498,7 +499,7 @@ export default function Dashboard() {
         <Content
           className="site-layout-background"
           style={{
-            margin: "24px 16px",
+            margin: "35px 16px",
             padding: 24,
             minHeight: "80vh",
             // maxHeight: "100vh",
