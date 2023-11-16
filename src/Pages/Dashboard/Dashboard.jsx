@@ -466,16 +466,17 @@ export default function Dashboard() {
         trigger={null}
         collapsible
         collapsed={collapsed}
-      // style={{ position: "fixed",zIndex:1 }}
+
       >
         {/* <div className="logo"> */}
-        <img src={Kicon} />
+        <img src={Kicon} style={{marginBottom:"-20%",marginTop:"-13%"}}/>
         {/* </div> */}
         <Menu
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["2"]}
           items={items}
+          style={{position:"relative",top:'40px'}}
         />
       </Sider>
 
@@ -487,9 +488,9 @@ export default function Dashboard() {
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
-              style:{color:"#fff",position:"relative",right:'70px',top:'40px'},
+              style:{color:"#fff",position:"relative",right:'70px',top:'35px'},
               className: "trigger",
-              onClick: () => setCollapsed(!collapsed),
+              onClick: () => setCollapsed(!collapsed)
             }
           )}
           <span style={{ textAlign: "center", color: "white" }}>
@@ -507,7 +508,7 @@ export default function Dashboard() {
         >
           {trigger === 1 ? (
             <>
-              <AdminDashboard />
+              <AdminDashboard/>
             </>
           ) : trigger === 2 ? (
             <>
