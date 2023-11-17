@@ -198,7 +198,7 @@ export default function AysnRider() {
                     </td>
                     <td>
                       <button
-                      style={{width:'87px'}}
+                      style={{width:'90px',fontSize:"14px",padding:'10px'}}
                         type="button"
                         className="btn btn-primary btn-rounded"
                         data-toggle="modal"
