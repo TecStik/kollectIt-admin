@@ -52,7 +52,7 @@ export default function AddMember() {
 
                 <div class="p-2">
                     <div style={{ textAlign: "center" }}>
-                        <h1>Add Members</h1>
+                        <h1>Add a Member</h1>
                         {/* <p>Please fill in this form to create an account.</p> */}
                     </div>
                     <hr />
