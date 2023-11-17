@@ -80,15 +80,15 @@ export default function ClientForm() {
           {/* </div> */}
           <div class="row p-2">
             <label for="lname">Contact Number</label>
-            <input type="number" id="lname" name="lastname" ref={ClientPhoneNumber} placeholder="Client Phone Number.." style={{padding:'15px 10px'}}/>
+            <input type="number" id="lname" name="lastname" ref={ClientPhoneNumber} placeholder="Client Phone Number.." style={{padding:'15px 10px'}} required/>
           </div>
           <div class="row p-2">
             <label for="lname">Email</label>
-            <input type="email" id="lname" name="lastname" ref={ClientEmail} placeholder="Client Email.." style={{padding:'15px 10px'}}/>
+            <input type="email" id="lname" name="lastname" ref={ClientEmail} placeholder="Client Email.." style={{padding:'15px 10px'}} required/>
           </div>
           <div class="row p-2">
             <label for="lname">Amount</label>
-            <input type="number" id="lname" name="lastname" ref={ClientAmount} placeholder="Client Amount.." style={{padding:'15px 10px'}}/>
+            <input type="number" id="lname" name="lastname" ref={ClientAmount} placeholder="Client Amount.." style={{padding:'15px 10px'}} required/>
           </div>
           <br />
           <div class="row p-2">

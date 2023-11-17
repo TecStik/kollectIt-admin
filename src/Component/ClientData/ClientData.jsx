@@ -62,7 +62,7 @@ export default function ClientData() {
   const UserCredentials = useContext(StoreContext);
   const csvLinkEl = useRef(null);
   const [filterItem, setfilterItem] = useState(allData);
- // const [displaytData, setDisplayData] = useState(allData);
+  // const [displaytData, setDisplayData] = useState(allData);
   const [OnData, setOnData] = useState("");
   const [realTime, setRealTime] = useState(true);
 
@@ -71,20 +71,20 @@ export default function ClientData() {
   const totalPages = Math.ceil(allData.length / itemsPerPage);
   const [progress, setProgress] = useState(10);
   const [loading, setLoading] = useState(true);
- 
 
 
 
- // pagination here .
 
- const handlePageChange = (event, value) => {
-  setPage(value);
-};
+  // pagination here .
 
-const displayedData = filterItem.slice(
-  (page - 1) * itemsPerPage,
-  page * itemsPerPage
-);
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const displayedData = filterItem.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
 
 
 
@@ -139,13 +139,13 @@ const displayedData = filterItem.slice(
         },
       }).then((response) => {
         setallData(response?.data);
-       setfilterItem(response?.data);
+        setfilterItem(response?.data);
         setTimeout(() => {
           setLoading(false)
         }, 2000);
       });
     }
-  }, [displayedData,allData]);
+  }, [displayedData, allData]);
 
 
 
@@ -223,7 +223,7 @@ const displayedData = filterItem.slice(
   }
 
   const createFilter = (filterParams) => {
-    console.log("FilterParams in createFilter",filterItem);
+    console.log("FilterParams in createFilter", filterItem);
     const { ClientId, ClientName, ClientPhoneNumber, ClientEmail } = filterParams;
     let filtered = allData;
     filtered = (ClientId) ? filtered.filter((item) => item.ClientId === ClientId) : filtered;
