@@ -15,7 +15,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { PrivateRoutes } from './PrivateRoute';
-import { OpenRoutes } from './OpenRoute';
 
 const { Button } = chakraTheme.components;
 
@@ -60,7 +59,7 @@ function App() {
         <StoreProvider value={{ Role, setRole, UserData, setUserData, separateData, setSeparateData }}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={ <Login />} />
+              <Route path="/" element={<Login />} />
               <Route path="/dashboard" element={<PrivateRoutes><Dashboard /></PrivateRoutes>} />
             </Routes>
           </BrowserRouter>

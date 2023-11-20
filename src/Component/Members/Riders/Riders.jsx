@@ -3,11 +3,14 @@ import React, { useEffect, useContext, useState } from "react";
 import { Url } from "../../../Pages/Core";
 import StoreContext from "../../../ContextApi";
 import Filter from "../../filter/filter";
+import {CircularProgress} from "@mui/material";
 
 export default function Riders() {
   const [allData, setallData] = useState([]);
   const UserCredentials = useContext(StoreContext);
   const [filterItem, setfilterItem] = useState(allData);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     axios({
@@ -20,6 +23,7 @@ export default function Riders() {
         },
       },
     }).then((response) => {
+      setLoading(false)
       console.log(response.data, "response");
       setallData(response.data);
     });
@@ -30,8 +34,8 @@ export default function Riders() {
       <div class="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
         <h2>Riders</h2>
         <div className="d-flex flex-row-reverse m-2">
-        <div className="m-2">
-          {/* <button
+          <div className="m-2">
+            {/* <button
             class="btn text-white "
             style={{
               background: "#427D8F",
@@ -44,49 +48,53 @@ export default function Riders() {
             Export
             <i class="far fa-circle-down mx-2 "></i>
           </button> */}
+          </div>
+          <div className="m-2">
+            <Filter data={{ allData, setfilterItem }} />
+          </div>
         </div>
-        <div className="m-2">
-          <Filter data={{ allData, setfilterItem }} />
-        </div>
-      </div>
-        <table class="table table-hover" style={{position:'relative'}}>
-          <thead
-            class="bg-light"
-            // style={{ position: "fixed",width:"100%" }}
-          >
-            <tr>
-              <th>Rider Name</th>
-              <th>Login ID</th>
-              <th>Email</th>
-              <th>Password</th>
-              <th>Stutus</th>
-              <th>Position</th>
-              <th>Action/Roles</th>
-            </tr>
-          </thead>
-          <tbody>
-            {allData.map((v, i) => {
-              return (
+        {
+          loading ? <div style={{display:"flex",justifyContent:'center',alignItems:'center'}}>
+            <CircularProgress/>
+          </div> : <>
+            <table class="table table-hover" style={{ position: 'relative' }}>
+              <thead
+                class="bg-light"
+              // style={{ position: "fixed",width:"100%" }}
+              >
                 <tr>
-                  <td>{v.employeeName}</td>
-                  <td>{v.loginId}</td>
-                  <td>{v.employeeEmail}</td>
-                  <td>{v.employeePassword}</td>
-                  <td>
-                    <span class="badge badge-success rounded-pill d-inline">
-                      Active
-                    </span>
-                  </td>
-                  <td>Senior</td>
-                  <td>
-                    <button class="btn btn-primary btn-rounded">
-                      {v.Role}
-                    </button>
-                  </td>
+                  <th>Rider Name</th>
+                  <th>Login ID</th>
+                  <th>Email</th>
+                  <th>Password</th>
+                  <th>Stutus</th>
+                  <th>Position</th>
+                  <th>Action/Roles</th>
                 </tr>
-              );
-            })}
-            {/* <tr>
+              </thead>
+              <tbody>
+                {allData.map((v, i) => {
+                  return (
+                    <tr>
+                      <td>{v.employeeName}</td>
+                      <td>{v.loginId}</td>
+                      <td>{v.employeeEmail}</td>
+                      <td>{v.employeePassword}</td>
+                      <td>
+                        <span class="badge badge-success rounded-pill d-inline">
+                          Active
+                        </span>
+                      </td>
+                      <td>Senior</td>
+                      <td>
+                        <button class="btn btn-primary btn-rounded">
+                          {v.Role}
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+                {/* <tr>
               <td>Mary</td>
               <td>mary@example.com</td>
               <td>Moe</td>
@@ -106,19 +114,21 @@ export default function Riders() {
               </td>
               <td>Senior</td>
             </tr> */}
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-          </tbody>
-        </table>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+              </tbody>
+            </table>
+          </>
+        }
       </div>
     </div>
   );

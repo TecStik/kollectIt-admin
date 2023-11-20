@@ -6,6 +6,7 @@ import StoreContext from '../../ContextApi';
 import Filter from "../filter/filter";
 import "./sms.css";
 import PaginationComponent from "../Pagination";
+import { CircularProgress } from "@mui/material";
 
 const itemsPerPage = 5;
 
@@ -18,6 +19,7 @@ export default function SMSleger() {
     const [BelongsID, setBelongsID] = useState(UserCredentials.UserData.Role)
     let ID = UserCredentials.UserData._id
     console.log(UserCredentials.UserData, "UserCredentials");
+    const [loading, setLoading] = useState(true)
 
     // new state json pagination
     const [page, setPage] = useState(1);
@@ -37,6 +39,7 @@ export default function SMSleger() {
                     }
                 }
             }).then((response) => {
+                setLoading(false);
                 // console.log(response.data,"smsLedger=>Response");
                 setallData(response.data)
             })
@@ -51,6 +54,7 @@ export default function SMSleger() {
                     }
                 }
             }).then((response) => {
+                setLoading(false);
                 // console.log(response.data,"smsLedger=>Response");
                 setallData(response.data)
             })
@@ -81,24 +85,32 @@ export default function SMSleger() {
                             <Filter data={{ allData, setfilterItem }} />
                         </div>
                     </div>
-                    <table className="table table-hover">
-                        <thead className="bg-light">
-                            <tr>
-                                <th>Date</th>
-                                <th>Mode</th>
-                                <th>Qty</th>
-                                <th>Sender</th>
-                                <th>Client</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {displayedData.map((v) => <SMSlegerList alldata={v} />)}
-                        </tbody>
-                    </table>
+                    {
+                        loading ? <div style={{display:"flex",justifyContent:"center",alignItems:'center'}}>
+                            <CircularProgress />
+                        </div> : <>
+                            <table className="table table-hover">
+                                <thead className="bg-light">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Mode</th>
+                                        <th>Qty</th>
+                                        <th>Sender</th>
+                                        <th>Client</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {displayedData.map((v) => <SMSlegerList alldata={v} />)}
+                                </tbody>
+                            </table>
+                            <div style={{ padding: "10px 0px" }}>
+                                <PaginationComponent page={page} onChange={handlePageChange} allData={allData} totalPages={totalPages} />
+                            </div>
+                        </>
+                    }
+
                 </div>
-                <div style={{ padding: "10px 0px" }}>
-                    <PaginationComponent page={page} onChange={handlePageChange} allData={allData} totalPages={totalPages} />
-                </div>
+
             </div>
         </>
     )
