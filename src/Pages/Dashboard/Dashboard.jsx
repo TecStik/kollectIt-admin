@@ -56,7 +56,7 @@ import Kicon from "../Login/kollect-logo.png";
 import AddQuota from "../../Component/AddQuota/AddQuota";
 import { AlertDialogOverlay } from "@chakra-ui/react";
 
-export default function Dashboard() {
+const Dashboard = () => {
   const navigate = useNavigate();
   const RoleDetails = useContext(StoreContext);
   const { Header, Sider, Content } = Layout;
@@ -96,6 +96,7 @@ export default function Dashboard() {
 
   const logout = () => {
     localStorage.removeItem("Role");
+    localStorage.removeItem("user");
     navigate("/");
   };
 
@@ -469,14 +470,14 @@ export default function Dashboard() {
 
       >
         {/* <div className="logo"> */}
-        <img src={Kicon} style={{marginBottom:"-30%",marginTop:"-10%"}}/>
+        <img src={Kicon} style={{ marginBottom: "-30%", marginTop: "-10%" }} />
         {/* </div> */}
         <Menu
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["2"]}
           items={items}
-          style={{position:"relative",top:'43px'}}
+          style={{ position: "relative", top: '43px' }}
         />
       </Sider>
 
@@ -488,7 +489,7 @@ export default function Dashboard() {
           {React.createElement(
             collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
             {
-              style:{color:"#fff",position:"relative",right:'70px',top:'40px'},
+              style: { color: "#fff", position: "relative", right: '70px', top: '40px' },
               className: "trigger",
               onClick: () => setCollapsed(!collapsed)
             }
@@ -508,7 +509,7 @@ export default function Dashboard() {
         >
           {trigger === 1 ? (
             <>
-              <AdminDashboard/>
+              <AdminDashboard />
             </>
           ) : trigger === 2 ? (
             <>
@@ -606,4 +607,4 @@ export default function Dashboard() {
   );
 }
 
-// export default () => <Dashboard />;
+export default Dashboard

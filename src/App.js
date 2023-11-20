@@ -1,4 +1,3 @@
-
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from './Pages/Dashboard/Dashboard'
@@ -15,8 +14,12 @@ import {
   RadioButtonGroup,
   Text,
 } from "@chakra-ui/react";
+import { PrivateRoutes } from './PrivateRoute';
+import { OpenRoutes } from './OpenRoute';
 
 const { Button } = chakraTheme.components;
+
+
 
 const theme = extendBaseTheme({
   components: {
@@ -30,7 +33,7 @@ function App() {
 
   const [Role, setRole] = useState([])
   const [UserData, setUserData] = useState([]);
-  const [separateData,setSeparateData] = useState({})
+  const [separateData, setSeparateData] = useState({})
   // console.log(Role, "Rollll");
   // useEffect(() => {
   //   axios({
@@ -48,18 +51,17 @@ function App() {
       Button,
     },
   });
-  
+
+  console.log(UserData)
+
   return (
     <div>
       <ChakraBaseProvider theme={theme}>
-        <StoreProvider value={{ Role, setRole, UserData, setUserData,separateData,setSeparateData  }}>
+        <StoreProvider value={{ Role, setRole, UserData, setUserData, separateData, setSeparateData }}>
           <BrowserRouter>
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/" element={<Login />} />
-              {/* <Route path="/clientdata" element={<ClientData />} />
-            <Route path="/paymentdata" element={<PaymentData />} />
-            <Route path="/csvfileupload" element={<CsvfileUpload />} /> */}
+              <Route path="/" element={ <Login />} />
+              <Route path="/dashboard" element={<PrivateRoutes><Dashboard /></PrivateRoutes>} />
             </Routes>
           </BrowserRouter>
         </StoreProvider >

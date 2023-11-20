@@ -56,6 +56,7 @@ function Login() {
     })
       .then((res) => {
         localStorage.setItem("Role", JSON.stringify(res.data.Role));
+        localStorage.setItem("user", JSON.stringify(res?.data));
         RoleDetails.setUserData(res.data);
         notify();
 
@@ -99,6 +100,7 @@ function Login() {
                   type="text"
                   placeholder="Phone Login id"
                   ref={email}
+                  required
                 />
 
                 {/* <Form.Text className="text-muted">
@@ -112,6 +114,7 @@ function Login() {
                   type="password"
                   placeholder="Password"
                   ref={password}
+                  required
                 />
               </Form.Group>
 
