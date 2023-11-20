@@ -112,8 +112,9 @@ export default function TopUP() {
       console.log("BillObject in use effect", billObject);
       setOrderId(billObject.Bill_Number);
 
-      setMerchant(merchantObject.MerchantName);
+      setMerchant(billObject.MerchantName);
       setOrderDate(billObject.Due_date.toString());
+      setnetAmount(parseFloat(billObject.Aamount_within_dueDate));
     }
   }, [billObject, billObject]);
 
