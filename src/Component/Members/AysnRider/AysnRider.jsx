@@ -4,6 +4,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Url } from "../../../Pages/Core";
 import StoreContext from "../../../ContextApi";
 import Filter from "../../filter/filter";
+import {CircularProgress} from "@mui/material";
 
 
 export default function AysnRider() {
@@ -14,7 +15,8 @@ export default function AysnRider() {
   const [realTime, setRealTime] = useState(true);
   const [filterItem, setfilterItem] = useState(allData);
   const UserCredentials = useContext(StoreContext);
-  // console.log(UserCredentials.UserData._id, "raza");
+  const [loading,setLoading] = useState(true);
+
   useEffect(() => {
     // axios({
     //     method: "get",
@@ -34,6 +36,7 @@ export default function AysnRider() {
           },
         },
       }).then((response) => {
+        setLoading(false);
         setClient(response.data);
       });
     } else {
@@ -46,6 +49,7 @@ export default function AysnRider() {
           },
         },
       }).then((response) => {
+        setLoading(false);
         setClient(response.data);
       });
     }
@@ -168,7 +172,10 @@ export default function AysnRider() {
               <Filter data={{ allData, setfilterItem }} />
             </div>
           </div>
-
+         {
+          loading ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+            <CircularProgress/>
+          </div> : <>
           <table className="table table-hover ">
             <thead className="bg-light">
               <tr>
@@ -214,9 +221,7 @@ export default function AysnRider() {
             })}
           </table>
       
-        </div>
-
-        <div className="modal" id="myModal">
+          <div className="modal" id="myModal">
           <div className="modal-dialog modal-dialog-scrollable">
             <div className="modal-content" style={{ width: "115%" }}>
               {/* <!-- Modal Header --> */}
@@ -274,6 +279,12 @@ export default function AysnRider() {
             </div>
           </div>
         </div>
+          </>
+         }
+          
+        </div>
+
+
       </div>
     </div>
   );

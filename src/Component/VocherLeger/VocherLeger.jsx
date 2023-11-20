@@ -20,7 +20,8 @@ export default function VocherLeger() {
   const UserCredentials = useContext(StoreContext);
   const csvLinkEl = useRef(null);
   const [filterItem, setfilterItem] = useState([]);
-  const [allData, setallData] = useState([])
+  const [allData, setallData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // new state json pagination
   const [page, setPage] = useState(1);
@@ -54,6 +55,7 @@ export default function VocherLeger() {
           },
         },
       }).then((response) => {
+        setLoading(false);
         // console.log(response.data)
         setallData(response?.data);
       });
@@ -68,6 +70,7 @@ export default function VocherLeger() {
           },
         },
       }).then((response) => {
+        setLoading(false)
         // console.log(response.data,"smsLedger=>Response");
         setallData(response?.data);
       });
@@ -127,34 +130,37 @@ export default function VocherLeger() {
           </div>
         </div>
 
-       
-             <table className="table table-hover">
-                <thead className="bg-light">
+        {
+          loading ? <div style={{display:"flex",justifyContent:'center',alignItems:"center"}}>
+            <CircularProgress/>
+          </div> : <>   <table className="table table-hover">
+            <thead className="bg-light">
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Mode</th>
+                <th>Amount</th>
+                {/* <th>Balance</th> */}
+              </tr>
+            </thead>
+            <tbody>
+              {displayedData?.map((v) => {
+                // <VocherLegerList alldata={v} />
+                return (
                   <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Mode</th>
-                    <th>Amount</th>
-                    {/* <th>Balance</th> */}
+                    <td>{moment(v?.createdOn).format("llll")}</td>
+                    <td>{v?.Description}</td>
+                    <td>{v?.Mode}</td>
+                    <td>{v?.Amount}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {displayedData?.map((v) => {
-                    // <VocherLegerList alldata={v} />
-                    return (
-                      <tr>
-                        <td>{moment(v?.createdOn).format("llll")}</td>
-                        <td>{v?.Description}</td>
-                        <td>{v?.Mode}</td>
-                        <td>{v?.Amount}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-        <div style={{ padding: "30px 0px" }}>
-          <PaginationComponent page={page} totalPages={totalPages} onChange={handlePageChange} allData={allData} />
-        </div>
+                );
+              })}
+            </tbody>
+          </table>
+            <div style={{ padding: "30px 0px" }}>
+              <PaginationComponent page={page} totalPages={totalPages} onChange={handlePageChange} allData={allData} />
+            </div></>
+        }
       </div>
     </>
   );

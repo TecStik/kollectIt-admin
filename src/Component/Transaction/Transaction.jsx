@@ -11,7 +11,7 @@ import moment from "moment";
 // new import pagination here
 import PaginationComponent from "../Pagination";
 import TransactionFilter from "./TransactionFilter";
-
+import { CircularProgress } from "@mui/material";
 
 
 
@@ -24,6 +24,7 @@ export default function TransactionList() {
   const [fromName, setFromName] = useState([]);
   const [toName, setToName] = useState([]);
   const [filterItem, setfilterItem] = useState(allData);
+  const [loading, setLoading] = useState(true);
 
   // new state json pagination
   const [page, setPage] = useState(1);
@@ -54,6 +55,7 @@ export default function TransactionList() {
       },
     })
       .then((res) => {
+        setLoading(false);
         // console.log(res.data, "resss");
         setallData(res.data);
         transaction(res.data);
@@ -196,38 +198,41 @@ export default function TransactionList() {
             <TransactionFilter data={{ allData, createFilter }} />
           </div>
         </div>
+        {
+          loading ? <div style={{display:"flex",justifyContent:"center",alignItems:'center'}}>
+            <CircularProgress/>
+          </div> : <>
 
-
-        <table className="table table-hover">
-          <thead className="bg-light">
-            <tr>
-              <th>Date</th>
-              <th>Nature</th>
-              <th>From</th>
-              <th>to</th>
-              <th>Amount</th>
-              <th>Stutus</th>
-            </tr>
-          </thead>
-          <tbody>
-            {displayedData?.map((v, i) => {
-              return (
-                <tr key={i}>
-                  <td>{moment(v?.createdOn).format("llll")}</td>
-                  <td>{v?.Nature}</td>
-                  <td>{fromName}</td>
-                  <td>{toName}</td>
-                  <td>{v?.PaymentAmount}</td>
-                  <td>
-                    <span className="badge badge-primary rounded-pill d-inline">
-                      Active
-                    </span>
-                  </td>
+            <table className="table table-hover">
+              <thead className="bg-light">
+                <tr>
+                  <th>Date</th>
+                  <th>Nature</th>
+                  <th>From</th>
+                  <th>to</th>
+                  <th>Amount</th>
+                  <th>Status</th>
                 </tr>
-              );
-            })}
+              </thead>
+              <tbody>
+                {displayedData?.map((v, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>{moment(v?.createdOn).format("llll")}</td>
+                      <td>{v?.Nature}</td>
+                      <td>{fromName}</td>
+                      <td>{toName}</td>
+                      <td>{v?.PaymentAmount}</td>
+                      <td>
+                        <span className="badge badge-primary rounded-pill d-inline">
+                          Active
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
 
-            {/* <tr>
+                {/* <tr>
                             <td>Mary</td>
                             <td>mary@example.com</td>
                             <td>Moe</td>
@@ -249,9 +254,11 @@ export default function TransactionList() {
                                 <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
                             </td>
                         </tr> */}
-          </tbody>
-        </table>
-        <PaginationComponent totalPages={totalPages} onChange={handlePageChange} page={page} />
+              </tbody>
+            </table>
+            <PaginationComponent totalPages={totalPages} onChange={handlePageChange} page={page} />
+          </>
+        }
       </div>
     </div>
   );
