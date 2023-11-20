@@ -211,7 +211,7 @@ export default function TransactionList() {
                   <th>From</th>
                   <th>to</th>
                   <th>Amount</th>
-                  <th>Stutus</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
