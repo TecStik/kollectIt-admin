@@ -198,7 +198,7 @@ let billAmount="+"+"0".repeat(8)+(payload.amount*100);
         ClientObjectId: payload.clientObjId,
         ClientName: payload.clientName,
         Due_date: dueDate,
-        Aamount_within_dueDate: netAmount,
+        Aamount_within_dueDate: payload?.amount,
         Amount_after_dueDate: payload?.amount,
         Billing_month:payload?.amount,
         MerchantId: "00001",
