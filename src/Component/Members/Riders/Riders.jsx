@@ -67,7 +67,7 @@ export default function Riders() {
                   <th>Login ID</th>
                   <th>Email</th>
                   <th>Password</th>
-                  <th>Stutus</th>
+                  <th>Status</th>
                   <th>Position</th>
                   <th>Action/Roles</th>
                 </tr>
