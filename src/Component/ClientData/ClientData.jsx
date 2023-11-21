@@ -127,6 +127,7 @@ export default function ClientData() {
         const sortedData = response?.data.sort((a, b) => {
           return new Date(b.createdOn) - new Date(a.createdOn);
         });
+        console.log(sortedData)
 
         setallData(sortedData);
         setfilterItem(sortedData);
@@ -150,6 +151,7 @@ export default function ClientData() {
           return new Date(b.createdOn) - new Date(a.createdOn);
         });
 
+        console.log(sortedData)
         setallData(sortedData);
         setfilterItem(sortedData);
         setTimeout(() => {
