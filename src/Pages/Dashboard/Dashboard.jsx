@@ -75,8 +75,6 @@ const Dashboard = () => {
   }, []);
   //useffect for bill
   useEffect(() => {
-
-
     const search = location.search;
     const queryParams = queryString.parse(search);
     if (queryParams.ResponseCode == "00") {
@@ -109,8 +107,6 @@ const Dashboard = () => {
       'username': 'user1', // Example: Sending an authorization token
       'password': 'test',
     };
-
-
 
     axios({
       method: "post",

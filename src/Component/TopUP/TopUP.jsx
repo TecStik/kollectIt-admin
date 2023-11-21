@@ -307,7 +307,6 @@ export default function TopUP() {
               )}
               <span className="textmuted"></span>
             </p>
-            <p className="ms-3 px-2 bg-green">+10% since last month</p>
           </div>
 
           <div className="col-md-4">
