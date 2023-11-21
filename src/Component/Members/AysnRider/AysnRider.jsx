@@ -134,7 +134,7 @@ export default function AysnRider() {
           </div>
         </div>
         <div className="container overflow-auto" style={{ maxHeight: "110vh" }}>
-          <h2>Allow Rider Name</h2>
+          <h2>Assign Rider</h2>
           <div className="d-flex flex-row-reverse m-2">
             <div className="m-2">
             </div>
