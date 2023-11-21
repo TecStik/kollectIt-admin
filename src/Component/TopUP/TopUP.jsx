@@ -332,6 +332,7 @@ export default function TopUP() {
               </button>
             )}
             {/* add dropdown component here */}
+            <label htmlFor="unpaidbills" className="text-warning myres_bills fw-normal real_device">Unpaid Bills</label>
             <SeparateDropDown setBillObject={setBillObject} />
             {/* end dropdown component here */}
           </div>

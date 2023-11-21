@@ -43,7 +43,6 @@ const SeparateDropDown = ({ setBillObject }) => {
 
   return (
     <div className="d-flex justify-content-end  left__dropdown">
-      <label htmlFor="unpaidbills" className="text-warning" style={{ fontWeight: "normal", position: "relative", top: "-70px", left: '100px' }}>Unpaid Bills</label>
       <select
         name="select"
         id="select"
