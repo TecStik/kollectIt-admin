@@ -122,8 +122,15 @@ export default function ClientData() {
           },
         },
       }).then((response) => {
-        setallData(response?.data);
-        setfilterItem(response?.data);
+
+        // Sort the data based on the 'createdOn' field in descending order
+        const sortedData = response?.data.sort((a, b) => {
+          return new Date(b.createdOn) - new Date(a.createdOn);
+        });
+        console.log(sortedData)
+
+        setallData(sortedData);
+        setfilterItem(sortedData);
         setTimeout(() => {
           setLoading(false)
         }, 2000);
@@ -138,14 +145,21 @@ export default function ClientData() {
           },
         },
       }).then((response) => {
-        setallData(response?.data);
-        setfilterItem(response?.data);
+
+        // Sort the data based on the 'createdOn' field in descending order
+        const sortedData = response?.data.sort((a, b) => {
+          return new Date(b.createdOn) - new Date(a.createdOn);
+        });
+
+        console.log(sortedData)
+        setallData(sortedData);
+        setfilterItem(sortedData);
         setTimeout(() => {
           setLoading(false)
         }, 2000);
       });
     }
-  }, [displayedData, allData]);
+  }, []);
 
 
 
@@ -202,25 +216,46 @@ export default function ClientData() {
       })
       .catch((error) => [console.log(error, "error")]);
 
-    // after after reload all data here
-
-    // setTimeout(() => {
-    //   axios({
-    //     method: "post",
-    //     url: Url + "/filteredClients",
-    //     data: {
-    //       filter: {
-    //         BelongsTo: UserCredentials?.UserData._id,
-    //       },
-    //     },
-    //   }).then((response) => {
-    //     setallData(response?.data);
-    //     setTimeout(() => {
-    //       setLoading(false)
-    //     }, 2000);
-    //   });
-    // }, 100);
   }
+
+
+
+  // deactivate handler function here
+
+  function DeactivateHandler() {
+    console.log(clientid.current.value)
+
+    axios({
+      method: "put",
+      url: Url + "/UpdateFilteredClients",
+      headers: {
+        username: "user1",
+        password: "test"
+      },
+      data: {
+        filter: {
+          _id: OnData?._id,
+        },
+        update: {
+          ClientStatus: "Deactive",
+        },
+      },
+    })
+      .then((res) => {
+        console.log(res?.data, "Deactivated data here");
+        // setRealTime(!realTime);
+      })
+      .catch((error) => [console.log(error, "error")]);
+  }
+
+
+
+
+
+
+
+
+
 
   const createFilter = (filterParams) => {
     console.log("FilterParams in createFilter", filterItem);
@@ -303,7 +338,7 @@ export default function ClientData() {
                 <th style={{ width: 60 }}>Amount</th>
                 <th style={{ width: 60 }}>Action</th>
               </tr>
-              {displayedData?.map((v, index) => {
+              {displayedData?.sort()?.map((v, index) => {
                 return (
                   <tr>
                     <td>{v?.ClientId}</td>
@@ -377,6 +412,8 @@ export default function ClientData() {
 
                 {/* <!-- Modal footer --> */}
                 <div class="modal-footer">
+                  <button className="btn btn-danger" style={{ position: 'absolute', left: '10px' }} onClick={() => DeactivateHandler()}>Deactivate</button>
+
                   {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
                   <button
                     id="sumbit"

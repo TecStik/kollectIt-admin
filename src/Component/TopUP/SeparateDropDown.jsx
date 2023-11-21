@@ -5,7 +5,7 @@ import { Url } from "../../Pages/Core";
 import StoreContext from "../../ContextApi";
 
 
-const SeparateDropDown = ({setBillObject}) => {
+const SeparateDropDown = ({ setBillObject }) => {
   const [data, setData] = useState([]);
   const StoreData = useContext(StoreContext);
 
@@ -35,14 +35,11 @@ const SeparateDropDown = ({setBillObject}) => {
   const handleChange = (event) => {
     const selectedValue = event.target.value;
     const selectedDatas = data.find((elm) => elm?.Bill_Number === selectedValue);
-    // setSelectedData(selectedDatas);
+    console.log(selectedDatas);
 
     setBillObject(selectedDatas);
     StoreData.setSeparateData(selectedDatas)
-
   };
-
-
 
   return (
     <div className="d-flex justify-content-end  left__dropdown">

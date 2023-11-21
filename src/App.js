@@ -33,6 +33,7 @@ function App() {
   const [Role, setRole] = useState([])
   const [UserData, setUserData] = useState([]);
   const [separateData, setSeparateData] = useState({})
+  const [riderObj, setRiderObj] = useState({});
   // console.log(Role, "Rollll");
   // useEffect(() => {
   //   axios({
@@ -51,12 +52,12 @@ function App() {
     },
   });
 
-  console.log(UserData)
+  console.log("riderObj",riderObj)
 
   return (
     <div>
       <ChakraBaseProvider theme={theme}>
-        <StoreProvider value={{ Role, setRole, UserData, setUserData, separateData, setSeparateData }}>
+        <StoreProvider value={{ Role, setRole, UserData, setUserData, separateData, setSeparateData, setRiderObj, riderObj }}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login />} />

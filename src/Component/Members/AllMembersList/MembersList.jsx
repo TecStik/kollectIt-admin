@@ -84,8 +84,6 @@ export default function MembarList() {
                     </button>
                 </div>
 
-                <a href="" className="white-text mx-3">Allow Access</a>
-
                 <div>
                     <button type="button" className="btn btn-outline-white btn-rounded btn-sm px-2">
                         <i className="fas fa-pencil-alt mt-0"></i>

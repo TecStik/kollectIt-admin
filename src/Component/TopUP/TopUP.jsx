@@ -116,7 +116,7 @@ export default function TopUP() {
       setOrderDate(billObject.Due_date.toString());
       setnetAmount(parseFloat(billObject.Aamount_within_dueDate));
     }
-  }, [billObject, billObject]);
+  }, [merchantObject, billObject]);
 
   // console.log(UserCredentials, "PaymentAmount");
   let JazzMobiNum = useRef();
@@ -151,8 +151,8 @@ export default function TopUP() {
 
 
   useEffect(() => {
- 
-   
+
+
     PayOff(); // auth_token Generate
   }, []);
 
@@ -163,21 +163,21 @@ export default function TopUP() {
     setnetAmount(netAmnt);
   }
   const handleBill = async () => {
- //   percentage(0, PaymentAmount);//zero percent
+    percentage(0, PaymentAmount);//zero percent
     let data = {
       clientName: UserCredentials.employeeName,
       clientId: UserCredentials.employeeEmail,
       clientObjId: UserCredentials._id,
       amount: PaymentAmount,
     };
-    if(PaymentAmount!=0){
-    generateBilll(data);
-    }else{
+    if (PaymentAmount != 0) {
+      generateBilll(data);
+    } else {
       alert("amount cant be null");
     }
   };
   async function generateBilll(payload) {
-    console.log("Payload in gen bill",payload,PaymentAmount);
+    console.log("Payload in gen bill", payload, netAmount);
     let today = new Date();
     console.log("Payload", payload?.clientName);
     let billmonth =
@@ -189,7 +189,8 @@ export default function TopUP() {
       (today.getMonth() + 1).toString() +
       today.getDate().toString();
     // console.log("Bill Month", billmonth, "----", dueDate);
-let billAmount="+"+"0".repeat(8)+(payload.amount*100);
+
+    let billAmount = payload?.amount;
     axios({
       method: "post",
       url: Url + "/kuickpay/generateBill",
@@ -198,17 +199,17 @@ let billAmount="+"+"0".repeat(8)+(payload.amount*100);
         ClientObjectId: payload.clientObjId,
         ClientName: payload.clientName,
         Due_date: dueDate,
-        Aamount_within_dueDate: payload?.amount,
-        Amount_after_dueDate: payload?.amount,
-        Billing_month:payload?.amount,
+        Aamount_within_dueDate: billAmount,
+        Amount_after_dueDate: billAmount,
+        Billing_month: billmonth,
         MerchantId: "00001",
       },
     })
       .then((res) => {
         setTestLoading(true);
         console.log("Response from Generate Bill", res?.data?.bill);
-        
-        
+
+
         setBillObject(res?.data?.bill);
 
 
@@ -248,24 +249,6 @@ let billAmount="+"+"0".repeat(8)+(payload.amount*100);
         setLoading(false);
       }, 2000);
     });
-
-    // axios({
-    //   method: "Post",
-    //   url: Url + "/smsLedger",
-    //   data: {
-    //     filter: {
-    //       createdBy: UserCredentials?.UserData?.createdBy,
-    //       // "createdBy": "646f09d7d9957a50a32abb4c"
-    //     },
-    //   },
-    // }).then((response) => {
-    //   // console.log(response.data,"smsLedger=>Response");
-    //   setallData(response?.data);
-    //   setTimeout(() => {
-    //     setLoading(false);
-    //   }, 2000);
-    // });
-
   }
 
 
@@ -324,7 +307,6 @@ let billAmount="+"+"0".repeat(8)+(payload.amount*100);
               )}
               <span className="textmuted"></span>
             </p>
-            <p className="ms-3 px-2 bg-green">+10% since last month</p>
           </div>
 
           <div className="col-md-4">
@@ -350,7 +332,8 @@ let billAmount="+"+"0".repeat(8)+(payload.amount*100);
               </button>
             )}
             {/* add dropdown component here */}
-            <SeparateDropDown setBillObject={setBillObject}/>
+            <label htmlFor="unpaidbills" className="text-warning myres_bills fw-normal real_device">Unpaid Bills</label>
+            <SeparateDropDown setBillObject={setBillObject} />
             {/* end dropdown component here */}
           </div>
         </div>
@@ -376,7 +359,7 @@ let billAmount="+"+"0".repeat(8)+(payload.amount*100);
 
           {billObject != null ? (
             <>
-              <Table billObject={billObject} clientName={UserCredentials?.employeeName} netAmnt={netAmount}/>
+              <Table billObject={billObject} clientName={UserCredentials?.employeeName} netAmnt={netAmount} />
               <Divider />
               <form
                 method="post"
@@ -502,7 +485,7 @@ let billAmount="+"+"0".repeat(8)+(payload.amount*100);
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Select Payments and then Select Bills.</li>
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Click (+) to Add Bill.</li>
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Select Others as Bill Type and then Select Kuickpay as Company Type.</li>
-                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Enter Consumer Number or Kuickpay id mentioned in the bill/voucher and click Confirm.</li>
+                        <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Enter Consumer Number ({billObject?.Bill_Number}) mentioned in the bill/voucher and click Confirm.</li>
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Enter Referance Name (for your own memorization) and then Enter OTP. Click Confirm.</li>
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Select Kuickpay – Relevant Bill Nick Name from Billing List.</li>
                         <li style={{ fontSize: '1.1rem', padding: '5px 0px' }}>Confirm details and Pay.
@@ -520,29 +503,6 @@ let billAmount="+"+"0".repeat(8)+(payload.amount*100);
             <></>
           )}
 
-          {/* =========================> Second TABS Content */}
-          {/* <div
-            class="tab-pane fade d-flex justify-content-center"
-            id="pills-profile"
-            role="tabpanel"
-            aria-labelledby="pills-profile-tab"
-          >
-            <div class="card col-4 mt-5 mx-auto">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_Code_example.png"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">
-                  Lorem, ipsum dolor sit amet consectetur elit.
-                </h5>
-                <p class="card-text">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ma.
-                </p>
-              </div>
-            </div>
-          </div> */}
 
           {/* =========================> Third TABS Content */}
           <div
@@ -616,58 +576,4 @@ let billAmount="+"+"0".repeat(8)+(payload.amount*100);
 
 
 
-/*
-
-
- <p class="ps-3 textmuted fw-bold h4 mb-0 text-center">
-            Choose Payment Mode
-          </p>
-          <br />
-          <ul
-            class="nav nav-pills mb-3 justify-content-center"
-            id="pills-tab"
-            role="tablist"
-          >
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                id="pills-home-tab"
-                data-toggle="pill"
-                href="#pills-home"
-                role="tab"
-                aria-controls="pills-home"
-                aria-selected="true"
-              >
-                Credit or Debit Card
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                id="pills-profile-tab"
-                data-toggle="pill"
-                href="#pills-profile"
-                role="tab"
-                aria-controls="pills-profile"
-                aria-selected="false"
-              >
-                QR-Code
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                id="pills-jazzcash-tab"
-                data-toggle="pill"
-                href="#pills-jazzcash"
-                role="tab"
-                aria-controls="pills-jazzcash"
-                aria-selected="false"
-              >
-                JazzCash
-              </a>
-            </li>
-          </ul>
-
-          */
 

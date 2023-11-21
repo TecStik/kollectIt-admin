@@ -49,7 +49,7 @@ CircularProgressWithLabel.propTypes = {
 
 
 
-const itemsPerPage = 3;  //pagination limit here
+const itemsPerPage = 5;  //pagination limit here
 
 
 export default function ViewMember() {
@@ -95,13 +95,14 @@ export default function ViewMember() {
             data: {
                 filter: {
                     createdBy: UserCredentials.UserData._id,
-                    Role: "Cashier",
+                    // Role: "Cashier",
                 },
             },
         })
             .then((response) => {
                 setallData(response.data);
                 setfilterItem(response.data);
+                console.log(response?.data)
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
@@ -167,7 +168,7 @@ export default function ViewMember() {
         }, 100);
     }
 
-    console.log("allData",allData)
+    // console.log("allData",allData)
 
     const createFilter = (filterParams) => {
         console.log("FilterParams in createFilter", filterParams);

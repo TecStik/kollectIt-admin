@@ -1,6 +1,7 @@
 #backColor {
   background-color: rgba(235, 224, 232, 1);
 }
+
 .box-right {
   padding: 30px 25px;
   background-color: white;
@@ -48,10 +49,12 @@ input {
   border-radius: 0;
   border: 0;
 }
+
 .form-group input:focus {
   border: 0;
   outline: 0;
 }
+
 .col-sm-5 {
   padding-left: 90px;
 }
@@ -68,39 +71,49 @@ input {
 
 
 
-.left__dropdown select{
+.left__dropdown select {
   width: 154px;
   top: -43px;
   position: relative;
 }
 
-.submit___btn1{
+.submit___btn1 {
   width: 150px !important;
   cursor: pointer !important;
 }
 
 
-.center___modal{
+.center___modal {
   height: 50vh !important;
   width: 50vw !important;
   background-color: red !important;
 }
 
 
-.get__bill__btn{
+.get__bill__btn {
   cursor: pointer !important;
   background-color: red !important;
 }
 
-.unpaid_bills{
+.unpaid_bills {
   padding: 3px 0px;
 }
 
+
+.real_device{
+  position: relative;
+  top: -50px;
+  left: 30%;
+}
+
+
+
+
 /* media query start here */
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 600px) {
 
-  .submit___btn1{
+  .submit___btn1 {
     margin-top: 40px;
     width: 100%;
     cursor: pointer !important;
@@ -110,16 +123,27 @@ input {
 
 
 
-@media only screen and (max-width: 1046px){
-.my__res{
-  /* display: none; */
-  width: 100%;
-}
+@media only screen and (max-width: 1046px) {
+  .my__res {
+    /* display: none; */
+    width: 100%;
+  }
 
-.left__dropdown select{
-  position: relative;
-  top: 18px;
+  .left__dropdown select {
+    position: relative;
+    top: 0px;
+    /* right: 25%; */
+    width: 100%;
+    margin: auto !important;
+  }
+
+ .myres_bills{
+  text-align: left !important;
   width: 100%;
-}
+  padding: 20px 0px;
+  position: relative;
+  top: 5px;
+
+ }
 
 }
