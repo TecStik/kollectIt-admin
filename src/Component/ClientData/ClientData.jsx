@@ -412,7 +412,7 @@ export default function ClientData() {
 
                 {/* <!-- Modal footer --> */}
                 <div class="modal-footer">
-                  <button className="btn btn-danger" style={{ position: 'absolute', left: '10px' }} onClick={() => DeactivateHandler()}>testing</button>
+                  <button className="btn btn-danger" style={{ position: 'absolute', left: '10px' }} onClick={() => DeactivateHandler()}>Deactivate</button>
 
                   {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
                   <button
