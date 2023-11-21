@@ -49,7 +49,7 @@ CircularProgressWithLabel.propTypes = {
 
 
 
-const itemsPerPage = 3;  //pagination limit here
+const itemsPerPage = 5;  //pagination limit here
 
 
 export default function ViewMember() {
