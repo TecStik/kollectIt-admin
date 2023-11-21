@@ -125,10 +125,6 @@ export default function AysnRider() {
               <i className="fas fa-columns mt-0"></i>
             </button>
           </div>
-
-          <a href="" className="white-text mx-3">
-            Allow Access
-          </a>
           <div>
             {/* <button
               type="button"
