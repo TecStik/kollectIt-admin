@@ -122,8 +122,14 @@ export default function ClientData() {
           },
         },
       }).then((response) => {
-        setallData(response?.data);
-        setfilterItem(response?.data);
+
+        // Sort the data based on the 'createdOn' field in descending order
+        const sortedData = response?.data.sort((a, b) => {
+          return new Date(b.createdOn) - new Date(a.createdOn);
+        });
+
+        setallData(sortedData);
+        setfilterItem(sortedData);
         setTimeout(() => {
           setLoading(false)
         }, 2000);
@@ -138,8 +144,14 @@ export default function ClientData() {
           },
         },
       }).then((response) => {
-        setallData(response?.data);
-        setfilterItem(response?.data);
+        
+        // Sort the data based on the 'createdOn' field in descending order
+        const sortedData = response?.data.sort((a, b) => {
+          return new Date(b.createdOn) - new Date(a.createdOn);
+        });
+
+        setallData(sortedData);
+        setfilterItem(sortedData);
         setTimeout(() => {
           setLoading(false)
         }, 2000);
@@ -303,7 +315,7 @@ export default function ClientData() {
                 <th style={{ width: 60 }}>Amount</th>
                 <th style={{ width: 60 }}>Action</th>
               </tr>
-              {displayedData?.map((v, index) => {
+              {displayedData?.sort()?.map((v, index) => {
                 return (
                   <tr>
                     <td>{v?.ClientId}</td>
