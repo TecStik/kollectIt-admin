@@ -57,6 +57,7 @@ export default function AddMember() {
             header: true, // Set to true if your CSV file has a header row
         });
     };
+    
     for (let i = 0; i < jsonData?.length; i++) {
         let obj = {
             ClientId: jsonData[i]?.ID,
