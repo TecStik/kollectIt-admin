@@ -300,11 +300,15 @@ const Dashboard = () => {
       ),
     },
 
-    Role == "Cashier" ? (
+
+    Role == "SuperAdmin" ? null : Role == "Cashier" ? (
       <></>
     ) : (
       getItem("Member List", "sub4", <TeamOutlined />, itemChild, b)
     ),
+
+
+
     {
       // Cashier: "Cashier",
       Admin: "Admin",
@@ -319,6 +323,19 @@ const Dashboard = () => {
       ),
     },
 
+    {
+      SuperAdmin: "SuperAdmin",
+      // Admin: "Admin",
+      key: "24",
+      icon: <UsergroupAddOutlined onClick={() => setTrigger(24)} />,
+      label: (
+        <div onClick={() => setTrigger(24)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "View Members" : ""}
+          </span>
+        </div>
+      ),
+    },
 
     {
       SuperAdmin: "SuperAdmin",
@@ -333,7 +350,7 @@ const Dashboard = () => {
         </div>
       ),
     },
-    
+
     {
       Admin: "Admin",
       key: "20",
@@ -405,7 +422,6 @@ const Dashboard = () => {
         trigger={null}
         collapsible
         collapsed={collapsed}
-
       >
         {/* <div className="logo"> */}
         <img src={Kicon} style={{ marginBottom: "-30%", marginTop: "-10%" }} />
@@ -531,14 +547,19 @@ const Dashboard = () => {
               <PaymentConfirmation1 />
             </>
           ) : trigger === 23 ? (
-
-
             <>
               <PaymentConfirmation2 />
             </>
-          ) : (
-            <>Page Not Found</>
-          )}
+          )
+            : trigger === 24 ? (
+              <>
+                <ViewMember />
+              </>
+            )
+
+              : (
+                <>Page Not Found</>
+              )}
         </Content>
       </Layout>
     </Layout>
