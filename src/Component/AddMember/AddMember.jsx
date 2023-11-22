@@ -3,6 +3,7 @@ import axios from 'axios';
 import './AddMember.css';
 import { Url } from '../../Pages/Core';
 import StoreContext from '../../ContextApi';
+import Papa from 'papaparse';
 
 
 
@@ -12,10 +13,13 @@ export default function AddMember() {
     const name = useRef()
     const email = useRef()
     const password = useRef()
-    const ConatactNumber = useRef()
+    const ConatactNumber = useRef();
+    const [jsonData, setJsonData] = useState(null);
+
 
     const RoleDetails = useContext(StoreContext);
     let UserDetail = RoleDetails.UserData
+    console.log(RoleDetails?.UserData?._id)
 
     // console.log(UserDetail, Role, "UserDetail");
     function employe() {
@@ -42,8 +46,33 @@ export default function AddMember() {
         })
     }
 
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+
+        Papa.parse(file, {
+            complete: (result) => {
+                console.log('CSV parsed:', result);
+                setJsonData(result.data);
+            },
+            header: true, // Set to true if your CSV file has a header row
+        });
+    };
+    for (let i = 0; i < jsonData?.length; i++) {
+        let obj = {
+            ClientId: jsonData[i]?.ID,
+            ClientName: jsonData[i]?.Name,
+            ClientPhoneNumber: jsonData[i]?.Phone,
+            ClientEmail: jsonData[i]?.email,
+            BelongsTo: RoleDetails?.UserData?._id
+        }
+
+        console.log(obj);
+    }
+
+
+
     return (
-        <div class="container col-50" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div class="container col-50" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: 'column' }}>
             <form style={{ padding: '5px', margin: "5px", boxShadow: "1px 2px 5px 2px #888888" }}
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -66,7 +95,7 @@ export default function AddMember() {
                     </div>
                     <div>
                         <label for="email">Secondary Contact</label>
-                        <input type="email" placeholder="Enter Email" name="number" ref={ConatactNumber} required style={{padding:'20px 5px'}}/>
+                        <input type="email" placeholder="Enter Email" name="number" ref={ConatactNumber} required style={{ padding: '20px 5px' }} />
                     </div>
 
                     <label for="psw">Password</label>
@@ -83,6 +112,10 @@ export default function AddMember() {
                     <button type="submit" class="registerbtn" style={{ backgroundColor: "#427D8F" }}>Register</button>
                 </div>
             </form>
+            <div className='text-center' style={{ marginTop: "30px" }}>
+
+                <input type="file" onChange={handleFileUpload} className='form-control' />
+            </div>
         </div>
     )
 }

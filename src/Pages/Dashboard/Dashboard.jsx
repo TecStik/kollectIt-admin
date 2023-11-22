@@ -219,7 +219,21 @@ const Dashboard = () => {
       ),
     },
     {
-      Cashier: "Cashier",
+      // SuperAdmin: "SuperAdmin",
+      Admin: "Admin",
+      key: "24",
+      icon: <UsergroupAddOutlined onClick={() => setTrigger(24)} />,
+      label: (
+        <div onClick={() => setTrigger(24)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "View Members" : ""}
+          </span>
+        </div>
+      ),
+    },
+    {
+      SuperAdmin: "SuperAdmin",
+      // Cashier: "Cashier",
       // Admin: 'Admin',
       key: "16",
       icon: <BranchesOutlined onClick={() => setTrigger(16)} />,
@@ -299,13 +313,25 @@ const Dashboard = () => {
         </div>
       ),
     },
+    {
+      // Cashier: "Cashier",
+      Admin: 'Admin',
+      key: "16",
+      icon: <BranchesOutlined onClick={() => setTrigger(16)} />,
+      label: (
+        <div onClick={() => setTrigger(16)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "Assign Rider " : ""}
+          </span>
+        </div>
+      ),
+    },
 
-
-    Role == "SuperAdmin" ? null : Role == "Cashier" ? (
-      <></>
-    ) : (
-      getItem("Member List", "sub4", <TeamOutlined />, itemChild, b)
-    ),
+    // Role == "SuperAdmin" ? null : Role == "Cashier" ? (
+    //   <></>
+    // ) : (
+    //   getItem("Member List", "sub4", <TeamOutlined />, itemChild, b)
+    // ),
 
 
 
