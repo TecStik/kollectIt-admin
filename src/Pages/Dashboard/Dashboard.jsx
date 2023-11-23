@@ -134,13 +134,6 @@ const Dashboard = () => {
   }
 
   var a = [
-    // {
-    //     Cashier: 'Cashier',
-    //     Admin: 'Admin',
-    //     key: '7',
-    //     icon: <UsergroupAddOutlined onClick={() => setTrigger(7)} />,
-    //     label: <div onClick={() => setTrigger(7)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'All Data Members' : ''}</span></div>,
-    // },
     {
       key: "8",
       icon: <UserOutlined onClick={() => setTrigger(8)} />,
@@ -150,18 +143,6 @@ const Dashboard = () => {
         </div>
       ),
     },
-    // {
-    //   Admin: "Admin",
-    //   key: "9",
-    //   icon: <DollarCircleOutlined onClick={() => setTrigger(9)} />,
-    //   label: (
-    //     <div onClick={() => setTrigger(9)}>
-    //       <span style={{ marginLeft: "5%" }}>
-    //         {!collapsed ? "Cashier" : ""}
-    //       </span>
-    //     </div>
-    //   ),
-    // },
     {
       Admin: "Admin",
       key: "9",
@@ -203,7 +184,7 @@ const Dashboard = () => {
 
   var itemChild = a.filter((num) => {
     if (Role === "SuperAdmin") {
-      return num;
+      return num.SuperAdmin;
     } else if (Role === "Admin") {
       return num.Admin;
     } else if (Role == "Cashier") {
@@ -224,17 +205,6 @@ const Dashboard = () => {
         </div>
       ),
     },
-
-    // {
-    //   Cashier: "Cashier",
-    //   key: "17",
-    //   icon: <BranchesOutlined onClick={() => setTrigger(17)} />,
-    //   label: (
-    //     <div onClick={() => setTrigger(17)}>
-    //       <span style={{ marginLeft: "5%" }}> {!collapsed ? "Home" : ""}</span>
-    //     </div>
-    //   ),
-    // },
     {
       Cashier: "Cashier",
       Admin: "Admin",
@@ -249,7 +219,21 @@ const Dashboard = () => {
       ),
     },
     {
-      Cashier: "Cashier",
+      // SuperAdmin: "SuperAdmin",
+      Admin: "Admin",
+      key: "24",
+      icon: <UsergroupAddOutlined onClick={() => setTrigger(24)} />,
+      label: (
+        <div onClick={() => setTrigger(24)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "View Members" : ""}
+          </span>
+        </div>
+      ),
+    },
+    {
+      SuperAdmin: "SuperAdmin",
+      // Cashier: "Cashier",
       // Admin: 'Admin',
       key: "16",
       icon: <BranchesOutlined onClick={() => setTrigger(16)} />,
@@ -315,30 +299,6 @@ const Dashboard = () => {
         </div>
       ),
     },
-    // {
-    //     // Cashier: "Cashier",
-    //     Admin: 'Admin',
-    //     key: '14',
-    //     icon: <DiffOutlined onClick={() => setTrigger(13)} />,
-    //     label: <div onClick={() => setTrigger(13)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Reporting' : ''}</span></div>,
-
-    // },
-    // {
-    //     Cashier: "Cashier",
-    //     // Admin: 'Admin',
-    //     key: '11',
-    //     icon: <RedEnvelopeOutlined onClick={() => setTrigger(13)} />,
-    //     label: <div onClick={() => setTrigger(13)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Deposit' : ''}</span></div>,
-
-    // },
-    // {
-    //     Cashier: "Cashier",
-    //     Admin: 'Admin',
-    //     key: '15',
-    //     icon: <DatabaseOutlined onClick={() => setTrigger(13)} />,
-    //     label: <div onClick={() => setTrigger(13)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Update Profile' : ''}</span></div>,
-
-    // },
 
     {
       // Cashier: "Cashier",
@@ -353,12 +313,28 @@ const Dashboard = () => {
         </div>
       ),
     },
+    {
+      // Cashier: "Cashier",
+      Admin: 'Admin',
+      key: "16",
+      icon: <BranchesOutlined onClick={() => setTrigger(16)} />,
+      label: (
+        <div onClick={() => setTrigger(16)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "Assign Rider " : ""}
+          </span>
+        </div>
+      ),
+    },
 
-    Role == "Cashier" ? (
-      <></>
-    ) : (
-      getItem("Member List", "sub4", <TeamOutlined />, itemChild, b)
-    ),
+    // Role == "SuperAdmin" ? null : Role == "Cashier" ? (
+    //   <></>
+    // ) : (
+    //   getItem("Member List", "sub4", <TeamOutlined />, itemChild, b)
+    // ),
+
+
+
     {
       // Cashier: "Cashier",
       Admin: "Admin",
@@ -372,16 +348,24 @@ const Dashboard = () => {
         </div>
       ),
     },
-    // {
-    //     Cashier: "Cashier",
-    //     Admin: 'Admin',
-    //     key: '18',
-    //     icon: <UserAddOutlined onClick={() => setTrigger(18)} />,
-    //     label: <div onClick={() => setTrigger(18)}><span style={{ marginLeft: '5%' }}> {!collapsed ? 'Admin Dashboard' : ''}</span></div>,
 
-    // },
     {
-      Admin: "Admin",
+      SuperAdmin: "SuperAdmin",
+      // Admin: "Admin",
+      key: "24",
+      icon: <UsergroupAddOutlined onClick={() => setTrigger(24)} />,
+      label: (
+        <div onClick={() => setTrigger(24)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "View Members" : ""}
+          </span>
+        </div>
+      ),
+    },
+
+    {
+      SuperAdmin: "SuperAdmin",
+      // Admin: "Admin",
       key: "18",
       icon: <UserAddOutlined onClick={() => setTrigger(18)} />,
       label: (
@@ -392,6 +376,7 @@ const Dashboard = () => {
         </div>
       ),
     },
+
     {
       Admin: "Admin",
       key: "20",
@@ -463,7 +448,6 @@ const Dashboard = () => {
         trigger={null}
         collapsible
         collapsed={collapsed}
-
       >
         {/* <div className="logo"> */}
         <img src={Kicon} style={{ marginBottom: "-30%", marginTop: "-10%" }} />
@@ -589,14 +573,19 @@ const Dashboard = () => {
               <PaymentConfirmation1 />
             </>
           ) : trigger === 23 ? (
-
-
             <>
               <PaymentConfirmation2 />
             </>
-          ) : (
-            <>Page Not Found</>
-          )}
+          )
+            : trigger === 24 ? (
+              <>
+                <ViewMember />
+              </>
+            )
+
+              : (
+                <>Page Not Found</>
+              )}
         </Content>
       </Layout>
     </Layout>
