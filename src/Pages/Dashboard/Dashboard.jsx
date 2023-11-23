@@ -357,7 +357,7 @@ const Dashboard = () => {
       label: (
         <div onClick={() => setTrigger(16)}>
           <span style={{ marginLeft: "5%" }}>
-            {!collapsed ? "Assigned Rider" : ""}
+            {!collapsed ? "Assign Rider " : ""}
           </span>
         </div>
       ),
