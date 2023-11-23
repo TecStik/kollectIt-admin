@@ -155,8 +155,8 @@ export default function AysnRider() {
                     <th>Email</th>
                     <th>Amount</th>
                     {/* <th>Stutus</th> */}
-                    <th>Allow Rider Name</th>
-                    <th>Assign Rider</th>
+                    <th>Assigned Rider</th>
+                    <th>Select Rider</th>
                   </tr>
                 </thead>
                 {Client?.map((v, i) => {
