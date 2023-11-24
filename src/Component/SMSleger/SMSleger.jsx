@@ -77,7 +77,7 @@ export default function SMSleger() {
         <>
             <div className="card card-cascade narrower">
                 <div className="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
-                    <h2>SMS Leger</h2>
+                    <h2>SMS Ledger</h2>
                     <div className="d-flex flex-row-reverse m-2">
                         <div className="m-2">
                         </div>

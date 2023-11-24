@@ -113,10 +113,10 @@ export default function AddMember() {
                     <button type="submit" class="registerbtn" style={{ backgroundColor: "#427D8F" }}>Register</button>
                 </div>
             </form>
-            <div className='text-center' style={{ marginTop: "30px" }}>
+            {/* <div className='text-center' style={{ marginTop: "30px" }}>
 
                 <input type="file" onChange={handleFileUpload} className='form-control' />
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -219,6 +219,32 @@ const Dashboard = () => {
       ),
     },
     {
+      Cashier: "Cashier",
+      Admin: "Admin",
+      key: "3",
+      icon: <TeamOutlined onClick={() => setTrigger(3)} />,
+      label: (
+        <div onClick={() => setTrigger(3)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "View Clients" : ""}
+          </span>
+        </div>
+      ),
+    },
+    {
+      // Cashier: "Cashier",
+      Admin: "Admin",
+      key: "6",
+      icon: <UserAddOutlined onClick={() => setTrigger(6)} />,
+      label: (
+        <div onClick={() => setTrigger(6)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "Add Member" : ""}
+          </span>
+        </div>
+      ),
+    },
+    {
       // SuperAdmin: "SuperAdmin",
       Admin: "Admin",
       key: "24",
@@ -227,6 +253,32 @@ const Dashboard = () => {
         <div onClick={() => setTrigger(24)}>
           <span style={{ marginLeft: "5%" }}>
             {!collapsed ? "View Members" : ""}
+          </span>
+        </div>
+      ),
+    },
+    {
+      Cashier: "Cashier",
+      Admin: "Admin",
+      key: "4",
+      icon: <TeamOutlined onClick={() => setTrigger(4)} />,
+      label: (
+        <div onClick={() => setTrigger(4)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "View Payments" : ""}
+          </span>
+        </div>
+      ),
+    },
+    {
+      // Cashier: "Cashier",
+      Admin: "Admin",
+      key: "12",
+      icon: <TransactionOutlined onClick={() => setTrigger(12)} />,
+      label: (
+        <div onClick={() => setTrigger(12)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "Transactions" : ""}
           </span>
         </div>
       ),
@@ -241,42 +293,6 @@ const Dashboard = () => {
         <div onClick={() => setTrigger(16)}>
           <span style={{ marginLeft: "5%" }}>
             {!collapsed ? "Assign Rider " : ""}
-          </span>
-        </div>
-      ),
-    },
-    {
-      Cashier: "Cashier",
-      Admin: "Admin",
-      key: "3",
-      icon: <TeamOutlined onClick={() => setTrigger(3)} />,
-      label: (
-        <div onClick={() => setTrigger(3)}>
-          <span style={{ marginLeft: "5%" }}>
-            {!collapsed ? "View Clients" : ""}
-          </span>
-        </div>
-      ),
-    },
-    {
-      Admin: "Admin",
-      key: "21",
-      icon: <DollarCircleOutlined onClick={() => setTrigger(21)} />,
-      label: (
-        <div onClick={() => setTrigger(21)}>
-          <span style={{ marginLeft: "5%" }}>{!collapsed ? "Top Up" : ""}</span>
-        </div>
-      ),
-    },
-    {
-      Cashier: "Cashier",
-      Admin: "Admin",
-      key: "4",
-      icon: <TeamOutlined onClick={() => setTrigger(4)} />,
-      label: (
-        <div onClick={() => setTrigger(4)}>
-          <span style={{ marginLeft: "5%" }}>
-            {!collapsed ? "View Payments" : ""}
           </span>
         </div>
       ),
@@ -300,54 +316,11 @@ const Dashboard = () => {
       ),
     },
 
-    {
-      // Cashier: "Cashier",
-      Admin: "Admin",
-      key: "12",
-      icon: <TransactionOutlined onClick={() => setTrigger(12)} />,
-      label: (
-        <div onClick={() => setTrigger(12)}>
-          <span style={{ marginLeft: "5%" }}>
-            {!collapsed ? "Transactions" : ""}
-          </span>
-        </div>
-      ),
-    },
-    {
-      // Cashier: "Cashier",
-      Admin: 'Admin',
-      key: "16",
-      icon: <BranchesOutlined onClick={() => setTrigger(16)} />,
-      label: (
-        <div onClick={() => setTrigger(16)}>
-          <span style={{ marginLeft: "5%" }}>
-            {!collapsed ? "Assign Rider " : ""}
-          </span>
-        </div>
-      ),
-    },
-
     // Role == "SuperAdmin" ? null : Role == "Cashier" ? (
     //   <></>
     // ) : (
     //   getItem("Member List", "sub4", <TeamOutlined />, itemChild, b)
     // ),
-
-
-
-    {
-      // Cashier: "Cashier",
-      Admin: "Admin",
-      key: "6",
-      icon: <UserAddOutlined onClick={() => setTrigger(6)} />,
-      label: (
-        <div onClick={() => setTrigger(6)}>
-          <span style={{ marginLeft: "5%" }}>
-            {!collapsed ? "Add Member" : ""}
-          </span>
-        </div>
-      ),
-    },
 
     {
       SuperAdmin: "SuperAdmin",
@@ -376,6 +349,19 @@ const Dashboard = () => {
         </div>
       ),
     },
+    {
+      // Cashier: "Cashier",
+      Admin: 'Admin',
+      key: "16",
+      icon: <BranchesOutlined onClick={() => setTrigger(16)} />,
+      label: (
+        <div onClick={() => setTrigger(16)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "Assign Rider " : ""}
+          </span>
+        </div>
+      ),
+    },
 
     {
       Admin: "Admin",
@@ -399,6 +385,16 @@ const Dashboard = () => {
           <span style={{ marginLeft: "5%" }}>
             {!collapsed ? "SMS Ledger" : ""}
           </span>
+        </div>
+      ),
+    },
+    {
+      Admin: "Admin",
+      key: "21",
+      icon: <DollarCircleOutlined onClick={() => setTrigger(21)} />,
+      label: (
+        <div onClick={() => setTrigger(21)}>
+          <span style={{ marginLeft: "5%" }}>{!collapsed ? "Top Up" : ""}</span>
         </div>
       ),
     },
