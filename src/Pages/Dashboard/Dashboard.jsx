@@ -79,7 +79,7 @@ const Dashboard = () => {
     const queryParams = queryString.parse(search);
     if (queryParams.ResponseCode == "00") {
       updateBill(queryParams);
-    } else if (queryParams.ResponseCode == "90") {
+    } else if (queryParams.ResponseCode ) {
       alert("Payment Failed");
       setTrigger(23);
 
