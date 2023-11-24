@@ -304,7 +304,7 @@ export default function PaymentData() {
               <th>Verify Code</th>
               <th>Name</th>
               <th>Drawn on</th>
-              <th>Payment Status</th>
+              <th>Amount</th>
               <th>Due On</th>
               <th>Payment Date</th>
               <th>Status</th>
@@ -323,7 +323,7 @@ export default function PaymentData() {
                       <td className="text-center">{v?.VerificationCode}</td>
                       <td>{v?.PaymentName}</td>
                       <td>{v?.drawOn}</td>
-                      <td>{v?.PaymentStatus}</td>
+                      <td>{v?.PaymentAmount}</td>
                       <td className="text-center">{v?.dueOn}</td>
                       <td>{moment(v?.createdOn).format("MMM Do YY")}</td>
                       {/* <td>
