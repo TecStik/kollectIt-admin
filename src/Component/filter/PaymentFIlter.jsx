@@ -195,8 +195,7 @@ export default function PaymentFilter({ data }) {
 
 
                         <div class="d-flex">
-                            <div class="p-2 w-100">s
-
+                            <div class="p-2 w-100">
                                 <div class="  flex-center">
                                     <p class="white-text">
                                         <button
