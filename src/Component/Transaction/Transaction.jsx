@@ -149,9 +149,9 @@ export default function TransactionList() {
     console.log("FilterParams in createFilter", filterParams);
     const { nature, from, to, enddate, createdOn } = filterParams;
     let filtered = allData;
-    filtered = (nature) ? filtered.filter((item) => item.Nature === nature) : filtered;
-    filtered = (from) ? filtered.filter((item) => item?.fromName === from) : filtered
-    filtered = (to) ? filtered.filter((item) => item?.toName === to) : filtered;
+    filtered = (nature) ? filtered.filter((item) => item?.Nature === nature) : filtered;
+    filtered = (from) ? filtered.filter((item) => item?.From === from) : filtered
+    filtered = (to) ? filtered.filter((item) => item?.to === to) : filtered;
 
     //payment start date
     filtered = (createdOn) ? filtered.filter((item) => new Date(item?.createdOn) >= new Date(createdOn)) : filtered;

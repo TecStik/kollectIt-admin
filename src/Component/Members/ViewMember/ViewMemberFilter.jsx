@@ -107,7 +107,7 @@ export default function ViewMemberFilter({ data }) {
                                     >
                                         <option value="Cashier">Cashier</option>
                                         <option value="Rider">Rider</option>
-                                        <option value="Osd">Osd</option>
+                                        <option value="Admin">Admin</option>
                                     </Form.Select>
                                 </p>
                             </div>

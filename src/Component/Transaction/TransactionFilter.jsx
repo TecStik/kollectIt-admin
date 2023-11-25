@@ -12,6 +12,7 @@ export default function TransactionFilter({ data }) {
     const [to, setTo] = useState("");
 
 
+    console.log(nature)
 
     const filterParams = {
         createdOn: startdate,
@@ -60,7 +61,7 @@ export default function TransactionFilter({ data }) {
                         <div class="col-md-3">
                             <div class="col-example z-depth-4 flex-center">
                                 <p>
-                                    <div style={{ width: '100%', textAlign: "left",padding:"2px 0px" }}>
+                                    <div style={{ width: '100%', textAlign: "left", padding: "2px 0px" }}>
                                         <label class="form-label text-white">
                                             Date<span class="text-danger"> *</span>
                                         </label>
@@ -75,7 +76,7 @@ export default function TransactionFilter({ data }) {
                                             value={startdate}
                                             onChange={(e) => setStartDate(e.target.value)}
                                         />
-                                        <div style={{width:'100%',textAlign:"left",padding:'2px 0px'}}>
+                                        <div style={{ width: '100%', textAlign: "left", padding: '2px 0px' }}>
                                             <label class="form-label text-white">
                                                 Date<span class="text-danger"> *</span>
                                             </label>
@@ -94,21 +95,16 @@ export default function TransactionFilter({ data }) {
                             </div>
                         </div>
 
-
-
-                        <div class="col-md-3">
+                        <div class="col-md-3" style={{position:"relative",top:"8px"}}>
                             <div class="col-example z-depth-4 flex-center">
                                 <p>
                                     <label class="form-label text-white">
                                         Nature<span class="text-danger"> *</span>
                                     </label>
-                                    <Form.Control
-                                        type="text"
-                                        name="Nature"
-                                        placeholder="Nature"
-                                        value={nature}
-                                        onChange={(e) => setNature(e.target.value)}
-                                    />
+                                    <Form.Select style={{padding:"15px 10px"}}  value={nature} onChange={(e) => setNature(e.target.value)}>
+                                        <option value="Collection">Collection</option>
+                                        <option value="Internal Transfer">Internal Transfer</option>
+                                    </Form.Select>
                                 </p>
                             </div>
                         </div>
