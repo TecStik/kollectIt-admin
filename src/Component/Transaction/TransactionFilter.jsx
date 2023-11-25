@@ -21,10 +21,6 @@ export default function TransactionFilter({ data }) {
         toName: to
     };
 
-    // const result = data?.createFilter(filterParams);
-    // console.log("Filter ===> component here", result);
-
-
     function handler() {
         data?.createFilter(filterParams);
     }
@@ -154,7 +150,7 @@ export default function TransactionFilter({ data }) {
 
 
                         <div class="d-flex">
-                            <div class="p-2 w-100">s
+                            <div class="p-2 w-100">
 
                                 <div class="  flex-center">
                                     <p class="white-text">

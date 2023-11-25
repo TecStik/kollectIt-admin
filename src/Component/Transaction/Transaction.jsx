@@ -231,29 +231,6 @@ export default function TransactionList() {
                     </tr>
                   );
                 })}
-
-                {/* <tr>
-                            <td>Mary</td>
-                            <td>mary@example.com</td>
-                            <td>Moe</td>
-                            <td>Junior</td>
-                            <td>Junior</td>
-                            <td>
-                                <span class="badge badge-primary rounded-pill d-inline"
-                                >Onboarding</span
-                                >
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>July</td>
-                            <td>july@example.com</td>
-                            <td>Dooley</td>
-                            <td>Senior</td>
-                            <td>Senior</td>
-                            <td>
-                                <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-                            </td>
-                        </tr> */}
               </tbody>
             </table>
             <PaginationComponent totalPages={totalPages} onChange={handlePageChange} page={page} />
