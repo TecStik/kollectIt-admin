@@ -1,5 +1,5 @@
 import { React, useState, useEffect, useRef } from "react";
-import { Form} from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import "../../filter/filter.css";
 
 export default function ViewMemberFilter({ data }) {
@@ -98,7 +98,7 @@ export default function ViewMemberFilter({ data }) {
                                         Role<span class="text-danger"> *</span>
                                     </label>
                                     <Form.Select
-                                    style={{padding:'15px 10px'}}
+                                        style={{ padding: '15px 10px' }}
                                         type="text"
                                         name="role"
                                         placeholder="Role"
@@ -116,8 +116,7 @@ export default function ViewMemberFilter({ data }) {
 
 
                         <div class="d-flex">
-                            <div class="p-2 w-100">s
-
+                            <div class="p-2 w-100">
                                 <div class="  flex-center">
                                     <p class="white-text">
                                         <button
