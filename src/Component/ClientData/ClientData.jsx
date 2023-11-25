@@ -161,8 +161,6 @@ export default function ClientData() {
     }
   }, []);
 
-
-
   // console.log(filterItem, "filter Client Data");
 
   function myFunction() {
@@ -212,7 +210,7 @@ export default function ClientData() {
     })
       .then((res) => {
         setRealTime(!realTime);
-        
+
         // again fetch data  start here
 
         axios({
