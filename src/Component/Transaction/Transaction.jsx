@@ -159,8 +159,6 @@ export default function TransactionList() {
     filtered = (enddate) ? filtered.filter((item) => new Date(item?.createdOn) <= new Date(enddate)) : filtered;
 
 
-
-
     console.log("Filtered item in create filter", filtered);
     setfilterItem(filtered);
 
