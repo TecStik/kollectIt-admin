@@ -52,7 +52,7 @@ function App() {
     },
   });
 
-  console.log("riderObj",riderObj)
+  console.log("UserData",UserData)
 
   return (
     <div>

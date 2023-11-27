@@ -59,6 +59,8 @@ import { AlertDialogOverlay } from "@chakra-ui/react";
 const Dashboard = () => {
   const navigate = useNavigate();
   const RoleDetails = useContext(StoreContext);
+  const userData = useContext(StoreContext);
+  console.log(userData?.UserData)
   const { Header, Sider, Content } = Layout;
   const [collapsed, setCollapsed] = useState(false);
   const [trigger, setTrigger] = useState(1);
@@ -79,7 +81,7 @@ const Dashboard = () => {
     const queryParams = queryString.parse(search);
     if (queryParams.ResponseCode == "00") {
       updateBill(queryParams);
-    } else if (queryParams.ResponseCode ) {
+    } else if (queryParams.ResponseCode) {
       alert("Payment Failed");
       setTrigger(23);
 
@@ -398,19 +400,19 @@ const Dashboard = () => {
         </div>
       ),
     },
-    {
-      Cashier: "Cashier",
-      Admin: "Admin",
-      key: "",
-      icon: <LoginOutlined onClick={() => logout()} />,
-      label: (
-        <div onClick={() => logout()}>
-          <span style={{ marginLeft: "5%" }}>
-            {!collapsed ? " Log Out" : ""}
-          </span>
-        </div>
-      ),
-    },
+    // {
+    //   Cashier: "Cashier",
+    //   Admin: "Admin",
+    //   key: "",
+    //   icon: <LoginOutlined onClick={() => logout()} />,
+    //   label: (
+    //     <div onClick={() => logout()}>
+    //       <span style={{ marginLeft: "5%" }}>
+    //         {!collapsed ? " Log Out" : ""}
+    //       </span>
+    //     </div>
+    //   ),
+    // },
   ];
 
   function getItem(label, Admin, icon, children, Cashier, key) {
@@ -433,6 +435,10 @@ const Dashboard = () => {
       return num.Cashier;
     }
   });
+
+  const handleLogout = () => {
+    logout();
+  }
 
   return (
     <Layout
@@ -470,9 +476,15 @@ const Dashboard = () => {
               onClick: () => setCollapsed(!collapsed)
             }
           )}
-          <span style={{ textAlign: "center", color: "white" }}>
-            {`${Role} Dashboard`}
-          </span>
+          <div style={{ display: "flex", justifyContent: 'space-between', alignItems: "center", position: "relative", top: '-60px' }}>
+            <span className="res_2" style={{ textAlign: "center", color: "white", padding: "0px 30px" }}>
+              {`${Role} Dashboard`}
+            </span>
+            <div style={{ display: "flex", alignItems: 'center', justifyContent: "center", padding: '0px 30px', gap: "10px", position: "relative", top: "2px" }} onClick={() => handleLogout()}>
+              <h6 className="res_1" style={{ color: "#fff" }}>Welcome: {userData?.UserData?.employeeName } { (userData?.UserData?.shortCode)}</h6>
+              <LoginOutlined className="icon_res1" style={{ color: "#fff", fontSize: '1.5rem', cursor: "pointer", position: "relative", top: '-2px' }} />
+            </div>
+          </div>
         </Header>
         <Content
           className="site-layout-background"

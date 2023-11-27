@@ -30,3 +30,36 @@
   background-color: rgb(66, 125, 143) !important;
 
 }
+
+
+/* media query start here */
+
+
+@media only screen and (max-width: 723px){
+   .res_1{
+    /* color: red !important; */
+    text-align: center;
+    /* position: relative; */
+    /* top: -30px; */
+    font-size: 0.9rem;
+   }
+   .icon_res1{
+    font-size: 1.1rem !important;
+   }
+
+   .res_2{
+    font-size: 1.1rem;
+   }
+}
+
+
+@media only screen and (max-width: 592px){
+  .res_1{
+    /* color: red !important; */
+    position: absolute;
+    right: 70px;
+    width: 100%;
+  }
+}
+
+
