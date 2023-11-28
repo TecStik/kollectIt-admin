@@ -101,6 +101,7 @@ export default function PaymentData() {
   const UserCredentials = useContext(StoreContext);
 
   useEffect(() => {
+    let belongsToId=(UserCredentials?.UserData?.Role=="Cashier")?UserCredentials?.UserData.CreatedBy:UserCredentials?.UserData._id
     axios({
       method: "post",
       url: Url + "/multiFilteredPayments",
