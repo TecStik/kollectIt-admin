@@ -14,7 +14,7 @@ import {
   RadioButtonGroup,
   Text,
 } from "@chakra-ui/react";
-import { PrivateRoutes } from './PrivateRoute';
+// import { PrivateRoutes } from './PrivateRoute';
 
 const { Button } = chakraTheme.components;
 
@@ -61,7 +61,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login />} />
-              <Route path="/dashboard" element={<PrivateRoutes><Dashboard /></PrivateRoutes>} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
           </BrowserRouter>
         </StoreProvider >
