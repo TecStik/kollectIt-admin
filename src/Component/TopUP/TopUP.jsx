@@ -398,18 +398,18 @@ export default function TopUP() {
                 <input
                   type="hidden"
                   name="SuccessUrl"
-                  Value="https://kollectit-admin.tecstik.com/dashboard"
+                  Value="http://localhost:3000/dashboard"
                 />
                 <input
                   type="hidden"
                   name="FailureUrl"
-                  Value="https://kollectit-admin.tecstik.com/dashboard"
+                  Value="http://localhost:3000/dashboard"
                 />
                 <input type="hidden" name="OrderDate" Value={OrderDate} />
                 <input
                   type="hidden"
                   name="CheckoutUrl"
-                  Value="https://kollectit-admin.tecstik.com/dashboard"
+                  Value="http://localhost:3000/dashboard"
                 />
                 <input
                   type="hidden"
