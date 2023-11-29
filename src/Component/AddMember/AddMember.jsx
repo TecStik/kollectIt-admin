@@ -106,8 +106,8 @@ export default function AddMember() {
                     </div>
                     <hr />
                     <div>
-                        <label for="psw-repeat">User Name</label>
-                        <input type="text" placeholder="User name of team member" name="name" ref={name} required />
+                        <label for="psw-repeat">Employee Name</label>
+                        <input type="text" placeholder="Employee name of team member" name="name" ref={name} required />
                     </div>
                     <div>
                         <label for="loginId">Number or Login ID</label>
