@@ -43,9 +43,9 @@ export default function AddMember() {
             url: Url + "/auth/employe",
             data: {
                 name: obj.name,
-                loginId: obj.ContactNumber,
+                loginId: obj.phoneInputValue,
                 password: obj.password,
-                email: obj.phoneInputValue,
+                email: obj.ContactNumber,
                 // email: phoneInputRef.current ? phoneInputRef.current.value : "",
                 shortCode: UserDetail.shortCode,
                 createdBy: UserDetail._id,
