@@ -46,3 +46,10 @@
     color: dodgerblue;
   }
   
+  .PhoneInputInput{
+    padding: 10px !important;
+  }
+
+  .PhoneInput{
+    padding: 5px !important;
+  }

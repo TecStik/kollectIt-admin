@@ -4,17 +4,20 @@ import './AddMember.css';
 import { Url } from '../../Pages/Core';
 import StoreContext from '../../ContextApi';
 import Papa from 'papaparse';
-
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 
 export default function AddMember() {
 
     let [Role, setRole] = useState('')
-    const name = useRef()
-    const email = useRef()
-    const password = useRef()
-    const ConatactNumber = useRef();
+    const name = useRef();
+    const email = useRef();
+    const password = useRef();
+    const ContactNumber = useRef();
+    const phoneInputRef = useRef(); // New ref for PhoneInput
     const [jsonData, setJsonData] = useState(null);
+    const [value, setValue] = useState()
 
 
     const RoleDetails = useContext(StoreContext);
@@ -23,27 +26,43 @@ export default function AddMember() {
 
     // console.log(UserDetail, Role, "UserDetail");
     function employe() {
+        const obj = {
+            name: name.current ? name.current.value : "",
+            // email: email.current ? email.current.value : "",
+            password: password.current ? password.current.value : "",
+            ContactNumber: ContactNumber.current ? ContactNumber.current.value : "",
+            phoneInputValue: phoneInputRef.current ? phoneInputRef.current.value : "",
+            Role
+            // Add other properties as needed
+        };
+
+        console.log(obj)
+
         axios({
             method: "post",
             url: Url + "/auth/employe",
             data: {
-                name: name.current.value,
-                loginId: email.current.value,
-                password: password.current.value,
-                email: ConatactNumber.current.value,
+                name: obj.name,
+                loginId: obj.ContactNumber,
+                password: obj.password,
+                email: obj.phoneInputValue,
+                // email: phoneInputRef.current ? phoneInputRef.current.value : "",
                 shortCode: UserDetail.shortCode,
                 createdBy: UserDetail._id,
                 companyName: UserDetail.companyName,
                 Role: Role
             }
-        }).then((res) => {
-            alert("Member created")
-            name.current.value = ""
-            email.current.value = ""
-            password.current.value = ""
-        }).catch((err) => {
-            console.log(err);
         })
+            .then((res) => {
+                alert("Member created");
+                if (name.current) name.current.value = "";
+                if (email.current) email.current.value = "";
+                if (password.current) password.current.value = "";
+                if (phoneInputRef.current) phoneInputRef.current.value = "";
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     const handleFileUpload = (event) => {
@@ -57,7 +76,7 @@ export default function AddMember() {
             header: true, // Set to true if your CSV file has a header row
         });
     };
-    
+
     for (let i = 0; i < jsonData?.length; i++) {
         let obj = {
             ClientId: jsonData[i]?.ID,
@@ -92,11 +111,20 @@ export default function AddMember() {
                     </div>
                     <div>
                         <label for="loginId">Number or Login ID</label>
-                        <input type="number" placeholder="Number or Login ID" name="email" ref={email} required style={{ padding: '20px 5px' }} />
+                        <PhoneInput
+                            international
+                            defaultCountry="PK"
+                            placeholder="Enter phone number"
+                            value={value}
+                            onChange={(val) => setValue(val)}
+                            ref={phoneInputRef}
+                        />
+
+                        {/* <input type="number" placeholder="Number or Login ID" name="email" ref={email} required style={{ padding: '20px 5px' }} /> */}
                     </div>
                     <div>
                         <label for="email">Secondary Contact</label>
-                        <input type="email" placeholder="Enter Email" name="number" ref={ConatactNumber} required style={{ padding: '20px 5px' }} />
+                        <input type="email" placeholder="Enter Email" name="number" ref={ContactNumber} required style={{ padding: '20px 5px' }} />
                     </div>
 
                     <label for="psw">Password</label>
