@@ -3,7 +3,8 @@ import { Url } from '../../Pages/Core'
 import axios from 'axios';
 import SMSlegerList from './SMSlegerList';
 import StoreContext from '../../ContextApi';
-import Filter from "../filter/filter";
+// import Filter from "../filter/filter";
+import SMSFilter from './SMSFilter';
 import "./sms.css";
 import PaginationComponent from "../Pagination";
 import { CircularProgress } from "@mui/material";
@@ -18,7 +19,6 @@ export default function SMSleger() {
     // const [refresher, setRefresher] = useState(false);
     const [BelongsID, setBelongsID] = useState(UserCredentials.UserData.Role)
     let ID = UserCredentials.UserData._id
-    console.log(UserCredentials.UserData, "UserCredentials");
     const [loading, setLoading] = useState(true)
 
     // new state json pagination
@@ -40,7 +40,7 @@ export default function SMSleger() {
                 }
             }).then((response) => {
                 setLoading(false);
-                // console.log(response.data,"smsLedger=>Response");
+                console.log(response?.data);
                 setallData(response.data)
             })
         } else {
@@ -55,7 +55,7 @@ export default function SMSleger() {
                 }
             }).then((response) => {
                 setLoading(false);
-                // console.log(response.data,"smsLedger=>Response");
+                console.log(response.data);
                 setallData(response.data)
             })
 
@@ -72,6 +72,9 @@ export default function SMSleger() {
         page * itemsPerPage
     );
 
+    // filter functionality here
+    
+     console.log(allData);
 
     return (
         <>
@@ -82,7 +85,7 @@ export default function SMSleger() {
                         <div className="m-2">
                         </div>
                         <div className="m-2">
-                            <Filter data={{ allData, setfilterItem }} />
+                            <SMSFilter data={{ allData, setfilterItem }} />
                         </div>
                     </div>
                     {
