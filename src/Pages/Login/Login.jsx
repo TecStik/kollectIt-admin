@@ -7,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { Url } from "../Core/index";
 import Kicon from "./kollect-logo.png";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+
+
 
 function simulateNetworkRequest() {
   //
@@ -18,6 +22,7 @@ function Login() {
 
   const [isLoading, setLoading] = useState(false);
   const RoleDetails = useContext(StoreContext);
+  const [value, setValue] = useState()
   let navigate = useNavigate();
 
   const notify = () =>
@@ -42,9 +47,17 @@ function Login() {
 
   const email = useRef();
   const password = useRef();
+  // const phoneInputRef = useRef(); // New ref for PhoneInput
 
   const handleClick = () => {
     setLoading(true);
+    
+    let obj = {
+      loginId: email.current.value,
+      password: password.current.value
+    }
+
+    console.log(obj);
 
     axios({
       method: "post",
@@ -96,6 +109,15 @@ function Login() {
             <Form onSubmit={!isLoading ? handleClick : null}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Phone Login Id</Form.Label>
+                {/* <PhoneInput
+                  international
+                  defaultCountry="PK"
+                  placeholder="Enter phone number"
+                  value={value}
+                  onChange={(val) => setValue(val)}
+                  ref={email}
+                /> */}
+
                 <Form.Control
                   type="text"
                   placeholder="Phone Login id"

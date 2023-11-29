@@ -4,8 +4,8 @@ import './AddMember.css';
 import { Url } from '../../Pages/Core';
 import StoreContext from '../../ContextApi';
 import Papa from 'papaparse';
-import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
 
 
 export default function AddMember() {
@@ -17,7 +17,7 @@ export default function AddMember() {
     const ContactNumber = useRef();
     const phoneInputRef = useRef(); // New ref for PhoneInput
     const [jsonData, setJsonData] = useState(null);
-    const [value, setValue] = useState()
+    const [value, setValue] = useState();
 
 
     const RoleDetails = useContext(StoreContext);
