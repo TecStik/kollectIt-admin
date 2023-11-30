@@ -101,6 +101,7 @@ export default function PaymentData() {
   const UserCredentials = useContext(StoreContext);
 
   useEffect(() => {
+    let belongsToId=(UserCredentials?.UserData?.Role=="Cashier")?UserCredentials?.UserData.CreatedBy:UserCredentials?.UserData._id
     axios({
       method: "post",
       url: Url + "/multiFilteredPayments",
@@ -119,18 +120,6 @@ export default function PaymentData() {
     });
   }, []);
 
-
-
-
-  // useEffect(() => {
-  //     axios({
-  //         method: "get",
-  //         url: Url + "/",
-  //     }).then((response) => {
-  //         // console.log(response.data,"response")
-  //         setallData(response.data.Data)
-  //     })
-  // }, [realTime])
 
   function myFunction() {
     var input, filter, table, tr, td, i, txtValue;

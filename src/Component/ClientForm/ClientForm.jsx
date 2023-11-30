@@ -1,18 +1,21 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef,useState } from 'react';
 import './ClientForm.css';
 import axios from 'axios';
 import { Url } from '../../Pages/Core';
 import StoreContext from '../../ContextApi';
+import 'react-phone-number-input/style.css';
+import PhoneInput from 'react-phone-number-input';
+
 
 
 export default function ClientForm() {
-
-
   const ClientId = useRef()
   const ClientName = useRef()
   const ClientEmail = useRef()
   const ClientPhoneNumber = useRef()
-  const ClientAmount = useRef()
+  const ClientAmount = useRef();
+  const phoneInputRef = useRef(); // New ref for PhoneInput
+  const [value, setValue] = useState();
 
   const RoleDetails = useContext(StoreContext);
   let UserDetail = RoleDetails.UserData
@@ -80,15 +83,24 @@ export default function ClientForm() {
           {/* </div> */}
           <div class="row p-2">
             <label for="lname">Contact Number</label>
-            <input type="number" id="lname" name="lastname" ref={ClientPhoneNumber} placeholder="Client Phone Number.." style={{padding:'15px 10px'}} required/>
+            <PhoneInput
+              international
+              defaultCountry="PK"
+              placeholder="Enter phone number"
+              value={value}
+              onChange={(val) => setValue(val)}
+              ref={ClientPhoneNumber}
+            />
+
+            {/* <input type="number" id="lname" name="lastname" ref={ClientPhoneNumber} placeholder="Client Phone Number.." style={{padding:'15px 10px'}} required/> */}
           </div>
           <div class="row p-2">
             <label for="lname">Email</label>
-            <input type="email" id="lname" name="lastname" ref={ClientEmail} placeholder="Client Email.." style={{padding:'15px 10px'}} required/>
+            <input type="email" id="lname" name="lastname" ref={ClientEmail} placeholder="Client Email.." style={{ padding: '15px 10px' }} required />
           </div>
           <div class="row p-2">
             <label for="lname">Amount</label>
-            <input type="number" id="lname" name="lastname" ref={ClientAmount} placeholder="Client Amount.." style={{padding:'15px 10px'}} required/>
+            <input type="number" id="lname" name="lastname" ref={ClientAmount} placeholder="Client Amount.." style={{ padding: '15px 10px' }} required />
           </div>
           <br />
           <div class="row p-2">

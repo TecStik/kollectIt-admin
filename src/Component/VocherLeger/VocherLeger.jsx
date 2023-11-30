@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import VocherLegerList from "./VocherLegerList";
 import StoreContext from "../../ContextApi";
 import { Url } from "../../Pages/Core";
-import Filter from "../filter/filter";
+// import Filter from "../filter/filter";
 import { CSVLink } from "react-csv";
 import moment from "moment";
 import axios from "axios";
 import "./Voucher.css";
+import VoucherFilter from "./VoucherFilter";
 // pagination import here
 import PaginationComponent from "../Pagination";
 import { CircularProgress } from "@mui/material";
@@ -34,14 +35,7 @@ export default function VocherLeger() {
     { label: "Description", key: "Description" },
     { label: "Mode", key: "Mode" },
     { label: "Amount	", key: "Amount" },
-    // { label: "Balance", key: "PaymentAmount" },
   ];
-  // let Url = "http://localhost:5000";
-  //   const [BelongsID, setBelongsID] = useState(UserCredentials.UserData.Role);
-  //   const [refresher, setRefresher] = useState(false);
-  //   let ID = UserCredentials.UserData._id;
-  //   console.log(UserCredentials.UserData, "UserCredentials");
-  // console.log(allData);
 
   useEffect(() => {
     if (UserCredentials?.UserData?.Role == "Admin") {
@@ -55,7 +49,9 @@ export default function VocherLeger() {
           },
         },
       }).then((response) => {
+        console.log(response?.data);
         setLoading(false);
+        setfilterItem(response?.data);
         // console.log(response.data)
         setallData(response?.data);
       });
@@ -70,7 +66,9 @@ export default function VocherLeger() {
           },
         },
       }).then((response) => {
+        console.log(response);
         setLoading(false)
+        setfilterItem(response?.data);
         // console.log(response.data,"smsLedger=>Response");
         setallData(response?.data);
       });
@@ -82,10 +80,10 @@ export default function VocherLeger() {
     setPage(value);
   };
 
-  const displayedData = allData.slice(
-    (page - 1) * itemsPerPage,
-    page * itemsPerPage
-  );
+  // const displayedData = filterItem.slice(
+  //   (page - 1) * itemsPerPage,
+  //   page * itemsPerPage
+  // );
 
 
   const downloadReport = async () => {
@@ -93,6 +91,26 @@ export default function VocherLeger() {
       csvLinkEl.current.link.click();
     });
   };
+
+  const createFilter = (filterParams) => {
+    console.log("FilterParams in createFilter", filterParams);
+    const { Mode, createdOn,cashenddate } = filterParams;
+    let filtered = allData;
+    filtered = (Mode) ? filtered.filter((item) => item.Mode === Mode) : filtered;
+    //payment start date
+    filtered = (createdOn) ? filtered.filter((item) => new Date(item?.createdOn) >= new Date(createdOn)) : filtered;
+    //payment  end date
+    filtered = (cashenddate) ? filtered.filter((item) => new Date(item?.createdOn) <= new Date(cashenddate)) : filtered;
+
+
+
+
+    console.log("Filtered item in create filter", filtered);
+    setfilterItem(filtered);
+
+    return filtered
+  };
+
 
   return (
     <>
@@ -125,14 +143,14 @@ export default function VocherLeger() {
               </button>
             </div>
             <div className="m-2">
-              <Filter data={{ allData, setfilterItem }} />
+              <VoucherFilter data={{ allData, createFilter }} />
             </div>
           </div>
         </div>
 
         {
-          loading ? <div style={{display:"flex",justifyContent:'center',alignItems:"center"}}>
-            <CircularProgress/>
+          loading ? <div style={{ display: "flex", justifyContent: 'center', alignItems: "center" }}>
+            <CircularProgress />
           </div> : <>   <table className="table table-hover">
             <thead className="bg-light">
               <tr>
@@ -144,7 +162,7 @@ export default function VocherLeger() {
               </tr>
             </thead>
             <tbody>
-              {displayedData?.map((v) => {
+              {filterItem?.slice((page - 1) * itemsPerPage, page * itemsPerPage)?.map((v) => {
                 // <VocherLegerList alldata={v} />
                 return (
                   <tr>
