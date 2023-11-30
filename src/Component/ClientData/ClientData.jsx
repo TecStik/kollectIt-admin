@@ -237,10 +237,7 @@ export default function ClientData() {
         });
 
         // agian fetch dat end here
-
-
-
-
+        
       })
       .catch((error) => [console.log(error, "error")]);
 
