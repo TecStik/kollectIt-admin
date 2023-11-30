@@ -111,7 +111,7 @@ export default function AddMember() {
                         <input type="text" placeholder="Employee name of team member" name="name" ref={name} required />
                     </div>
                     <div>
-                        <label for="loginId">Number or Login ID</label>
+                        <label for="loginId">Mobile Number</label>
                         <PhoneInput
                             international
                             defaultCountry="PK"

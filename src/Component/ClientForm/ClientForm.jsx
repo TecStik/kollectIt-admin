@@ -88,7 +88,7 @@ export default function ClientForm() {
           {/* <div class="row"> */}
           {/* </div> */}
           <div className="row p-2">
-            <label for="lname">Contact Number</label>
+            <label for="lname">Mobile Number</label>
             <PhoneInput
               international
               defaultCountry="PK"
