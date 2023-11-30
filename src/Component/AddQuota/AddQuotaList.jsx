@@ -114,7 +114,7 @@ export default function AddQuotaList(data) {
               <td>
                 <button
                   type="button"
-                  class="btn btn-warning btn-rounded"
+                  className="btn btn-warning btn-rounded"
                   data-toggle="modal"
                   data-target="#myModal"
                   onClick={() => createBelongsID(v)}
@@ -126,7 +126,7 @@ export default function AddQuotaList(data) {
               <td>
                 <button
                   type="button"
-                  class="btn btn-dark btn-rounded"
+                  className="btn btn-dark btn-rounded"
                   data-toggle="modal"
                   data-target="#myCredit"
                   onClick={() => createBelongsID(v)}
@@ -141,15 +141,15 @@ export default function AddQuotaList(data) {
         {/* </td> */}
       </tr>
 
-      <div class="modal" id="myModal">
-        <div class="modal-dialog modal-dialog-scrollable">
-          <div class="modal-content" style={{ width: "115%" }}>
+      <div className="modal" id="myModal">
+        <div className="modal-dialog modal-dialog-scrollable">
+          <div className="modal-content" style={{ width: "115%" }}>
             {/* <!-- Modal Header --> */}
-            <div class="modal-header">
-              <h1 class="modal-title">Limits Update</h1>
+            <div className="modal-header">
+              <h1 className="modal-title">Limits Update</h1>
               <button
                 type="button"
-                class="btn btn-danger close"
+                className="btn btn-danger close"
                 data-dismiss="modal"
               >
                 X
@@ -157,7 +157,7 @@ export default function AddQuotaList(data) {
             </div>
 
             {/* <!-- Modal body --> */}
-            <div class="modal-body">
+            <div className="modal-body">
               <table id="myTable">
                 <th style={{ width: 60 }}>
                   <input
@@ -170,34 +170,34 @@ export default function AddQuotaList(data) {
             </div>
 
             {/* <!-- Modal footer --> */}
-            <div class="modal-footer">
+            <div className="modal-footer">
               {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
               <button
                 id="sumbit"
                 aria-label=""
                 onClick={handleSubmit}
-                class="btn btn-success close"
+                className="btn btn-success close"
                 data-dismiss="modal"
               >
                 SUBMIT
               </button>
               {/* <button type="button" onClick={handleSubmit} value={value} class="btn btn-success close">Submit</button> */}
-              <button type="button" class="btn btn-danger" data-dismiss="modal">
+              <button type="button" className="btn btn-danger" data-dismiss="modal">
                 Close
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div class="modal" id="myCredit">
-        <div class="modal-dialog modal-dialog-scrollable">
-          <div class="modal-content" style={{ width: "115%" }}>
+      <div className="modal" id="myCredit">
+        <div className="modal-dialog modal-dialog-scrollable">
+          <div className="modal-content" style={{ width: "115%" }}>
             {/* <!-- Modal Header --> */}
-            <div class="modal-header">
-              <h1 class="modal-title">Add Credit</h1>
+            <div className="modal-header">
+              <h1 className="modal-title">Add Credit</h1>
               <button
                 type="button"
-                class="btn btn-danger close"
+                className="btn btn-danger close"
                 data-dismiss="modal"
               >
                 X
@@ -205,7 +205,7 @@ export default function AddQuotaList(data) {
             </div>
 
             {/* <!-- Modal body --> */}
-            <div class="modal-body">
+            <div className="modal-body">
               <table id="myTable">
                 <th style={{ width: 60 }}>
                   <input
@@ -218,19 +218,19 @@ export default function AddQuotaList(data) {
             </div>
 
             {/* <!-- Modal footer --> */}
-            <div class="modal-footer">
+            <div className="modal-footer">
               {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
               <button
                 id="sumbitt"
                 aria-label=""
                 onClick={handleSubmitCredit}
-                class="btn btn-success close"
+                className="btn btn-success close"
                 data-dismiss="modal"
               >
                 SUBMIT
               </button>
               {/* <button type="button" onClick={handleSubmit} value={value} class="btn btn-success close">Submit</button> */}
-              <button type="button" class="btn btn-danger" data-dismiss="modal">
+              <button type="button" className="btn btn-danger" data-dismiss="modal">
                 Close
               </button>
             </div>

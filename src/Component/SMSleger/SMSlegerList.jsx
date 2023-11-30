@@ -85,7 +85,7 @@ export default function QuotaList(data) {
             </div>
 
             {/* <!-- Modal footer --> */}
-            <div class="modal-footer">
+            <div className="modal-footer">
               {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
               {/* <button id='sumbit' aria-label='' onClick={handleSubmit} class="btn btn-success close" data-dismiss="modal"> SUMBIT</button> */}
               {/* <button type="button" onClick={handleSubmit} value={value} class="btn btn-success close">Submit</button> */}

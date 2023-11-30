@@ -64,7 +64,7 @@ export default function ClientForm() {
       <br />
       <br /> */}
 
-      <div class="container col-50" style={{ display: "flex", alignItems: "center", justifyContent: "center", }}>
+      <div className="container col-50" style={{ display: "flex", alignItems: "center", justifyContent: "center", }}>
         <form style={{ padding: '5px', margin: "5px", boxShadow: "1px 2px 5px 2px #888888" }}
           onSubmit={(e) => {
             e.preventDefault();
@@ -77,7 +77,7 @@ export default function ClientForm() {
           <hr />
 
 
-          <div class="row p-2">
+          <div className="row p-2">
 
             <label for="fname">ID</label>
             <input type="text" id="fname" name="firstname" ref={ClientId} placeholder="Client ID.."  />
@@ -87,7 +87,7 @@ export default function ClientForm() {
           </div>
           {/* <div class="row"> */}
           {/* </div> */}
-          <div class="row p-2">
+          <div className="row p-2">
             <label for="lname">Contact Number</label>
             <PhoneInput
               international
@@ -100,16 +100,16 @@ export default function ClientForm() {
 
             {/* <input type="number" id="lname" name="lastname" ref={ClientPhoneNumber} placeholder="Client Phone Number.." style={{padding:'15px 10px'}} required/> */}
           </div>
-          <div class="row p-2">
+          <div className="row p-2">
             <label for="lname">Email</label>
             <input type="email" id="lname" name="lastname" ref={ClientEmail} placeholder="Client Email.." style={{ padding: '15px 10px' }} required />
           </div>
-          <div class="row p-2">
+          <div className="row p-2">
             <label for="lname">Amount</label>
             <input type="number" id="lname" name="lastname" ref={ClientAmount} placeholder="Client Amount.." style={{ padding: '15px 10px' }} required />
           </div>
           <br />
-          <div class="row p-2">
+          <div className="row p-2">
             <input type="submit" value="Submit" style={{ backgroundColor: "#427D8F" }} />
           </div>
         </form>

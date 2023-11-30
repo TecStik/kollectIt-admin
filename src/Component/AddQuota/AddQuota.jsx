@@ -137,9 +137,9 @@ export default function AddQuota() {
 
   return (
     <>
-      <div class="card card-cascade narrower">
+      <div className="card card-cascade narrower">
         <div
-          class="container mt-3 overflow-auto"
+          className="container mt-3 overflow-auto"
           style={{ maxHeight: "110vh" }}
         >
           <h2>Add Quota</h2>
@@ -156,13 +156,13 @@ export default function AddQuota() {
               />
               <div className="d-flex flex-row-reverse m-2">
                 <button
-                  class="btn text-white"
+                  className="btn text-white"
                   style={{ background: "#427D8F", fontSize: 15 }}
                   onClick={downloadReport}
                   role="button"
                 >
                   Export
-                  <i class="far fa-circle-down mx-2 "></i>
+                  <i className="far fa-circle-down mx-2 "></i>
                 </button>
               </div>
             </div>
@@ -171,8 +171,8 @@ export default function AddQuota() {
 
           {
             loading ? <CircularProgressWithLabel value={progress} /> : <>
-              <table class="table table-hover">
-                <thead class="bg-light">
+              <table className="table table-hover">
+                <thead className="bg-light">
                   <tr>
                     <th>Admin Name</th>
                     <th>Email</th>

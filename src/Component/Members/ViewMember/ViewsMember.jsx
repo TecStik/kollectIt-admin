@@ -191,8 +191,8 @@ export default function ViewMember() {
 
 
     return (
-        <div class="card card-cascade narrower">
-            <div class="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
+        <div className="card card-cascade narrower">
+            <div className="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
                 <h2>View Members</h2>
                 <div className="d-flex flex-row-reverse m-2">
                     <div className="m-2">
@@ -206,8 +206,8 @@ export default function ViewMember() {
                     loading ? <div>
                         <CircularProgressWithLabel value={progress} />
                     </div> : <>
-                        <table class="table table-hover">
-                            <thead class="bg-light">
+                        <table className="table table-hover">
+                            <thead className="bg-light">
                                 <tr>
                                     <th>Employee Name</th>
                                     <th>Role</th>
@@ -245,15 +245,15 @@ export default function ViewMember() {
 
                         {/* modal start here */}
 
-                        <div class="modal" id="myModal">
-                            <div class="modal-dialog modal-dialog-scrollable">
-                                <div class="modal-content" style={{ width: "115%" }}>
+                        <div className="modal" id="myModal">
+                            <div className="modal-dialog modal-dialog-scrollable">
+                                <div className="modal-content" style={{ width: "115%" }}>
                                     {/* <!-- Modal Header --> */}
-                                    <div class="modal-header">
-                                        <h1 class="modal-title">View & Update</h1>
+                                    <div className="modal-header">
+                                        <h1 className="modal-title">View & Update</h1>
                                         <button
                                             type="button"
-                                            class="btn btn-danger close"
+                                            className="btn btn-danger close"
                                             data-dismiss="modal"
                                         >
                                             X
@@ -261,7 +261,7 @@ export default function ViewMember() {
                                     </div>
 
                                     {/* <!-- Modal body --> */}
-                                    <div class="modal-body">
+                                    <div className="modal-body">
                                         <table id="myTable">
                                             <td className="client__update_container_th">
                                                 <th style={{ width: '100%' }}>
@@ -305,18 +305,17 @@ export default function ViewMember() {
                                     </div>
 
                                     {/* <!-- Modal footer --> */}
-                                    <div class="modal-footer">
-                                        {/* <button value={value} onClick={() => handleSubmit(value)}>Submit</button> */}
+                                    <div className="modal-footer">
                                         <button
                                             id="sumbit"
                                             aria-label=""
-                                            class="btn btn-success close"
+                                            className="btn btn-success close"
                                             data-dismiss="modal"
                                             onClick={() => handler()}
                                         >
                                             SUBMIT
                                         </button>
-                                        {/* <button type="button" onClick={handleSubmit} value={value} class="btn btn-success close">Submit</button> */}
+                                    
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">
                                             Close
                                         </button>

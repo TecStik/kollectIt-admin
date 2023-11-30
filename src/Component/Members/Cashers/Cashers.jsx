@@ -48,31 +48,18 @@ export default function Cashers() {
 
 
   return (
-    <div class="card card-cascade narrower">
-      <div class="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
+    <div className="card card-cascade narrower">
+      <div className="container mt-3 overflow-auto" style={{ maxHeight: "110vh" }}>
         <h2>Cashiers</h2>
         <div className="d-flex flex-row-reverse m-2">
         <div className="m-2">
-          {/* <button
-            class="btn text-white "
-            style={{
-              background: "#427D8F",
-              fontSize: 15,
-              marginTop: "-3%",
-            }}
-            onClick={downloadReport}
-            role="button"
-          >
-            Export
-            <i class="far fa-circle-down mx-2 "></i>
-          </button> */}
         </div>
         <div className="m-2">
           <Filter data={{ allData, setfilterItem }} />
         </div>
       </div>
-        <table class="table table-hover">
-          <thead class="bg-light">
+        <table className="table table-hover">
+          <thead className="bg-light">
             <tr>
               <th>Cashier Name</th>
               <th>Login ID</th>
@@ -92,39 +79,19 @@ export default function Cashers() {
                   <td>{v?.employeeEmail}</td>
                   <td>{v?.employeePassword}</td>
                   <td>
-                    <span class="badge badge-success rounded-pill d-inline">
+                    <span className="badge badge-success rounded-pill d-inline">
                       Active
                     </span>
                   </td>
                   <td>Senior</td>
                   <td>
-                    <button class="btn btn-warning btn-rounded">
+                    <button className="btn btn-warning btn-rounded">
                       {v?.Role}
                     </button>
                   </td>
                 </tr>
               );
             })}
-            {/* <tr>
-              <td>Mary</td>
-              <td>mary@example.com</td>
-              <td>Moe</td>
-              <td>
-                <span class="badge badge-primary rounded-pill d-inline"
-                >Onboarding</span
-                >
-              </td>
-              <td>Junior</td>
-            </tr>
-            <tr>
-              <td>July</td>
-              <td>july@example.com</td>
-              <td>Dooley</td>
-              <td>
-                <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-              </td>
-              <td>Senior</td>
-            </tr> */}
           </tbody>
         </table>
         <PaginationComponent onChange={handlePageChange} page={page}  totalPages={totalPages}/>

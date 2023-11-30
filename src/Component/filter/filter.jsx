@@ -30,11 +30,11 @@ export default function Filter({ data }) {
 
   return (
     <div>
-      <div class="d-flex">
-        <div class="p-2 w-100"></div>
-        <div class="flex-shrink-1">
+      <div className="d-flex">
+        <div className="p-2 w-100"></div>
+        <div className="flex-shrink-1">
           <a
-            class="btn btn-primary"
+            className="btn btn-primary"
             data-mdb-toggle="collapse"
             href="#collapseExample"
             role="button"
@@ -55,14 +55,14 @@ export default function Filter({ data }) {
 
       {/* <!-- Collapsed content --> */}
 
-      <div class="collapse mt-3" id="collapseExample">
+      <div className="collapse mt-3" id="collapseExample">
         <div>
-          <div class="row mb-5 mx-5" id="filterColor">
+          <div className="row mb-5 mx-5" id="filterColor">
             <div class="col-md-3">
-              <div class="col-example z-depth-4 flex-center">
+              <div className="col-example z-depth-4 flex-center">
                 <p>
-                  <label class="form-label text-white">
-                    Client Id<span class="text-danger"> *</span>
+                  <label className="form-label text-white">
+                    Client Id<span className="text-danger"> *</span>
                   </label>
                   <Form.Control
                     type="text"
@@ -75,11 +75,11 @@ export default function Filter({ data }) {
               </div>
             </div>
 
-            <div class="col-md-3">
-              <div class="col-example z-depth-4 flex-center">
+            <div className="col-md-3">
+              <div className="col-example z-depth-4 flex-center">
                 <p>
-                  <label class="form-label text-white">
-                    Client Name<span class="text-danger"> *</span>
+                  <label className="form-label text-white">
+                    Client Name<span className="text-danger"> *</span>
                   </label>
                   <Form.Control
                     type="text"
@@ -93,11 +93,11 @@ export default function Filter({ data }) {
             </div>
 
 
-            <div class="col-md-3">
-              <div class="col-example z-depth-4 flex-center">
+            <div className="col-md-3">
+              <div className="col-example z-depth-4 flex-center">
                 <p>
-                  <label class="form-label text-white">
-                    Client Number<span class="text-danger"> *</span>
+                  <label className="form-label text-white">
+                    Client Number<span className="text-danger"> *</span>
                   </label>
                   <Form.Control
                     type="text"
@@ -110,11 +110,11 @@ export default function Filter({ data }) {
               </div>
             </div>
 
-            <div class="col-md-3">
-              <div class="col-example z-depth-4 flex-center">
+            <div className="col-md-3">
+              <div className="col-example z-depth-4 flex-center">
                 <p>
-                  <label class="form-label text-white">
-                    Client Email<span class="text-danger"> *</span>
+                  <label className="form-label text-white">
+                    Client Email<span className="text-danger"> *</span>
                   </label>
                   <Form.Control
                     type="text"
@@ -130,18 +130,18 @@ export default function Filter({ data }) {
 
 
 
-            <div class="d-flex">
-              <div class="p-2 w-100">
+            <div className="d-flex">
+              <div className="p-2 w-100">
 
-                <div class="  flex-center">
-                  <p class="white-text">
+                <div className="flex-center">
+                  <p className="white-text">
                     <button
                       id="search-button"
                       type="button"
                       onClick={handler}
-                      class="btn btn-secondary"
+                      className="btn btn-secondary"
                     >
-                      <i class="fas fa-search"></i> Search
+                      <i className="fas fa-search"></i> Search
                     </button>
                   </p>
                   {/* <div class="col-md-2"> */}

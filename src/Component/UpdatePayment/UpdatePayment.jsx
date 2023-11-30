@@ -50,7 +50,7 @@ export default function UpdatePayment() {
             <input type="text" id="myInput" onChange={myFunction} placeholder="Search for names.." title="Type in a name"></input>
 
             <table id="myTable">
-                <tr class="header">
+                <tr className="header">
                     <th style={{ width: 60 }}>VerificationCode</th>
                     <th style={{ width: 60 }}>Name</th>
                     <th style={{ width: 60 }}>Number</th>

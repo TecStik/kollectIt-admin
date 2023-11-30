@@ -93,14 +93,14 @@ export default function AddMember() {
 
 
     return (
-        <div class="container col-50" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: 'column' }}>
+        <div className="container col-50" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: 'column' }}>
             <form style={{ padding: '5px', margin: "5px", boxShadow: "1px 2px 5px 2px #888888" }}
                 onSubmit={(e) => {
                     e.preventDefault();
                     employe()
                 }}>
 
-                <div class="p-2">
+                <div className="p-2">
                     <div style={{ textAlign: "center" }}>
                         <h1>Add a Member</h1>
                         {/* <p>Please fill in this form to create an account.</p> */}

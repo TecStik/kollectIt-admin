@@ -37,11 +37,11 @@ export default function PaymentFilter({ data }) {
 
     return (
         <div>
-            <div class="d-flex">
-                <div class="p-2 w-100"></div>
-                <div class="flex-shrink-1">
+            <div className="d-flex">
+                <div className="p-2 w-100"></div>
+                <div className="flex-shrink-1">
                     <a
-                        class="btn btn-primary"
+                        className="btn btn-primary"
                         data-mdb-toggle="collapse"
                         href="#collapseExample"
                         role="button"
@@ -62,15 +62,15 @@ export default function PaymentFilter({ data }) {
 
             {/* <!-- Collapsed content --> */}
 
-            <div class="collapse mt-3" id="collapseExample">
+            <div className="collapse mt-3" id="collapseExample">
                 <div>
-                    <div class="row mb-5 mx-5" id="filterColor">
+                    <div className="row mb-5 mx-5" id="filterColor">
 
-                        <div class="col-md-4">
-                            <div class="col-example z-depth-4 flex-center">
+                        <div className="col-md-4">
+                            <div className="col-example z-depth-4 flex-center">
                                 <p>
-                                    <label class="form-label text-white">
-                                        Name<span class="text-danger"> *</span>
+                                    <label className="form-label text-white">
+                                        Name<span className="text-danger"> *</span>
                                     </label>
                                     <Form.Control
                                         type="text"
@@ -84,11 +84,11 @@ export default function PaymentFilter({ data }) {
                         </div>
 
 
-                        <div class="col-md-4">
-                            <div class="col-example z-depth-4 flex-center">
+                        <div className="col-md-4">
+                            <div className="col-example z-depth-4 flex-center">
                                 <p>
-                                    <label class="form-label text-white">
-                                        Drawn on<span class="text-danger"> *</span>
+                                    <label className="form-label text-white">
+                                        Drawn on<span className="text-danger"> *</span>
                                     </label>
                                     <Form.Control
                                         type="text"
@@ -101,11 +101,11 @@ export default function PaymentFilter({ data }) {
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="col-example z-depth-4 flex-center">
+                        <div className="col-md-4">
+                            <div className="col-example z-depth-4 flex-center">
                                 <p>
-                                    <label class="form-label text-white">
-                                        Payment Status<span class="text-danger"> *</span>
+                                    <label className="form-label text-white">
+                                        Payment Status<span className="text-danger"> *</span>
                                     </label>
                                     <Form.Control
                                         type="text"
@@ -119,11 +119,11 @@ export default function PaymentFilter({ data }) {
                         </div>
 
                         {/* due on start date or end date filter here */}
-                        <div class="col-md-6">
-                            <div class="col-example z-depth-4 flex-center">
+                        <div className="col-md-6">
+                            <div className="col-example z-depth-4 flex-center">
                                 <p>
-                                    <label class="form-label text-white">
-                                        Due On<span class="text-danger"> *</span>
+                                    <label className="form-label text-white">
+                                        Due On<span className="text-danger"> *</span>
                                     </label>
                                     {/* <br /> */}
                                     <p>From</p>
@@ -137,8 +137,8 @@ export default function PaymentFilter({ data }) {
                                             onChange={(e) => setStartDate(e.target.value)}
                                         />
                                         <div style={{ width: "100%", textAlign: "left", padding: '3px 0px' }}>
-                                            <label class="form-label text-white" >
-                                                Due On<span class="text-danger"> *</span>
+                                            <label className="form-label text-white" >
+                                                Due On<span className="text-danger"> *</span>
                                             </label>
                                             <p >To</p>
                                         </div>
@@ -156,11 +156,11 @@ export default function PaymentFilter({ data }) {
                         </div>
 
                         {/*  payment date filter start date or end date her*/}
-                        <div class="col-md-6">
-                            <div class="col-example z-depth-4">
+                        <div className="col-md-6">
+                            <div className="col-example z-depth-4">
                                 <p>
-                                    <label class="form-label text-white">
-                                        Payment Date<span class="text-danger"> *</span>
+                                    <label className="form-label text-white">
+                                        Payment Date<span className="text-danger"> *</span>
                                     </label>
                                     <p>From</p>
                                     <div style={{ display: "flex", flexDirection: "column", gap: "3px", alignItems: "center" }}>
@@ -172,8 +172,8 @@ export default function PaymentFilter({ data }) {
                                             onChange={(e) => setPaymentStartDate(e.target.value)}
                                         />
                                         <div style={{ width: "100%", textAlign: "left", padding: '3px 0px' }}>
-                                            <label class="form-label text-white">
-                                                Payment Date<span class="text-danger"> *</span>
+                                            <label className="form-label text-white">
+                                                Payment Date<span className="text-danger"> *</span>
                                             </label>
                                             <p>To</p>
                                         </div>
@@ -194,17 +194,17 @@ export default function PaymentFilter({ data }) {
 
 
 
-                        <div class="d-flex">
-                            <div class="p-2 w-100">
-                                <div class="  flex-center">
-                                    <p class="white-text">
+                        <div className="d-flex">
+                            <div className="p-2 w-100">
+                                <div className="  flex-center">
+                                    <p className="white-text">
                                         <button
                                             id="search-button"
                                             type="button"
                                             onClick={handler}
-                                            class="btn btn-secondary"
+                                            className="btn btn-secondary"
                                         >
-                                            <i class="fas fa-search"></i> Search
+                                            <i className="fas fa-search"></i> Search
                                         </button>
                                     </p>
                                     {/* <div class="col-md-2"> */}

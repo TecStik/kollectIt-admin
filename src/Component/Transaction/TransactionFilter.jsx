@@ -54,16 +54,16 @@ export default function TransactionFilter({ data }) {
 
             {/* <!-- Collapsed content --> */}
 
-            <div class="collapse mt-3" id="collapseExample">
+            <div className="collapse mt-3" id="collapseExample">
                 <div>
-                    <div class="row mb-5 mx-5" id="filterColor">
+                    <div className="row mb-5 mx-5" id="filterColor">
 
-                        <div class="col-md-3">
-                            <div class="col-example z-depth-4 flex-center">
+                        <div className="col-md-3">
+                            <div className="col-example z-depth-4 flex-center">
                                 <p>
                                     <div style={{ width: '100%', textAlign: "left", padding: "2px 0px" }}>
-                                        <label class="form-label text-white">
-                                            Date<span class="text-danger"> *</span>
+                                        <label className="form-label text-white">
+                                            Date<span className="text-danger"> *</span>
                                         </label>
                                         <p>From</p>
                                     </div>
@@ -77,8 +77,8 @@ export default function TransactionFilter({ data }) {
                                             onChange={(e) => setStartDate(e.target.value)}
                                         />
                                         <div style={{ width: '100%', textAlign: "left", padding: '2px 0px' }}>
-                                            <label class="form-label text-white">
-                                                Date<span class="text-danger"> *</span>
+                                            <label className="form-label text-white">
+                                                Date<span className="text-danger"> *</span>
                                             </label>
                                             <p>To</p>
                                         </div>
@@ -95,11 +95,11 @@ export default function TransactionFilter({ data }) {
                             </div>
                         </div>
 
-                        <div class="col-md-3" style={{position:"relative",top:"8px"}}>
-                            <div class="col-example z-depth-4 flex-center">
+                        <div className="col-md-3" style={{position:"relative",top:"8px"}}>
+                            <div className="col-example z-depth-4 flex-center">
                                 <p>
-                                    <label class="form-label text-white">
-                                        Nature<span class="text-danger"> *</span>
+                                    <label className="form-label text-white">
+                                        Nature<span className="text-danger"> *</span>
                                     </label>
                                     <Form.Select style={{padding:"15px 10px"}}  value={nature} onChange={(e) => setNature(e.target.value)}>
                                         <option value="Collection">Collection</option>
@@ -109,11 +109,11 @@ export default function TransactionFilter({ data }) {
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="col-example z-depth-4 flex-center">
+                        <div className="col-md-3">
+                            <div className="col-example z-depth-4 flex-center">
                                 <p>
-                                    <label class="form-label text-white">
-                                        From<span class="text-danger"> *</span>
+                                    <label className="form-label text-white">
+                                        From<span className="text-danger"> *</span>
                                     </label>
                                     <Form.Control
                                         type="text"
@@ -126,11 +126,11 @@ export default function TransactionFilter({ data }) {
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="col-example z-depth-4 flex-center">
+                        <div className="col-md-3">
+                            <div className="col-example z-depth-4 flex-center">
                                 <p>
-                                    <label class="form-label text-white">
-                                        To<span class="text-danger"> *</span>
+                                    <label className="form-label text-white">
+                                        To<span className="text-danger"> *</span>
                                     </label>
                                     <Form.Control
                                         type="text"
@@ -145,18 +145,18 @@ export default function TransactionFilter({ data }) {
 
 
 
-                        <div class="d-flex">
-                            <div class="p-2 w-100">
+                        <div className="d-flex">
+                            <div className="p-2 w-100">
 
-                                <div class="  flex-center">
-                                    <p class="white-text">
+                                <div className="  flex-center">
+                                    <p className="white-text">
                                         <button
                                             id="search-button"
                                             type="button"
                                             onClick={handler}
                                             class="btn btn-secondary"
                                         >
-                                            <i class="fas fa-search"></i> Search
+                                            <i className="fas fa-search"></i> Search
                                         </button>
                                     </p>
                                     {/* <div class="col-md-2"> */}
