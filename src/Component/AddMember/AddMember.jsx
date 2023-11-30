@@ -59,6 +59,7 @@ export default function AddMember() {
                 if (email.current) email.current.value = "";
                 if (password.current) password.current.value = "";
                 if (phoneInputRef.current) phoneInputRef.current.value = "";
+                setValue("");
             })
             .catch((err) => {
                 console.log(err);

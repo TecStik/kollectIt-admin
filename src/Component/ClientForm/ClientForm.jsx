@@ -1,4 +1,4 @@
-import React, { useContext, useRef,useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import './ClientForm.css';
 import axios from 'axios';
 import { Url } from '../../Pages/Core';
@@ -21,6 +21,11 @@ export default function ClientForm() {
   let UserDetail = RoleDetails.UserData
   console.log(UserDetail);
 
+  let belongsToId = (UserDetail?.Role == "Cashier") ? UserDetail?.CreatedBy : UserDetail?._id;
+
+  console.log("Testing Id...>",belongsToId);
+  console.log("User Id Details...>",UserDetail);
+
   const FormSubmit = () => {
 
     // console.log(ClientId.current.value, ClientName.current.value, ClientEmail.current.value, ClientPhoneNumber.current.value, ClientAmount.current.value, 'This is a success message');
@@ -33,7 +38,7 @@ export default function ClientForm() {
         ClientEmail: ClientEmail.current.value,
         ClientAmount: ClientAmount.current.value,
         ClientPhoneNumber: ClientPhoneNumber.current.value,
-        BelongsTo: UserDetail._id
+        BelongsTo: belongsToId
       }
 
     }).then(response => {
@@ -44,6 +49,7 @@ export default function ClientForm() {
       ClientEmail.current.value = ""
       ClientAmount.current.value = ""
       ClientPhoneNumber.current.value = ""
+      setValue("");
     })
       .catch(error => {
         console.log(error, "error")
@@ -74,7 +80,7 @@ export default function ClientForm() {
           <div class="row p-2">
 
             <label for="fname">ID</label>
-            <input type="text" id="fname" name="firstname" ref={ClientId} placeholder="Client ID.." required />
+            <input type="text" id="fname" name="firstname" ref={ClientId} placeholder="Client ID.."  />
 
             <label for="fname">Name</label>
             <input type="text" id="fname" name="firstname" ref={ClientName} placeholder="Client name.." required />

@@ -27,8 +27,7 @@ export default function Filter({ data }) {
             <div class="d-flex">
                 <div class="p-2 w-100"></div>
                 <div class="flex-shrink-1">
-                    <a
-                        class="btn btn-primary"
+                    <a class="btn btn-primary"
                         data-mdb-toggle="collapse"
                         href="#collapseExample"
                         role="button"
@@ -55,7 +54,7 @@ export default function Filter({ data }) {
                         <div class="col-md-4">
                             <div class="col-example z-depth-4 flex-center">
                                 <p>
-                                    <div style={{width:'100%',textAlign:"left"}}>
+                                    <div style={{ width: '100%', textAlign: "left" }}>
                                         <label class="form-label text-white">
                                             Due On<span class="text-danger"> *</span>
                                         </label>

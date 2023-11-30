@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import logo from "./tecstik.png";
 import "./Table.css";
 import StoreContext from '../../ContextApi';
-
+import {Button} from "react-bootstrap";
 
 
 const Table = ({ clientName, billObject, netAmnt }) => {
@@ -12,6 +12,10 @@ const Table = ({ clientName, billObject, netAmnt }) => {
     const tax= Number( data?.salesTax);
 
     // console.log(data)
+
+    const handlePrint = () =>{
+        window.print();
+    }
 
     return (
         <div>
@@ -70,6 +74,10 @@ const Table = ({ clientName, billObject, netAmnt }) => {
                         <li>Rs.{data?.Aamount_within_dueDate}</li>
                     </ul>
                 </div>
+            </div>
+
+            <div style={{display:'flex',justifyContent:"flex-end",alignItems:"center",position:'relative',right:"180px",margin:'20px 0px'}}>
+                <Button onClick={handlePrint}>Print</Button>
             </div>
         </div>
     )

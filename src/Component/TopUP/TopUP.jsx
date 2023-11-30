@@ -23,6 +23,11 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 //material ui modal import her
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
+
+
 
 
 

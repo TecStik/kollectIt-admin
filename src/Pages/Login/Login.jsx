@@ -108,7 +108,7 @@ function Login() {
             </h1>
             <Form onSubmit={!isLoading ? handleClick : null}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Phone Login Id</Form.Label>
+                <Form.Label>+XXXXXXXXX</Form.Label>
                 {/* <PhoneInput
                   international
                   defaultCountry="PK"
@@ -120,7 +120,7 @@ function Login() {
 
                 <Form.Control
                   type="text"
-                  placeholder="Phone Login id"
+                  placeholder="+XXXXXXXXX"
                   ref={email}
                   required
                 />
