@@ -210,37 +210,35 @@ export default function ClientData() {
     })
       .then((res) => {
         setRealTime(!realTime);
-
+        console.log(res)
         // again fetch data  start here
 
-        axios({
-          method: "post",
-          url: Url + "/filteredClients",
-          data: {
-            filter: {
-              AssignedBy: UserCredentials?.UserData._id,
+        setTimeout(() => {
+          axios({
+            method: "post",
+            url: Url + "/filteredClients",
+            data: {
+              filter: {
+                AssignedBy: UserCredentials?.UserData._id,
+              },
             },
-          },
-        }).then((response) => {
-          console.log("new updated ===> get response here",response?.data)
-          // Sort the data based on the 'createdOn' field in descending order
-          const sortedData = response?.data.sort((a, b) => {
-            return new Date(b.createdOn) - new Date(a.createdOn);
-          });
+          }).then((response) => {
+            console.log("new updated ===> get response here", response?.data)
+            // Sort the data based on the 'createdOn' field in descending order
+            const sortedData = response?.data.sort((a, b) => {
+              return new Date(b.createdOn) - new Date(a.createdOn);
+            });
 
-          console.log(sortedData)
-          setallData(sortedData);
-          setfilterItem(sortedData);
-          setTimeout(() => {
-            setLoading(false)
-          }, 2000);
-        });
+            console.log(sortedData)
+            setallData(sortedData);
+            setfilterItem(sortedData);
+          });
+        }, 2000);
 
         // agian fetch dat end here
-        
+
       })
       .catch((error) => [console.log(error, "error")]);
-
   }
 
 

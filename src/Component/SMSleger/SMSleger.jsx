@@ -40,7 +40,7 @@ export default function SMSleger() {
                 }
             }).then((response) => {
                 setLoading(false);
-                console.log(response?.data);
+                // console.log(response?.data);
                 setallData(response.data)
             })
         } else {
@@ -55,7 +55,7 @@ export default function SMSleger() {
                 }
             }).then((response) => {
                 setLoading(false);
-                console.log(response.data);
+                // console.log(response.data);
                 setallData(response.data)
             })
 
@@ -74,7 +74,7 @@ export default function SMSleger() {
 
     // filter functionality here
     
-     console.log(allData);
+     console.log("SMS LEDGER",allData);
 
     return (
         <>
