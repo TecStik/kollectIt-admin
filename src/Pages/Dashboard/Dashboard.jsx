@@ -24,7 +24,8 @@ import {
   AysnRider,
   SMSleger,
   TopUP,
-  ViewMember
+  ViewMember,
+  DepositCollect
 } from "../../Component/index";
 import {
   MenuUnfoldOutlined,
@@ -273,6 +274,19 @@ const Dashboard = () => {
       ),
     },
     {
+      Cashier: "Cashier",
+      Admin: "Admin",
+      key: "25",
+      icon: <TeamOutlined onClick={() => setTrigger(25)} />,
+      label: (
+        <div onClick={() => setTrigger(25)}>
+          <span style={{ marginLeft: "5%" }}>
+            {!collapsed ? "Collect Deposite" : ""}
+          </span>
+        </div>
+      ),
+    },
+    {
       // Cashier: "Cashier",
       Admin: "Admin",
       key: "12",
@@ -481,7 +495,7 @@ const Dashboard = () => {
               {`${Role} Dashboard`}
             </span>
             <div style={{ display: "flex", alignItems: 'center', justifyContent: "center", padding: '0px 30px', gap: "10px", position: "relative", top: "2px" }} onClick={() => handleLogout()}>
-              <h6 className="res_1" style={{ color: "#fff" }}>Welcome: {userData?.UserData?.employeeName } { (userData?.UserData?.shortCode)}</h6>
+              <h6 className="res_1" style={{ color: "#fff" }}>Welcome: {userData?.UserData?.employeeName} {(userData?.UserData?.shortCode)}</h6>
               <LoginOutlined className="icon_res1" style={{ color: "#fff", fontSize: '1.5rem', cursor: "pointer", position: "relative", top: '-2px' }} />
             </div>
           </div>
@@ -575,8 +589,6 @@ const Dashboard = () => {
             </>
 
           ) : trigger === 22 ? (
-
-
             <>
               <PaymentConfirmation1 />
             </>
@@ -590,10 +602,15 @@ const Dashboard = () => {
                 <ViewMember />
               </>
             )
+              : trigger === 25 ? (
+                <>
+                  <DepositCollect />
+                </>
+              )
 
-              : (
-                <>Page Not Found</>
-              )}
+                : (
+                  <>Page Not Found</>
+                )}
         </Content>
       </Layout>
     </Layout>

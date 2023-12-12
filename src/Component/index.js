@@ -1,6 +1,7 @@
 export { default as ClientForm } from "./ClientForm/ClientForm";
 export { default as ClientData } from "./ClientData/ClientData";
 export { default as PaymentData } from "./PaymentData/PaymentData";
+export { default as DepositCollect } from "./PaymentData/CollectDeposit";
 export { default as CsvfileUpload } from "./CsvfileUpload/CsvfileUpload";
 export { default as AddMember } from "./AddMember/AddMember";
 export { default as AdminList } from "./Members/AdminList/AdminList";
