@@ -177,9 +177,6 @@ export default function CollectDeposite() {
             console.log(res?.data);
             window.alert("Deposits Submited")
         }).catch(err => console.log(err));
-
-
-
         setPassPayment("");
         setChecked(false);
     }
