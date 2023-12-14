@@ -61,13 +61,14 @@ export default function CollectDeposite() {
     const [Imagelink, setImagelink] = useState([]);
     const csvLinkEl = useRef(null);
     const [filterItem, setfilterItem] = useState(allData);
-    const [passPayment,setPassPayment] = useState("")
+    const [passPayment, setPassPayment] = useState("")
 
-    
+
 
     // loading state
     const [progress, setProgress] = useState(10);
     const [loading, setLoading] = useState(true);
+    const [isChecked, setChecked] = useState(false)
 
     // new state json pagination
     const [page, setPage] = useState(1);
@@ -101,6 +102,8 @@ export default function CollectDeposite() {
     let dueOnref = useRef();
 
     const UserCredentials = useContext(StoreContext);
+
+    // console.log(UserCredentials)
 
     useEffect(() => {
         let belongsToId = (UserCredentials?.UserData?.Role == "Cashier") ? UserCredentials?.UserData.CreatedBy : UserCredentials?.UserData._id
@@ -151,7 +154,34 @@ export default function CollectDeposite() {
     // console.log(OnData.imageUrl, "rrrrr");
 
     function handler() {
-        setPassPayment("")
+        // console.log(passPayment)
+        let obj = {
+            LinkedPayment: OnData?._id,
+            Amount: passPayment,
+            Payee: UserCredentials?.UserData._id,
+            Payor: OnData?.heldby
+        }
+
+        console.log("Submited", obj)
+
+        axios({
+            method: "POST",
+            url: "http://localhost:5000/deposit/",
+            data: {
+                LinkedPayment: OnData?._id,
+                Amount: passPayment,
+                Payee: UserCredentials?.UserData._id,
+                Payor: OnData?.heldby
+            }
+        }).then((res) => {
+            console.log(res?.data);
+            window.alert("Deposits Submited")
+        }).catch(err => console.log(err));
+
+
+
+        setPassPayment("");
+        setChecked(false);
     }
 
 
@@ -203,12 +233,11 @@ export default function CollectDeposite() {
         return filtered
     };
 
-    const handleAmountChange = () => {
-        let data = OnData?.PaymentAmount;
-        console.log(data);
-        setPassPayment(data);
-       
-    }
+    const handleAmountChange = (e) => {
+        const data = OnData?.PaymentAmount || 0; // Default to 0 if PaymentAmount is undefined
+        setPassPayment(e.target.checked ? data : 0);
+        setChecked(e.target.checked);
+    };
 
 
     return (
@@ -328,15 +357,16 @@ export default function CollectDeposite() {
                                             <input
                                                 type="text"
                                                 placeholder="Amount being collected"
-                                                value={passPayment || 0}
+                                                value={passPayment}
+                                                onChange={(e) => setPassPayment(e.target.value)}
                                             />
 
                                             <input
-                                                style={{ height: '20px', display: "flex", justifyContent: "center", alignItems: "center" }}
+                                                style={{ height: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                                                 onChange={handleAmountChange}
                                                 type="checkbox"
+                                                checked={isChecked}
                                             />
-
 
                                         </th>
 
