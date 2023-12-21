@@ -202,7 +202,7 @@ export default function CollectDeposite() {
 
 
     const createFilter = (filterParams) => {
-        console.log("FilterParams in createFilter", filterParams);
+        console.log("FilterParams check here", filterParams);
         const { PaymentName, drawOn, PaymentStatus, dueOn, enddate, createdOn, paymentenddate } = filterParams;
         let filtered = allData;
         filtered = (PaymentName) ? filtered.filter((item) => item.PaymentName === PaymentName) : filtered;
@@ -214,17 +214,14 @@ export default function CollectDeposite() {
         filtered = (enddate) ? filtered.filter((item) => new Date(item?.dueOn) <= new Date(enddate)) : filtered;
 
         // next date created on filter
-
+      
 
         //payment start date
         filtered = (createdOn) ? filtered.filter((item) => new Date(item?.createdOn) >= new Date(createdOn)) : filtered;
         //payment  end date
         filtered = (paymentenddate) ? filtered.filter((item) => new Date(item?.createdOn) <= new Date(paymentenddate)) : filtered;
 
-
-
-
-        console.log("Filtered item in create filter", filtered);
+        console.log("Filtered item", filtered);
         setfilterItem(filtered);
 
         return filtered
