@@ -228,7 +228,7 @@ export default function CollectDeposite() {
     };
 
     const handleAmountChange = (e) => {
-        const data = OnData?.PaymentAmount || 0; // Default to 0 if PaymentAmount is undefined
+        const data = OnData?.PaymentAmount || 0; // Default to 0 if PaymentAmount is undefined ===>
         setPassPayment(e.target.checked ? data : 0);
         setChecked(e.target.checked);
     };
